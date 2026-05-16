@@ -1,0 +1,41 @@
+[build]
+  publish = "."
+
+# Bloquer l'accès aux fichiers internes (études, brand-book, archives, instructions Claude)
+[[redirects]]
+  from = "/_archive/*"
+  to = "/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/*.md"
+  to = "/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/CLAUDE.md"
+  to = "/"
+  status = 404
+  force = true
+
+# Headers de sécurité de base
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Cache long pour les assets statiques (images, polices, css figés)
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
