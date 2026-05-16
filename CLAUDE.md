@@ -1,11 +1,11 @@
-# Projet Manéo — Instructions pour Claude Code
+# Projet Calquéo — Instructions pour Claude Code
 
 ## Contexte
-Manéo est un studio web indépendant pour les pros qui veulent un site à la hauteur de leur métier. Side project de Vincent.
+Calquéo est un studio web indépendant pour les pros qui veulent un site à la hauteur de leur métier. Side project de Vincent.
 
 Sur le site, **c'est Giovanni qui parle** (alter ego / nom commercial). Dans la marque et tout le copy public : *Giovanni*. En interne, dans les notes, projets et conversations privées : *Vincent*.
 
-⚠️ Le nom "Manéo" est en cours de rebranding (`maneo.fr` détenu par BPCE). 400 pistes dans `rebranding-noms.md`, shortlist à faire.
+✅ Nom validé : **Calquéo** (2026-05-16). Domaines `calqueo.fr` + `calqueo.com` enregistrés chez OVH. L'ancien nom Manéo est définitivement abandonné (maneo.fr détenu par BPCE, MANÉO Opticiens occupe maneo.com). Voir `rebranding-noms.md` et `rebranding-shortlist.md` pour l'historique du brainstorm.
 
 ## Source de vérité unique
 **Avant toute modif visuelle, copy, ou décision de design : lire `brand-book.md`** (V2 mai 2026).
@@ -21,7 +21,7 @@ Ce doc unique contient :
 - Pitch 30 secondes (versions Karim + Camille)
 
 ## Personas (2 en parallèle)
-- **Karim · spearhead marque** — artisans/commerçants TPE en IDF (page d'accueil `maneo.fr`)
+- **Karim · spearhead marque** — artisans/commerçants TPE en IDF (page d'accueil `calqueo.fr`)
 - **Camille · priorité commerciale** — libérales premium (psy, coach, naturo, photographe, déco, wedding planner) qui facturent +80€/séance (page de vente `signature.html`)
 - *Olivier (B2B) réservé phase 3*
 
@@ -54,7 +54,7 @@ linear-gradient(135deg, #00D4FF, #635BFF, #FF6B9D)
 - CTA secondaire : transparent, border 1.5px slate-200, hover → border violet
 - Card : fond blanc, radius 16px, border 1px slate-200, shadow-md
 - Card featured : bord violet 2px, badge "LE PLUS CHOISI"
-- Logo : wordmark `manéo.` (point violet `#635BFF`), Inter 800 lowercase
+- Logo : wordmark `calquéo.` (point violet `#635BFF`), Inter 800 lowercase
 
 ### Voix & ton
 - **Tutoiement systématique** en marketing
@@ -103,7 +103,7 @@ Outil simple dès 4 900€ · Outil métier dès 9 900€ · Outil complet dès 
 ## Fichiers du projet
 
 ```
-MANEO/
+CALQUEO/
 ├── brand-book.md          ← source de vérité unique
 ├── CLAUDE.md              ← ce doc
 ├── rebranding-noms.md     ← 400 pistes à shortlister
@@ -112,7 +112,7 @@ MANEO/
 ├── cgv.html / mentions-legales.html / politique-confidentialite.html
 ├── _legal-shared.css
 ├── robots.txt / sitemap.xml
-├── maneo/                 ← vault Obsidian (études INTERNES, ne pas modifier)
+├── calqueo/                 ← vault Obsidian (études INTERNES, ne pas modifier)
 │   ├── etude-100-profils-INTERNE.md
 │   ├── etude-apps-positionnement-INTERNE.md
 │   ├── etude-marche-INTERNE.md
@@ -126,5 +126,5 @@ MANEO/
 - Ne pas inventer de couleurs hors palette V5
 - Ne pas utiliser de jargon dans le copy (cf. mots interdits)
 - Vincent code seul → solutions simples et maintenables, pas de surengineering
-- Avant tout deploy : rebranding doit être tranché (maneo.fr indispo)
+- Avant tout deploy : pointer DNS `calqueo.fr` → Netlify dans le Manager OVH
 - Le repo est PUBLIC → ne jamais commiter d'infos commerciales clients (tarifs nominatifs, devis, fiches)

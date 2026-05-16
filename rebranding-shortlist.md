@@ -1,4 +1,4 @@
-# Rebranding Manéo — Shortlist en cours
+# Rebranding Calquéo — Shortlist en cours
 
 > État au 2026-05-15. À reprendre dans une prochaine session.
 > Le doc original `rebranding-noms.md` (400 pistes BTP-centrées) est **mis de côté** :
@@ -6,8 +6,8 @@
 
 ## Principe de naming validé
 
-Construire sur la **mécanique Manéo** :
-- **Racine FR audible** (comme "main" dans Manéo)
+Construire sur la **mécanique Calquéo** :
+- **Racine FR audible** (comme "main" dans Calquéo)
 - **Suffixe `-éo`** (doux, brandable, mémorable)
 - **2 syllabes nettes** (ma-néo style)
 - Pas de mot anglais générique, pas de descriptif type "sitesartisans"

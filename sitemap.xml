@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://maneo.fr/</loc>
+    <loc>https://calqueo.fr/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://maneo.fr/mentions-legales.html</loc>
+    <loc>https://calqueo.fr/mentions-legales.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://maneo.fr/cgv.html</loc>
+    <loc>https://calqueo.fr/cgv.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://maneo.fr/politique-confidentialite.html</loc>
+    <loc>https://calqueo.fr/politique-confidentialite.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

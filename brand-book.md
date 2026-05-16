@@ -1,15 +1,15 @@
-# Brand book — Manéo · V2
+# Brand book — Calquéo · V2
 
 > Le digital fait main, taillé pour ton métier.
 
-Document de référence pour la marque Manéo : identité, ton, visuel, copy, offre. Document vivant, à faire évoluer.
+Document de référence pour la marque Calquéo : identité, ton, visuel, copy, offre. Document vivant, à faire évoluer.
 
 **Version :** 2.0 — Mai 2026
 **Auteur :** Giovanni
 **Dernière mise à jour :** 14/05/2026
 **Évolutions vs V1 :** intégration du persona Camille (libérale premium) en parallèle de Karim (artisan), bascule officielle vers la palette V5 Stripe-like (violet/navy), nouvelle grille pricing, signature pro Giovanni.
 
-> ⚠️ Le nom "Manéo" est en cours de rebranding (`maneo.fr` détenu par BPCE). À remplacer dans tout le doc une fois le nouveau nom choisi.
+> ✅ Nom validé : **Calquéo** (2026-05-16). Domaines `calqueo.fr` + `calqueo.com` enregistrés chez OVH. L'ancien nom Manéo est définitivement abandonné.
 
 ---
 
@@ -47,7 +47,7 @@ Un site fait à la main, livré à la date, à prix fixe, par quelqu'un qui pren
 
 ### 1.6 Cible — 1 site, 3 personas (hiérarchie d'attention)
 
-**Décision 2026-05-15 :** un seul site unifié (`maneo.fr`) qui parle aux 3 personas, plutôt qu'une page d'accueil par cible. La page séparée `signature.html` (page Camille) est archivée — sa matière est réinjectée dans `index.html`.
+**Décision 2026-05-15 :** un seul site unifié (`calqueo.fr`) qui parle aux 3 personas, plutôt qu'une page d'accueil par cible. La page séparée `signature.html` (page Camille) est archivée — sa matière est réinjectée dans `index.html`.
 
 **Hiérarchie d'attention sur la home : Camille 60% · Karim 30% · Olivier 10%.**
 
@@ -68,7 +68,7 @@ Dirigeants de TPE B2B : cabinets conseil, agences, petites boîtes de formation.
 - Section "Pour qui" présente les 3 univers, avec Camille en premier.
 - Mots oui mixés : universels d'abord, déclinaisons Karim/Camille en accent.
 
-→ Études complètes : [[project-maneo-pricing]] et `etude-100-profils-INTERNE.md` (12 familles de métiers analysées).
+→ Études complètes : [[project-calqueo-pricing]] et `etude-100-profils-INTERNE.md` (12 familles de métiers analysées).
 
 ### 1.7 Positionnement
 
@@ -77,7 +77,7 @@ Dirigeants de TPE B2B : cabinets conseil, agences, petites boîtes de formation.
 > Pas un templatiste low-cost.
 > Pas une plateforme à engagement caché type Simplébo / Solocal.
 >
-> **Manéo, c'est Giovanni : 14 ans à comprendre les pros, aujourd'hui je leur fais des sites. À prix fixe, sans prise de tête, et en restant joignable après.**
+> **Calquéo, c'est Giovanni : 14 ans à comprendre les pros, aujourd'hui je leur fais des sites. À prix fixe, sans prise de tête, et en restant joignable après.**
 
 ---
 
@@ -87,12 +87,12 @@ Dirigeants de TPE B2B : cabinets conseil, agences, petites boîtes de formation.
 
 ### 2.1 Logo & signature
 
-**Wordmark principal :** `manéo.` (le point est violet)
+**Wordmark principal :** `calquéo.` (le point est violet)
 
 **Construction :**
 - Sans-serif moderne : **Inter weight 800**
 - Letter-spacing serré (-0.03em sur grandes tailles)
-- Casse minuscule systématique (jamais "Manéo" ou "MANÉO" en logotype)
+- Casse minuscule systématique (jamais "Calquéo" ou "CALQUÉO" en logotype)
 - Le point en fin de mot, en violet vif **`#635BFF`**, est l'élément signature
 
 **Monogramme :** `M.` dans bloc navy (M+point compact)
@@ -241,7 +241,7 @@ Pas l'expert qui te regarde de haut. Pas le freelance qui ghoste. Le compagnon :
 
 **✓ Mots oui (élargis pour les deux personas)**
 
-*Cœur Manéo (universel)* :
+*Cœur Calquéo (universel)* :
 métier, outil, concret, livré, prix fixe, point, franchement, solide, taillé, bosser, pro, savoir-faire, à l'écoute, compagnonnage
 
 *Côté Karim (artisan / chantier)* :
@@ -265,13 +265,13 @@ solution, optimiser, synergie, disrupter, ROI, funnel, innovant, best-in-class, 
 
 ### 3.5 Exemples de copy
 
-**Hero page Karim (`maneo.fr`)**
+**Hero page Karim (`calqueo.fr`)**
 > Le site qui te ramène des clients.
 > Sans prise de tête.
 >
 > Des sites pour les artisans et commerçants. Prix fixe, livré rapide, par quelqu'un qui vient du terrain.
 
-**Hero page Camille (`maneo.fr/signature`)**
+**Hero page Camille (`calqueo.fr/signature`)**
 > Un site qui met enfin ton métier au niveau.
 >
 > Sites sur-mesure pour les pros qui veulent être pris au sérieux. Prix fixe, livré en 3 semaines.
@@ -281,7 +281,7 @@ solution, optimiser, synergie, disrupter, ROI, funnel, innovant, best-in-class, 
 >
 > 14 ans dans le commerce auprès des pros. Plombiers, ostéo, photographes, décoratrices. J'ai vu mille fois ce qui marche et ce qui dessert. Aujourd'hui je l'adapte au web pour toi.
 
-**Bloc compagnonnage (signature Manéo)**
+**Bloc compagnonnage (signature Calquéo)**
 > Mon rôle est toujours le même : comprendre ton univers. Et te fabriquer la maison que tu mérites, pour attirer les bons clients. Je reste joignable après. On bosse ensemble dans la durée — comme un compagnonnage, pas une transaction.
 
 **CTA**
@@ -368,7 +368,7 @@ solution, optimiser, synergie, disrupter, ROI, funnel, innovant, best-in-class, 
 
 **Détail des packs**
 
-- **Démarrage 990€** : 1 page long format, template Manéo adapté, trame de contenu fournie, hébergement an 1 offert, 1 round de modifs. Paiement 1× ou 3×.
+- **Démarrage 990€** : 1 page long format, template Calquéo adapté, trame de contenu fournie, hébergement an 1 offert, 1 round de modifs. Paiement 1× ou 3×.
 - **Signature 2 490€** : site jusqu'à 7 pages, design sur-mesure aligné identité, aide rédactionnelle 1 page, hébergement an 1 offert, prêt SEO local (5 mots-clés), 3 rounds de modifs. Paiement 1× ou 3×.
 - **Premium 3 990€** : site jusqu'à 12 pages + blog, design sur-mesure + identité visuelle revue, rédaction 5 pages, hébergement an 1 offert, prêt SEO local (10 mots-clés), 5 rounds de modifs. Paiement 1×, 3× ou 4×.
 - **Sur-mesure dès 5 900€** : pas de grille publique. Devis sur scope.
@@ -415,7 +415,7 @@ solution, optimiser, synergie, disrupter, ROI, funnel, innovant, best-in-class, 
 - **Pas d'engagement à former.** Pas de promesse "tuto vidéo" ou "visio formation" dans les cards.
 - **Délais conditionnés à la réception du brief complet et des contenus du client.**
 
-### 6.5 Ce que Manéo ne fait pas
+### 6.5 Ce que Calquéo ne fait pas
 
 - ❌ Sites e-commerce à 50 000 produits
 - ❌ Engagements 18 mois cachés
@@ -426,7 +426,7 @@ solution, optimiser, synergie, disrupter, ROI, funnel, innovant, best-in-class, 
 
 ## 7. Kit prospection
 
-### 7.1 Site unifié (`maneo.fr`)
+### 7.1 Site unifié (`calqueo.fr`)
 **Une seule home pour les 3 personas.** Pas de landing dédiée par cible.
 - Tagline mère : "Le digital fait main." (ou la déclinaison universelle équivalente)
 - Hero large + section "Pour qui" qui distingue les 3 univers (Camille en premier, Karim ensuite, Olivier discret)
@@ -436,28 +436,28 @@ solution, optimiser, synergie, disrupter, ROI, funnel, innovant, best-in-class, 
 - `signature.html` archivée — sa matière est dans `index.html`
 
 ### 7.2 Carte de visite (à produire)
-Recto : monogramme M. en bloc navy + wordmark "manéo."
+Recto : monogramme M. en bloc navy + wordmark "calquéo."
 Verso : Giovanni + métier + coordonnées + accroche "Le digital fait main"
 
 ### 7.3 Flyer A5 (à produire — focus Karim, prospection terrain)
 À laisser en porte-à-porte dans les rues commerçantes.
 Hero : "Ton site internet, livré en 3 semaines."
-Body : promesse + tarif d'appel + QR code vers `maneo.fr` (section pour qui → univers Karim).
+Body : promesse + tarif d'appel + QR code vers `calqueo.fr` (section pour qui → univers Karim).
 
 ### 7.4 Signature email
-**Giovanni · Manéo**
+**Giovanni · Calquéo**
 *Le digital fait main · Île-de-France*
-giovanni@maneo.fr · maneo.fr
+giovanni@calqueo.fr · calqueo.fr
 
 ---
 
 ## 8. Récap rapide — Pitch 30 secondes Giovanni
 
 **Version Karim (face à un artisan / réseau pro)**
-> "Manéo, c'est mon studio pour les artisans et commerçants. J'ai 14 ans dans le commerce derrière moi, je connais leur métier. Je leur livre des sites à prix fixe en 3 semaines, à partir de 990€. Si t'as besoin d'un vrai outil pour ton quotidien, je fais aussi des applis sur mesure. Le digital fait main, sans prise de tête."
+> "Calquéo, c'est mon studio pour les artisans et commerçants. J'ai 14 ans dans le commerce derrière moi, je connais leur métier. Je leur livre des sites à prix fixe en 3 semaines, à partir de 990€. Si t'as besoin d'un vrai outil pour ton quotidien, je fais aussi des applis sur mesure. Le digital fait main, sans prise de tête."
 
 **Version Camille (face à une libérale / cible premium)**
-> "Manéo, c'est mon studio. Je fais des sites sur-mesure pour les indépendantes qui veulent une image à la hauteur de leur métier. J'ai passé 14 ans dans le commerce à comprendre les pros — aujourd'hui je l'adapte au web. Prix fixe, livré en 3 semaines, et je reste joignable après. C'est pas une transaction, c'est un compagnonnage."
+> "Calquéo, c'est mon studio. Je fais des sites sur-mesure pour les indépendantes qui veulent une image à la hauteur de leur métier. J'ai passé 14 ans dans le commerce à comprendre les pros — aujourd'hui je l'adapte au web. Prix fixe, livré en 3 semaines, et je reste joignable après. C'est pas une transaction, c'est un compagnonnage."
 
 ---
 
@@ -465,11 +465,11 @@ giovanni@maneo.fr · maneo.fr
 
 ### À acter rapidement
 
-1. **Rebranding obligatoire** — `maneo.fr` détenu par BPCE. Vincent shortliste 5-10 noms parmi les 400 pistes (`rebranding-noms.md`). Find/replace dans tout le brand book une fois choisi.
+1. ~~**Rebranding obligatoire**~~ ✅ Tranché 2026-05-16 : **Calquéo**. Domaines `calqueo.fr` + `calqueo.com` acquis OVH. Find/replace global appliqué dans tous les fichiers du projet. Reste à migrer le dossier `MANEO/` → `CALQUEO/` (rename local + repo GitHub).
 2. **Photo Giovanni** — à intégrer dans `signature.html` (placeholder gris actuellement)
 3. **og-image 1200×630** — à générer (navy + gradient cyan→violet→rose sur "fait main")
 4. **CTA branché** — Calendly / Cal.com / formulaire Netlify (mailto provisoire dans signature.html)
-5. **Archivage** — déplacer `strategie-prix-maneo.md` et `brand-book-maneo.md` (V1) dans `_archive/`
+5. **Archivage** — déplacer `strategie-prix-calqueo.md` et `brand-book-calqueo.md` (V1) dans `_archive/`
 
 ### À revisiter plus tard
 
@@ -490,7 +490,7 @@ giovanni@maneo.fr · maneo.fr
 
 ## 10. Docs internes de référence
 
-- **Pricing officiel** : [[project-maneo-pricing]] (mémoire) + `etude-pricing-INTERNE v2.md`
+- **Pricing officiel** : [[project-calqueo-pricing]] (mémoire) + `etude-pricing-INTERNE v2.md`
 - **Étude 100 profils** : `etude-100-profils-INTERNE.md` (12 familles validation pricing)
 - **Étude apps** : `etude-apps-positionnement-INTERNE.md`
 - **Étude de marché** : `etude-marche-INTERNE.md`

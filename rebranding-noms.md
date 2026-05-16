@@ -1,4 +1,4 @@
-# Rebranding Manéo — 400 pistes de noms
+# Rebranding Calquéo — 400 pistes de noms
 
 > ⚠️ **Aucun nom de cette liste n'a été vérifié** (ni dispo .fr, ni INPI, ni recherche Google).
 > Beaucoup seront déjà pris ou poseront des problèmes de marque. C'est **normal** —
@@ -49,7 +49,7 @@ Registre voulu : âme d'atelier + forme de marque tech moderne.
 | 21 | Forj | forge sans le E | court, brandable, garde l'imaginaire forge |
 | 22 | Rabo | rabot raccourci | sonne espagnol/italien, doux, finit en -o |
 | 23 | Tabli | établi sans le É | court, FR, secret bien gardé pour qui connaît |
-| 24 | Niveo | niveau italianisé | finale en -o façon Manéo, doux, lisse |
+| 24 | Niveo | niveau italianisé | finale en -o façon Calquéo, doux, lisse |
 | 25 | Compa | compas raccourci | sonne copain en argot (compère), chaleureux |
 | 26 | Trull | truelle raccourcie | court, dur en bouche, peu mémorable |
 | 27 | Marto | marteau raccourci | finale en -o, FR-friendly, image forte |
@@ -243,7 +243,7 @@ Registre voulu : âme d'atelier + forme de marque tech moderne.
 | 66 | Chevron | poutre inclinée (FR) | charpente, motif graphique aussi, riche |
 | 67 | Latto | latte + o | doux, charpente |
 | 68 | Lambri | lambris raccourci | sonne ancien, peu brandable |
-| 69 | Tasso | tasseau en italien | doux, italien chic, parfait Manéo-like |
+| 69 | Tasso | tasseau en italien | doux, italien chic, parfait Calquéo-like |
 | 70 | Tasseau | bois fin (FR) | métier, accent fragile |
 | 71 | Pisé | terre crue compactée (FR) | bio, terreux, accent |
 | 72 | Adobe | terre crue (esp/EN) | risque énorme : marque Adobe |
@@ -301,7 +301,7 @@ Registre voulu : âme d'atelier + forme de marque tech moderne.
 | 5 | Opifex | artisan en latin | savant, sonne medecine/biotech |
 | 6 | Faber | "celui qui fait" en latin | court, propre, déjà nom de famille connu |
 | 7 | Fabra | faber au féminin | rare, sonne marque cosmétique |
-| 8 | Fabro | artisan en italien | court, doux, parfait Manéo-like |
+| 8 | Fabro | artisan en italien | court, doux, parfait Calquéo-like |
 | 9 | Fabrica | atelier en italien/latin | sonne usine, industriel |
 | 10 | Fabricar | faire en latin | dynamique, long |
 | 11 | Artifex | artisan/artiste en latin | beau, "art" + "facere", noble |
@@ -429,7 +429,7 @@ Registre voulu : âme d'atelier + forme de marque tech moderne.
 
 ## 🧱 Famille 4 — Abstrait / brandable (100)
 
-### Sonorités en -o (cousines de "Manéo")
+### Sonorités en -o (cousines de "Calquéo")
 
 | # | Nom | Origine | Vibe |
 |---|---|---|---|
