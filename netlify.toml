@@ -9,13 +9,25 @@
   force = true
 
 [[redirects]]
-  from = "/*.md"
+  from = "/CLAUDE.md"
   to = "/"
   status = 404
   force = true
 
 [[redirects]]
-  from = "/CLAUDE.md"
+  from = "/brand-book.md"
+  to = "/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/rebranding-noms.md"
+  to = "/"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/rebranding-shortlist.md"
   to = "/"
   status = 404
   force = true
