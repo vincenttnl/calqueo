@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Calquéo — 15 pistes logo · à trancher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --purple: #635BFF;
+  --navy: #0A2540;
+  --slate-50: #FAFBFD;
+  --slate-100: #F1F5F9;
+  --slate-200: #E2E8F0;
+  --slate-400: #94A3B8;
+  --slate-600: #475569;
+  --slate-800: #1E293B;
+  --green: #10B981;
+  --amber: #F59E0B;
+  --rose: #F43F5E;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--slate-50);
+  color: var(--navy);
+  padding: 60px 32px;
+  line-height: 1.5;
+}
+.wrap { max-width: 1280px; margin: 0 auto; }
+.header { margin-bottom: 48px; max-width: 760px; }
+.eyebrow {
+  font-size: 13px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--purple);
+  margin-bottom: 12px;
+}
+h1 {
+  font-size: 40px; font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.lede {
+  font-size: 17px;
+  color: var(--slate-600);
+  margin-bottom: 20px;
+}
+.legend {
+  display: flex; gap: 24px; flex-wrap: wrap;
+  padding: 16px 20px;
+  background: #fff;
+  border: 1px solid var(--slate-200);
+  border-radius: 12px;
+  font-size: 13px;
+  color: var(--slate-600);
+}
+.legend-item { display: flex; align-items: center; gap: 8px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-sobre { background: var(--green); }
+.dot-risque { background: var(--rose); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(10,37,64,0.08);
+  border-color: var(--purple);
+}
+
+.card-num {
+  position: absolute;
+  top: 12px; left: 14px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--slate-400);
+  z-index: 2;
+}
+.card-tag {
+  position: absolute;
+  top: 12px; right: 14px;
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  z-index: 2;
+}
+.tag-sobre { background: rgba(16,185,129,0.1); color: #047857; }
+.tag-risque { background: rgba(244,63,94,0.1); color: #be123c; }
+
+.preview {
+  height: 200px;
+  background: linear-gradient(180deg, var(--slate-50) 0%, #fff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--slate-100);
+  padding: 24px;
+}
+.preview svg { max-width: 100%; max-height: 100%; }
+
+.body {
+  padding: 18px 20px 22px;
+}
+.title {
+  font-size: 16px; font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--navy);
+}
+.desc {
+  font-size: 13px;
+  color: var(--slate-600);
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+.ref {
+  font-size: 11px;
+  color: var(--slate-400);
+  font-style: italic;
+}
+.ref strong {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--slate-600);
+}
+
+/* Choix individuels */
+.pick {
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--slate-200);
+  font-size: 12px;
+  color: var(--slate-400);
+}
+
+/* Wordmark style */
+.wordmark {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+.wordmark .dot { color: var(--purple); }
+.wordmark-mono {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  color: var(--navy);
+}
+.wordmark-elegant {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 46px;
+  color: var(--navy);
+}
+
+.frame-window {
+  border: 1.5px solid var(--navy);
+  border-radius: 6px;
+  padding: 14px 22px 18px;
+  position: relative;
+}
+.frame-window::before {
+  content: '';
+  position: absolute;
+  top: 5px; left: 8px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--slate-200);
+  box-shadow: 10px 0 0 var(--slate-200), 20px 0 0 var(--slate-200);
+}
+
+footer {
+  margin-top: 60px;
+  padding: 32px;
+  background: var(--navy);
+  color: #fff;
+  border-radius: 16px;
+}
+footer h2 { font-size: 22px; margin-bottom: 8px; }
+footer p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="header">
+    <p class="eyebrow">Décision logo · 15 pistes</p>
+    <h1>Quel logo pour <span style="color:var(--purple)">Calquéo</span> ?</h1>
+    <p class="lede">15 directions, de la plus sobre à la plus risquée. Survole une carte pour voir le rendu animé. Note tes 2–3 favorites et reviens-moi.</p>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot dot-sobre"></span>1–12 · Sobres, épurées, sûres</div>
+      <div class="legend-item"><span class="legend-dot dot-risque"></span>13–15 · Cartes blanches, plus risquées</div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1 — Monogramme C double trait -->
+    <div class="card">
+      <span class="card-num">01</span>
+      <span class="card-tag tag-sobre">Sobre</span>
+      <div class="preview">
+        <svg viewBox="0 0 120 120" width="140" height="140">
+          <path d="M 90 30 A 35 35 0 1 0 90 90" stroke="#0A2540" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M 94 36 A 30 30 0 1 0 94 84" stroke="#635BFF" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="body">
+        <h3 class="title">Monogramme C en double trait</h3>
+        <p class="desc">Deux traits parallèles fins qui se superposent légèrement. Évoque le calque, la duplication fidèle. Ultra-clean, marche en favicon.</p>
+        <p class="ref">Référence d'épure : <strong>Linear, Arc</strong></p>
+      </div>
+    </div>
+
+    <!-- 2 — Wordmark calquéo. avec point coloré -->
+    <div class="card">
+      <span class="card-num">02</span>
+      <span class="card-tag tag-sobre">Sobre</span>
+      <div class="preview">
+        <div class="wordmark">calquéo<span class="dot">.</span></div>
+      </div>
+      <div class="body">
+        <h3 class="title">Wordmark "calquéo." avec point coloré</h3>
+        <p class="desc">Typo sans-serif géométrique en minuscules, point final qui devient ta signature couleur. Le point = la touche perso. Pose, sérieux, mémorisable.</p>
+        <p class="ref">Référence : <strong>Stripe, Vercel</strong> · C'est ce qui existe aujourd'hui</p>
+      </div>
+    </div>
+
+    <!-- 3 — C en empreinte/tampon -->
+    <div class="card">
+      <span class="card-num">03</span>
+      <span class="card-tag tag-sobre">Sobre</span>
+      <div class="preview">
+        <svg viewBox="0 0 120 120" width="140" height="140">
+          <defs>
+            <filter id="grain3">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" />
+              <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.25 0"/>
+              <feComposite in2="SourceGraphic" operator="in"/>
+            </filter>
+          </defs>
+          <path d="M 90 30 A 35 35 0 1 0 90 90 L 75 75 A 20 20 0 1 1 75 45 Z" fill="#0A2540"/>
+          <path d="M 90 30 A 35 35 0 1 0 90 90 L 75 75 A 20 20 0 1 1 75 45 Z" fill="#0A2540" filter="url(#grain3)"/>
+        </svg>
+      </div>
+      <div class="body">
+        <h3 class="title">C en empreinte / tampon</h3>
+        <p class="desc">Un C plein avec une légère texture granuleuse, comme un tampon encreur posé sur le papier. Idée d'empreinte client. Sobre mais avec du caractère tactile.</p>
+        <p class="ref">Inspi : tampons d'imprimerie, sceaux</p>
+      </div>
+    </div>
+
+    <!-- 4 — C dédoublé en miroir vertical -->
+    <div class="card">
+      <span class="card-num">04</span>
+      <span class="card-tag tag-sobre">Sobre</span>
+      <div class="preview">
+        <svg viewBox="0 0 140 120" width="160" height="140">
+          <path d="M 60 25 A 35 35 0 1 0 60 95" stroke="#0A2540" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M 80 25 A 35 35 0 1 1 80 95" stroke="#635BFF" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="body">
+        <h3 class="title">C dédoublé en miroir vertical</h3>
+        <p class="desc">Le C original + son reflet inversé qui forme un cercle ouvert. Symbolise "je te reflète". Très géométrique, monogramme fort.</p>
+        <p class="ref">Inspi : reflets, symétrie</p>
+      </div>
+    </div>
+
+    <!-- 5 — Lettre C qui devient parenthèse -->
+    <div class="card">
+      <span class="card-num">05</span>
+      <span class="card-tag tag-sobre">Sobre</span>
+      <div class="preview">
+        <svg viewBox="0 0 120 120" width="140" height="140">
+          <path d="M 85 20 Q 25 60 85 100" stroke="#0A2540" stroke-width="5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="body">
+        <h3 class="title">C qui devient parenthèse</h3>
+        <p class="desc">Le C s'ouvre, comme une parenthèse qui accueille le client. Concept : "on encadre ton univers". Minimaliste à l'extrême.</p>
+        <p class="ref">Idée forte : <strong>l'accueil typographique</strong></p>
+      </div>
+    </div>
+
+    <!-- 6 — Ligature C-A -->
+    <div class="card">
+      <span class="card-num">06</span>
+      <span class="card-tag tag-sobre">Sobre</span>
+      <div class="preview">
+        <svg viewBox="0 0 200 120" width="220" height="130">
+          <path d="M 80 30 A 28 28 0 1 0 80 86 L 95 70 L 110 30 L 130 86 M 100 65 L 122 65" stroke="#0A2540" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="140" y="76" font-family="Inter" font-size="40" font-weight="700" fill="#0A2540">lquéo</text>
+        </svg>
+      </div>
+      <div class="body">
+        <h3 class="title">Wordmark avec ligature C-A</h3>
+        <p class="desc">Les deux premières lettres fusionnées en un seul tracé continu. Élégant, typographique, signature de studio.</p>
+        <p class="ref">Référence : <strong>Chanel-style mais moderne</strong></p>
+      </div>
+    </div>
+
+    <!-- 7 — C en pixels/points -->
+    <div class="card">
+      <span class="card-num">07</span>
+      <span class="card-tag tag-sobre">Sobre</span>
+      <div class="preview">
+        <svg viewBox="0 0 120 120" width="140" height="140">
+          <g fill="#0A2540">
+            <circle cx="78" cy="32" r="2.5"/><circle cx="68" cy="30" r="2.5"/><circle cx="58" cy="32" r="2.5"/>
+            <circle cx="48" cy="38" r="2.5"/><circle cx="40" cy="46" r="2.5"/><circle cx="34" cy="56" r="2.5"/>
+            <circle cx="32" cy="66" r="2.5"/><circle cx="34" cy="76" r="2.5"/><circle cx="40" cy="84" r="2.5"/>
+            <circle cx="48" cy="90" r="2.5"/><circle cx="58" cy="94" r="2.5"/><circle cx="68" cy="94" r="2.5"/>
+            <circle cx="78" cy="92" r="2.5"/>
+          </g>
+        </svg>
+      </div>
+      <div class="body">
+        <h3 class="title">C composé de pixels / points</h3>
+        <p class="desc">Le C dessiné par une trame de points fins. Évoque la résolution, le numérique, mais en version épurée. Web-native sans être cliché.</p>
+        <p class="ref">Inspi : pixel art minimaliste, pointillisme</p>
+      </div>
+    </div>
+
+    <!-- 8 — C contour décalé -->
+    <div class="card">
+      <span class="card-num">08</span>
+      <span class="card-tag tag-sobre">Sobre</span>
+      <div class="preview">
+        <svg viewBox="0 0 140 120" width="160" height="140">
+          <path d="M 96 28 A 32 32 0 1 0 96 92 L 86 80 A 18 18 0 1 1 86 40 Z" fill="#635BFF" opacity="0.85"/>
+          <path d="M 88 32 A 32 32 0 1 0 88 96" stroke="#0A2540" stroke-width="3" fill="none"/>
+        </svg>
+      </div>
+      <div class="body">
+        <h3 class="title">C avec contour décalé</h3>
+        <p class="desc">Un C plein + un C en contour légèrement décalé derrière. Effet d'écho visuel, de "version originale + version retravaillée". Très graphique.</p>
+        <p class="ref">Inspi : print magazine, posters années 70</p>
+      </div>
+    </div>
+
+    <!-- 9 — Cadre/fenêtre browser -->
+    <div class="card">
+      <span class="card-num">09</span>
+      <span class="card-tag tag-sobre">Sobre</span>
+      <div class="preview">
+        <div class="frame-window">
+          <div style="font-family:Inter; font-weight:700; font-size:24px; color:var(--navy); letter-spacing:-0.01em;">calquéo<span style="color:var(--purple)">.</span></div>
+        </div>
+      </div>
+      <div class="body">
+        <h3 class="title">Logo en cadre / fenêtre browser</h3>
+        <p class="desc">Le wordmark enfermé dans un rectangle fin qui évoque un viewport, une fenêtre de navigateur stylisée. Direct, web-first, fonctionne en sticker.</p>
+        <p class="ref">Inspi : <strong>navigateurs, viewports, dev tools</strong></p>
+      </div>
+    </div>
+
+    <!-- 10 — Arc tendu -->
+    <div class="card">
+      <span class="card-num">10</span>
+      <span class="card-tag tag-sobre">Sobre</span>
+      <div class="preview">
+        <svg viewBox="0 0 140 120" width="160" height="140">
+          <path d="M 30 70 Q 70 20 110 70" stroke="#0A2540" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <circle cx="115" cy="72" r="4" fill="#635BFF"/>
+        </svg>
+      </div>
+      <div class="body">
+        <h3 class="title">C en arc tendu</h3>
+        <p class="desc">Un simple arc de cercle, presque un C minimaliste, qui peut aussi se lire comme un sourire ou un horizon. Sobre, optimiste, ouvert.</p>
+        <p class="ref">Référence : <strong>logo Apple original simplifié</strong></p>
+      </div>
+    </div>
+
+    <!-- 11 — C-O entrelacé -->
+    <div class="card">
+      <span class="card-num">11</span>
+      <span class="card-tag tag-sobre">Sobre</span>
+      <div class="preview">
+        <svg viewBox="0 0 160 120" width="180" height="140">
+          <path d="M 75 30 A 30 30 0 1 0 75 90" stroke="#0A2540" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <circle cx="95" cy="60" r="30" stroke="#635BFF" stroke-width="5" fill="none"/>
+        </svg>
+      </div>
+      <div class="body">
+        <h3 class="title">Monogramme C-O entrelacé</h3>
+        <p class="desc">Première et dernière lettre du nom qui s'enlacent. Symbole de boucle, de cycle complet (du brief à la livraison). Compact, sigle fort.</p>
+        <p class="ref">Inspi : monogrammes anciennes maisons</p>
+      </div>
+    </div>
+
+    <!-- 12 — Wordmark "a" stylisé -->
+    <div class="card">
+      <span class="card-num">12</span>
+      <span class="card-tag tag-sobre">Sobre</span>
+      <div class="preview">
+        <div class="wordmark-mono">c<span style="color:var(--purple);font-style:italic;">a</span>lquéo</div>
+      </div>
+      <div class="body">
+        <h3 class="title">Wordmark avec "a" stylisé</h3>
+        <p class="desc">Tout en typo neutre sauf le "a" qui a un détail unique (italique, queue allongée, contre-forme particulière). Le "a" devient ta signature.</p>
+        <p class="ref">Inspi : <strong>Airbnb, Slack — signature dans un seul caractère</strong></p>
+      </div>
+    </div>
+
+    <!-- 13 — Logo génératif (RISQUÉ) -->
+    <div class="card">
+      <span class="card-num">13</span>
+      <span class="card-tag tag-risque">Risqué</span>
+      <div class="preview" style="gap:14px;">
+        <svg viewBox="0 0 50 50" width="50" height="50"><path d="M 40 12 A 14 14 0 1 0 40 40" stroke="#3D5A4A" stroke-width="3" fill="none"/></svg>
+        <svg viewBox="0 0 50 50" width="50" height="50"><path d="M 40 12 A 14 14 0 1 0 40 40" stroke="#B85C4F" stroke-width="3" fill="none"/></svg>
+        <svg viewBox="0 0 50 50" width="50" height="50"><path d="M 40 12 A 14 14 0 1 0 40 40" stroke="#0F3B6E" stroke-width="3" fill="none"/></svg>
+        <svg viewBox="0 0 50 50" width="50" height="50"><path d="M 40 12 A 14 14 0 1 0 40 40" stroke="#635BFF" stroke-width="3" fill="none"/></svg>
+      </div>
+      <div class="body">
+        <h3 class="title">Logo génératif (1 base, N clients)</h3>
+        <p class="desc">Pas un seul logo, mais un système. Une forme de base (C, trame) qui se déforme selon le client (palette, secteur, ambiance). Chaque client a SON logo Calquéo unique sur ses livrables.</p>
+        <p class="ref">Référence : <strong>MIT Media Lab, Nordkyn, OCAD</strong> · Risque : techniquement plus lourd, mais raconte une histoire imbattable en RDV</p>
+      </div>
+    </div>
+
+    <!-- 14 — Logo vide (RISQUÉ) -->
+    <div class="card">
+      <span class="card-num">14</span>
+      <span class="card-tag tag-risque">Risqué</span>
+      <div class="preview">
+        <div style="width:140px; height:80px; border:1.5px solid var(--navy); border-radius:6px; position:relative;">
+          <div style="position:absolute; bottom:-6px; right:-6px; width:12px; height:12px; border-radius:50%; background:var(--purple);"></div>
+        </div>
+      </div>
+      <div class="body">
+        <h3 class="title">Logo "vide" volontairement neutre</h3>
+        <p class="desc">Juste un cadre vide ou un point. Le logo Calquéo est intentionnellement un espace blanc — c'est le client qui le remplit. "Notre identité, c'est la tienne."</p>
+        <p class="ref">Risque : peut paraître absent. Mais bien vendu, c'est <strong>cinglant</strong></p>
+      </div>
+    </div>
+
+    <!-- 15 — Caméléon (RISQUÉ) -->
+    <div class="card">
+      <span class="card-num">15</span>
+      <span class="card-tag tag-risque">Risqué</span>
+      <div class="preview">
+        <svg viewBox="0 0 160 100" width="180" height="120">
+          <path d="M 20 60 Q 30 40 50 50 Q 65 55 70 45 Q 80 30 100 35 Q 120 40 130 55 L 140 50 L 140 60 L 130 58 Q 125 70 110 70 Q 95 70 85 60 Q 70 65 60 70 Q 40 75 20 60 Z M 105 42 L 108 38 M 95 42 L 92 38 M 122 50 Q 124 48 125 50" stroke="#0A2540" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="115" cy="48" r="2" fill="#0A2540"/>
+        </svg>
+      </div>
+      <div class="body">
+        <h3 class="title">Mascotte caméléon ultra-minimaliste</h3>
+        <p class="desc">Un seul trait continu qui dessine un caméléon stylisé, à la limite de l'abstrait. Pas mignon, pas startup-cute : graphique, élégant, presque japonais dans l'épure.</p>
+        <p class="ref">Référence : <strong>WWF (panda) version moderne, Noma Bar</strong> · Risque : pari de mascotte, mais en épuré premium ça peut devenir iconique</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <h2>Comment tu votes ?</h2>
+    <p>Reviens-moi avec <strong style="color:#fff">3 numéros</strong> : ton top 1, ton top 2 (au cas où), et un wildcard ("celui qui me titille même si ça me fait peur").<br/>Sur le top 1, je passerai à la phase suivante : déclinaisons (couleur, weight, version monochrome, favicon, version sociale).</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Calquéo — Hybride 01 + 02 · audit décision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --purple: #635BFF;
+  --navy: #0A2540;
+  --slate-50: #FAFBFD;
+  --slate-100: #F1F5F9;
+  --slate-200: #E2E8F0;
+  --slate-300: #CBD5E1;
+  --slate-400: #94A3B8;
+  --slate-600: #475569;
+  --slate-800: #1E293B;
+  --green: #10B981;
+  --amber: #F59E0B;
+  --rose: #F43F5E;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--slate-50);
+  color: var(--navy);
+  padding: 60px 32px;
+  line-height: 1.55;
+}
+.wrap { max-width: 1080px; margin: 0 auto; }
+
+.eyebrow {
+  font-size: 13px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--purple);
+  margin-bottom: 12px;
+}
+h1 {
+  font-size: 40px; font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+h2 {
+  font-size: 26px; font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 56px;
+  margin-bottom: 20px;
+}
+h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+p { color: var(--slate-600); font-size: 16px; margin-bottom: 14px; }
+.lede {
+  font-family: 'Onest', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--slate-600);
+  max-width: 760px;
+  margin-bottom: 32px;
+}
+
+/* ===== HYBRIDES SECTION ===== */
+.hybrides {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+@media (max-width: 900px) {
+  .hybrides { grid-template-columns: 1fr; }
+}
+.hybride-card {
+  background: #fff;
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.hybride-card.featured {
+  border: 2px solid var(--purple);
+  box-shadow: 0 16px 40px rgba(99,91,255,0.15);
+  position: relative;
+}
+.featured-tag {
+  position: absolute;
+  top: 0; right: 16px;
+  background: var(--purple);
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-radius: 0 0 6px 6px;
+}
+.hybride-preview {
+  height: 200px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border-bottom: 1px solid var(--slate-100);
+}
+.hybride-preview.dark {
+  background: var(--navy);
+}
+.hybride-preview.dark svg path,
+.hybride-preview.dark svg text { stroke: #fff; fill: #fff; }
+.hybride-preview.dark .accent { stroke: var(--purple) !important; fill: var(--purple) !important; }
+.hybride-preview.dark .word { color: #fff !important; }
+
+.hybride-body {
+  padding: 18px 22px 22px;
+}
+.hybride-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.hybride-desc { font-size: 13px; color: var(--slate-600); line-height: 1.55; }
+
+/* ===== LOCKUP HORIZONTAL ===== */
+.lockup-h {
+  display: flex; align-items: center; gap: 12px;
+}
+.mono-c {
+  position: relative;
+  width: 52px; height: 52px;
+}
+.mono-c svg { width: 100%; height: 100%; }
+.wordmark {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+.wordmark .dot { color: var(--purple); }
+
+/* ===== LOCKUP VERTICAL ===== */
+.lockup-v {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.lockup-v .mono-c { width: 60px; height: 60px; }
+.lockup-v .wordmark { font-size: 28px; }
+
+/* ===== ICON SEULE (favicon) ===== */
+.mono-large {
+  width: 110px; height: 110px;
+}
+.mono-large svg { width: 100%; height: 100%; }
+
+/* ===== CONTEXTES D'USAGE ===== */
+.contexts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.context-card {
+  background: #fff;
+  border: 1px solid var(--slate-200);
+  border-radius: 12px;
+  padding: 18px;
+}
+.context-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--slate-400);
+  margin-bottom: 12px;
+}
+.context-demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  background: var(--slate-50);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+/* Favicon mockup */
+.tab-mockup {
+  display: flex; align-items: center; gap: 8px;
+  background: #fff;
+  border: 1px solid var(--slate-200);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--slate-600);
+}
+.tab-mockup .fav { width: 16px; height: 16px; }
+
+/* Browser nav mockup */
+.nav-mockup {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #fff;
+  border: 1px solid var(--slate-200);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.nav-mockup .links {
+  display: flex; gap: 14px;
+  font-size: 11px;
+  color: var(--slate-600);
+}
+
+/* Social avatar */
+.avatar-mockup {
+  width: 56px; height: 56px;
+  background: var(--navy);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar-mockup svg { width: 60%; height: 60%; }
+.avatar-mockup svg path { stroke: #fff; }
+.avatar-mockup svg path.accent { stroke: var(--purple); }
+
+/* ===== AUDIT TABLE ===== */
+.audit-table {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 40px;
+}
+.audit-table th, .audit-table td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--slate-100);
+  font-size: 14px;
+}
+.audit-table th {
+  background: var(--slate-50);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate-600);
+}
+.audit-table td.crit {
+  font-weight: 600;
+  color: var(--navy);
+}
+.audit-table td.score {
+  text-align: center;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+}
+.score-cell {
+  display: inline-flex;
+  gap: 1px;
+}
+.dot-on { color: var(--purple); }
+.dot-off { color: var(--slate-200); }
+
+.col-recommend {
+  background: rgba(99,91,255,0.04);
+}
+
+.audit-table tr.total {
+  font-weight: 800;
+  background: var(--navy);
+  color: #fff;
+}
+.audit-table tr.total td { border-bottom: none; color: #fff; }
+.audit-table tr.total td.crit { color: #fff; }
+.audit-table tr.total td.col-recommend { background: var(--purple); color: #fff; }
+
+/* ===== RECOMMENDATION BLOCK ===== */
+.recommend {
+  background: linear-gradient(135deg, var(--navy) 0%, #1A1F36 100%);
+  color: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 32px;
+}
+.recommend h2 {
+  color: #fff;
+  margin-top: 0;
+}
+.recommend .verdict {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.recommend .verdict span { color: var(--purple); }
+.recommend p { color: rgba(255,255,255,0.85); font-size: 15px; }
+.reasons {
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+}
+.reasons li {
+  padding: 10px 0 10px 32px;
+  position: relative;
+  color: rgba(255,255,255,0.92);
+  font-size: 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.reasons li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--purple);
+  font-weight: 700;
+}
+.reasons li:last-child { border-bottom: none; }
+.reasons li strong { color: #fff; }
+
+.risk-note {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: rgba(244,63,94,0.15);
+  border-left: 3px solid var(--rose);
+  border-radius: 6px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+}
+.risk-note strong { color: #fff; }
+
+footer {
+  margin-top: 60px;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+}
+footer h3 { font-size: 18px; margin-bottom: 8px; }
+footer p { font-size: 14px; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <p class="eyebrow">Hybride 01 + 02 · Audit décision</p>
+  <h1>Le C double trait <span style="color:var(--purple)">×</span> le wordmark "calquéo."</h1>
+  <p class="lede">Tu hésites entre la <strong>Piste 01</strong> (monogramme C double trait, expressif mais abstrait) et la <strong>Piste 02</strong> (wordmark sobre, sûr mais sans symbole). Voici 3 hybrides + un audit complet pour trancher.</p>
+
+  <h2>3 hybrides à examiner</h2>
+
+  <div class="hybrides">
+
+    <div class="hybride-card featured">
+      <span class="featured-tag">Recommandé</span>
+      <div class="hybride-preview">
+        <div class="lockup-h">
+          <div class="mono-c">
+            <svg viewBox="0 0 60 60">
+              <path d="M 48 14 A 18 18 0 1 0 48 46" stroke="#0A2540" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+              <path d="M 51 18 A 15 15 0 1 0 51 42" stroke="#635BFF" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="wordmark">calquéo<span class="dot">.</span></div>
+        </div>
+      </div>
+      <div class="hybride-body">
+        <h3 class="hybride-title">A · Lockup horizontal</h3>
+        <p class="hybride-desc">Le monogramme à gauche, le wordmark à droite. Pattern classique des marques pros (Stripe, Notion, Linear). Le C en double trait raconte le calque, le wordmark assure la lisibilité.</p>
+      </div>
+    </div>
+
+    <div class="hybride-card">
+      <div class="hybride-preview">
+        <div class="lockup-v">
+          <div class="mono-c">
+            <svg viewBox="0 0 60 60">
+              <path d="M 48 14 A 18 18 0 1 0 48 46" stroke="#0A2540" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+              <path d="M 51 18 A 15 15 0 1 0 51 42" stroke="#635BFF" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="wordmark">calquéo<span class="dot">.</span></div>
+        </div>
+      </div>
+      <div class="hybride-body">
+        <h3 class="hybride-title">B · Lockup vertical</h3>
+        <p class="hybride-desc">Le monogramme au-dessus, le wordmark en dessous. Plus posé, plus "atelier". Idéal pour signatures email, pages titre PDF, cartes de visite. Moins fluide en header web.</p>
+      </div>
+    </div>
+
+    <div class="hybride-card">
+      <div class="hybride-preview dark">
+        <div class="mono-large">
+          <svg viewBox="0 0 110 110">
+            <path d="M 88 26 A 33 33 0 1 0 88 84" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M 93 32 A 28 28 0 1 0 93 78" class="accent" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="hybride-body">
+        <h3 class="hybride-title">C · Symbole seul (favicon / avatar)</h3>
+        <p class="hybride-desc">Le monogramme C double trait isolé, à utiliser quand l'espace est contraint : favicon 32×32, avatar social, watermark, app icon. Marche en blanc sur fond foncé.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>L'hybride en contexte d'usage</h2>
+
+  <div class="contexts">
+
+    <div class="context-card">
+      <div class="context-label">Onglet navigateur (favicon)</div>
+      <div class="context-demo">
+        <div class="tab-mockup">
+          <svg class="fav" viewBox="0 0 60 60">
+            <path d="M 48 14 A 18 18 0 1 0 48 46" stroke="#0A2540" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M 51 18 A 15 15 0 1 0 51 42" stroke="#635BFF" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          </svg>
+          Calquéo — Sites sur mesure
+        </div>
+      </div>
+      <p style="font-size:12px; color:var(--slate-600); margin:0;">Le symbole seul (C), <strong>distinct dès 16×16 px</strong>.</p>
+    </div>
+
+    <div class="context-card">
+      <div class="context-label">Header du site</div>
+      <div class="context-demo">
+        <div class="nav-mockup" style="width:100%;">
+          <div class="lockup-h" style="gap:8px;">
+            <div class="mono-c" style="width:28px;height:28px;">
+              <svg viewBox="0 0 60 60">
+                <path d="M 48 14 A 18 18 0 1 0 48 46" stroke="#0A2540" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M 51 18 A 15 15 0 1 0 51 42" stroke="#635BFF" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span style="font-family:Inter;font-weight:700;font-size:16px;color:#0A2540;">calquéo<span style="color:#635BFF">.</span></span>
+          </div>
+          <div class="links"><span>Offres</span><span>Process</span></div>
+        </div>
+      </div>
+      <p style="font-size:12px; color:var(--slate-600); margin:0;">Lockup complet, posé à gauche, comme aujourd'hui.</p>
+    </div>
+
+    <div class="context-card">
+      <div class="context-label">Avatar social (LinkedIn, Insta)</div>
+      <div class="context-demo">
+        <div class="avatar-mockup">
+          <svg viewBox="0 0 60 60">
+            <path d="M 48 14 A 18 18 0 1 0 48 46" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M 51 18 A 15 15 0 1 0 51 42" class="accent" stroke="#635BFF" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <p style="font-size:12px; color:var(--slate-600); margin:0;">Symbole inversé sur fond navy, mémorable.</p>
+    </div>
+
+    <div class="context-card">
+      <div class="context-label">Signature email</div>
+      <div class="context-demo">
+        <div style="font-size:12px; color:var(--slate-600);">
+          <div style="font-weight:600; color:#0A2540; margin-bottom:2px;">Giovanni Tinello</div>
+          <div style="margin-bottom:6px;">Fondateur</div>
+          <div class="lockup-h" style="gap:6px;">
+            <div class="mono-c" style="width:18px;height:18px;">
+              <svg viewBox="0 0 60 60">
+                <path d="M 48 14 A 18 18 0 1 0 48 46" stroke="#0A2540" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                <path d="M 51 18 A 15 15 0 1 0 51 42" stroke="#635BFF" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span style="font-family:Inter;font-weight:700;font-size:13px;color:#0A2540;">calquéo<span style="color:#635BFF">.</span></span>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:12px; color:var(--slate-600); margin:0;">Signature email Gmail, version compacte.</p>
+    </div>
+
+  </div>
+
+  <h2>Audit comparatif</h2>
+  <p class="lede" style="margin-bottom:20px;">Note sur 5 par critère, total sur 30. Plus le score est haut, plus l'option est solide pour la marque.</p>
+
+  <table class="audit-table">
+    <thead>
+      <tr>
+        <th style="width:36%;">Critère</th>
+        <th>Piste 01 · C seul</th>
+        <th>Piste 02 · Wordmark seul</th>
+        <th class="col-recommend">Hybride (recommandé)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="crit">Storytelling "calque"</td>
+        <td class="score">★★★★★ <span style="color:var(--slate-400);font-weight:400;">5/5</span></td>
+        <td class="score">★★ <span style="color:var(--slate-400);font-weight:400;">2/5</span></td>
+        <td class="score col-recommend">★★★★★ <span style="color:var(--slate-400);font-weight:400;">5/5</span></td>
+      </tr>
+      <tr>
+        <td class="crit">Mémorisation</td>
+        <td class="score">★★★★ <span style="color:var(--slate-400);font-weight:400;">4/5</span></td>
+        <td class="score">★★★ <span style="color:var(--slate-400);font-weight:400;">3/5</span></td>
+        <td class="score col-recommend">★★★★★ <span style="color:var(--slate-400);font-weight:400;">5/5</span></td>
+      </tr>
+      <tr>
+        <td class="crit">Lisibilité immédiate du nom</td>
+        <td class="score">★★ <span style="color:var(--slate-400);font-weight:400;">2/5</span></td>
+        <td class="score">★★★★★ <span style="color:var(--slate-400);font-weight:400;">5/5</span></td>
+        <td class="score col-recommend">★★★★★ <span style="color:var(--slate-400);font-weight:400;">5/5</span></td>
+      </tr>
+      <tr>
+        <td class="crit">Versatilité (favicon, social, header, print)</td>
+        <td class="score">★★★ <span style="color:var(--slate-400);font-weight:400;">3/5</span></td>
+        <td class="score">★★★ <span style="color:var(--slate-400);font-weight:400;">3/5</span></td>
+        <td class="score col-recommend">★★★★★ <span style="color:var(--slate-400);font-weight:400;">5/5</span></td>
+      </tr>
+      <tr>
+        <td class="crit">Différenciation (vs Stripe / Linear / Vercel)</td>
+        <td class="score">★★★★ <span style="color:var(--slate-400);font-weight:400;">4/5</span></td>
+        <td class="score">★★ <span style="color:var(--slate-400);font-weight:400;">2/5</span></td>
+        <td class="score col-recommend">★★★★ <span style="color:var(--slate-400);font-weight:400;">4/5</span></td>
+      </tr>
+      <tr>
+        <td class="crit">Effort d'exécution / déclinaison</td>
+        <td class="score">★★★ <span style="color:var(--slate-400);font-weight:400;">3/5</span></td>
+        <td class="score">★★★★★ <span style="color:var(--slate-400);font-weight:400;">5/5</span></td>
+        <td class="score col-recommend">★★★★ <span style="color:var(--slate-400);font-weight:400;">4/5</span></td>
+      </tr>
+      <tr class="total">
+        <td class="crit">Total</td>
+        <td class="score">21 / 30</td>
+        <td class="score">20 / 30</td>
+        <td class="score col-recommend">28 / 30</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="recommend">
+    <h2 style="margin-top:0;">Verdict</h2>
+    <p class="verdict">→ <span>Hybride A</span> (lockup horizontal)</p>
+    <p>Tu n'as pas à choisir entre Piste 01 et Piste 02 — l'hybride prend le meilleur des deux et corrige leurs faiblesses respectives. C'est la combinaison la plus solide pour une marque qui démarre <strong style="color:#fff">et qui doit tenir 5 ans sans repasser par la case rebranding</strong>.</p>
+
+    <ul class="reasons">
+      <li><strong>Le symbole raconte l'histoire</strong> — le double trait du C dit "calque" sans qu'on l'explique. Quand quelqu'un voit ton logo, il pige avant que tu parles.</li>
+      <li><strong>Le wordmark protège la marque</strong> — sans le nom écrit, un C seul peut être confondu avec n'importe quelle marque en C (Carrefour, Citroën). Le wordmark verrouille l'identité.</li>
+      <li><strong>Versatilité maximale</strong> — favicon 16px = symbole seul, header web = lockup complet, avatar social = symbole inversé navy, signature email = compact. Une marque qui marche partout sans nouveau dessin.</li>
+      <li><strong>Cohérence avec ton brand-book V5</strong> — Stripe, Notion, Linear utilisent exactement ce pattern (symbole + wordmark). Tu restes dans le langage "studio premium" sans copier.</li>
+      <li><strong>Évolutif</strong> — dans 2 ans, si tu fais un livre, une appli, un podcast, tu auras déjà un symbole qui peut vivre sans le wordmark.</li>
+    </ul>
+
+    <div class="risk-note">
+      <strong>Risque à anticiper :</strong> le C en double trait doit être exécuté finement. Si les deux traits sont trop épais ou trop espacés, ça devient une nouille graphique. Le ratio <strong>2.4 / 1.6 px (épaisseur)</strong> + <strong>15 / 18 (rayon)</strong> du dessin proposé est calibré. À conserver lors des déclinaisons.
+    </div>
+  </div>
+
+  <h2>Prochaines étapes si tu valides l'hybride</h2>
+  <p>1. Décliner en 3 versions : <strong>full color</strong> (navy + violet), <strong>monochrome navy</strong> (print, signature email), <strong>inverted blanc</strong> (sur fond foncé).</p>
+  <p>2. Générer le SVG propre + le favicon (16, 32, 180, 512 px).</p>
+  <p>3. Remplacer le logo actuel sur le site (header + meta og-image + signature email).</p>
+
+  <footer>
+    <h3>Comment tu votes ?</h3>
+    <p>→ <strong>OK pour l'hybride A</strong> ? Je passe aux déclinaisons et au remplacement sur le site.</p>
+    <p>→ <strong>Tu veux affiner</strong> (variante B, autre épaisseur, autre couleur d'accent) ? Dis-moi quoi changer.</p>
+    <p>→ <strong>Tu retombes sur Piste 02 toute seule</strong> ? On garde le wordmark actuel et on ferme la décision logo.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

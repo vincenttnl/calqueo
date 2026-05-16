@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Calquéo — 10 animations hero · à trancher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --purple: #635BFF;
+  --cyan: #00D4FF;
+  --rose: #FF6B9D;
+  --navy: #0A2540;
+  --slate-50: #FAFBFD;
+  --slate-100: #F1F5F9;
+  --slate-200: #E2E8F0;
+  --slate-400: #94A3B8;
+  --slate-600: #475569;
+  --slate-800: #1E293B;
+  --green: #10B981;
+  --amber: #F59E0B;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--slate-50);
+  color: var(--navy);
+  padding: 60px 32px;
+  line-height: 1.55;
+}
+.wrap { max-width: 1280px; margin: 0 auto; }
+.header { margin-bottom: 48px; max-width: 760px; }
+.eyebrow {
+  font-size: 13px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--purple);
+  margin-bottom: 12px;
+}
+h1 {
+  font-size: 40px; font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.lede {
+  font-family: 'Onest', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--slate-600);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(10,37,64,0.08);
+  border-color: var(--purple);
+}
+.card-num {
+  position: absolute;
+  top: 12px; left: 14px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.6);
+  z-index: 3;
+}
+.tags {
+  position: absolute;
+  top: 12px; right: 14px;
+  display: flex; gap: 6px;
+  z-index: 3;
+}
+.tag {
+  font-size: 9px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.9);
+  color: var(--navy);
+}
+.tag.effort-low { color: #047857; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); }
+.tag.effort-mid { color: #B45309; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); }
+.tag.effort-high { color: #be123c; background: rgba(244,63,94,0.15); border: 1px solid rgba(244,63,94,0.3); }
+.tag.calque { color: var(--purple); background: rgba(99,91,255,0.12); }
+
+.preview {
+  height: 200px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--slate-100);
+}
+.preview-h1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+.preview-h1 .accent {
+  background: linear-gradient(135deg, var(--cyan), var(--purple), var(--rose));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.body {
+  padding: 18px 20px 22px;
+}
+.title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.desc { font-size: 13px; color: var(--slate-600); line-height: 1.55; }
+
+/* =====================================
+   ANIMATION 1 — Calque qui se pose
+   ===================================== */
+.anim-1 .sheet {
+  position: absolute;
+  width: 90px; height: 110px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.2);
+  animation: anim1Slide 4s ease-in-out infinite;
+}
+.anim-1 .sheet-a { top: 25px; left: 30px; border-color: rgba(0,212,255,0.4); animation-delay: 0s; }
+.anim-1 .sheet-b { top: 35px; left: 50px; border-color: rgba(99,91,255,0.4); animation-delay: -1.3s; }
+.anim-1 .sheet-c { top: 45px; left: 70px; border-color: rgba(255,107,157,0.4); animation-delay: -2.6s; }
+@keyframes anim1Slide {
+  0%, 100% { transform: translate(0,0); opacity: 0.6; }
+  50% { transform: translate(-3px,-3px); opacity: 1; }
+}
+
+/* =====================================
+   ANIMATION 2 — Quadrillage calque
+   ===================================== */
+.anim-2 {
+  background: var(--navy);
+}
+.anim-2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(99,91,255,0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,91,255,0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+  animation: anim2Fade 3s ease-in-out infinite;
+}
+@keyframes anim2Fade {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* =====================================
+   ANIMATION 3 — Texte tracé
+   ===================================== */
+.anim-3 .preview-h1 {
+  font-size: 26px;
+}
+.anim-3-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+}
+.anim-3-svg path {
+  fill: none;
+  stroke: url(#anim3Grad);
+  stroke-width: 2;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: anim3Trace 4s ease-in-out infinite;
+}
+@keyframes anim3Trace {
+  0% { stroke-dashoffset: 600; }
+  60% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+/* =====================================
+   ANIMATION 4 — Curseur calque
+   ===================================== */
+.anim-4 .cursor {
+  position: absolute;
+  top: 50%; left: -20px;
+  width: 14px; height: 18px;
+  background: var(--purple);
+  border-radius: 2px;
+  transform: translateY(-50%);
+  animation: anim4Cursor 5s ease-in-out infinite;
+  box-shadow: 0 0 12px var(--purple);
+}
+@keyframes anim4Cursor {
+  0%, 100% { left: -20px; opacity: 0; }
+  10% { opacity: 1; }
+  50% { left: calc(100% + 20px); opacity: 1; }
+  60% { opacity: 0; }
+}
+
+/* =====================================
+   ANIMATION 5 — Mots qui se calquent (shadow shift)
+   ===================================== */
+.anim-5 .preview-h1 {
+  position: relative;
+}
+.anim-5 .preview-h1::before {
+  content: 'calqué à ton métier';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--purple);
+  opacity: 0.4;
+  animation: anim5Shift 3s ease-in-out infinite;
+}
+@keyframes anim5Shift {
+  0%, 100% { transform: translate(0,0); }
+  50% { transform: translate(3px, 3px); }
+}
+
+/* =====================================
+   ANIMATION 6 — Curseur blinker papier
+   ===================================== */
+.anim-6 .blinker {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--cyan);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: anim6Blink 1s steps(2) infinite;
+}
+@keyframes anim6Blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* =====================================
+   ANIMATION 7 — Wireframe → rempli
+   ===================================== */
+.anim-7 .preview-h1 {
+  animation: anim7Fill 4s ease-in-out infinite;
+}
+@keyframes anim7Fill {
+  0%, 100% {
+    -webkit-text-stroke: 1px rgba(99,91,255,0.7);
+    color: transparent;
+  }
+  50% {
+    -webkit-text-stroke: 0;
+    color: #fff;
+  }
+}
+
+/* =====================================
+   ANIMATION 8 — Particules calque
+   ===================================== */
+.anim-8 .particle {
+  position: absolute;
+  width: 4px; height: 4px;
+  background: var(--purple);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+.anim-8 .p1 { top: 20%; left: 15%; animation: anim8Float 4s ease-in-out infinite; }
+.anim-8 .p2 { top: 70%; left: 25%; animation: anim8Float 4s ease-in-out infinite -0.8s; }
+.anim-8 .p3 { top: 40%; left: 80%; animation: anim8Float 4s ease-in-out infinite -1.6s; }
+.anim-8 .p4 { top: 80%; left: 65%; animation: anim8Float 4s ease-in-out infinite -2.4s; }
+.anim-8 .p5 { top: 30%; left: 45%; animation: anim8Float 4s ease-in-out infinite -3.2s; background: var(--cyan); }
+.anim-8 .p6 { top: 60%; left: 90%; animation: anim8Float 4s ease-in-out infinite -1.2s; background: var(--rose); }
+.anim-8 .p7 { top: 15%; left: 60%; animation: anim8Float 4s ease-in-out infinite -2.8s; }
+.anim-8 .p8 { top: 50%; left: 10%; animation: anim8Float 4s ease-in-out infinite -3.6s; background: var(--cyan); }
+@keyframes anim8Float {
+  0%, 100% { transform: translate(0,0); opacity: 0.3; }
+  50% { transform: translate(8px, -10px); opacity: 0.9; }
+}
+
+/* =====================================
+   ANIMATION 9 — Halo violet pulsant
+   ===================================== */
+.anim-9::before {
+  content: '';
+  position: absolute;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99,91,255,0.4) 0%, rgba(0,212,255,0.2) 40%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: anim9Pulse 3s ease-in-out infinite;
+  filter: blur(8px);
+}
+@keyframes anim9Pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.7; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+
+/* =====================================
+   ANIMATION 10 — Mockup reveal calque
+   ===================================== */
+.anim-10 .phone-mock {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px; height: 110px;
+  background: #fff;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.3);
+  overflow: hidden;
+}
+.anim-10 .phone-mock::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--cyan), var(--purple));
+  animation: anim10Reveal 4s ease-in-out infinite;
+}
+@keyframes anim10Reveal {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-100%); }
+}
+.anim-10 .preview-h1 {
+  position: absolute;
+  left: 24px;
+  text-align: left;
+  font-size: 16px;
+  max-width: 50%;
+}
+
+footer {
+  margin-top: 60px;
+  padding: 28px;
+  background: var(--navy);
+  color: #fff;
+  border-radius: 16px;
+}
+footer h2 { font-size: 22px; margin-bottom: 8px; }
+footer p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.6; }
+footer strong { color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="header">
+    <p class="eyebrow">10 animations pour le hero · à trancher</p>
+    <h1>Quelle <span style="color:var(--purple)">vibe</span> pour ton hero ?</h1>
+    <p class="lede">10 animations cohérentes avec le concept "Calquéo" (calque, glissement, superposition, traçage). Chacune jouée en live dans sa carte. Vote 1 à 3 favorites — tu peux en combiner 2 si elles ne se marchent pas dessus.</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1 -->
+    <div class="card">
+      <span class="card-num">01</span>
+      <div class="tags"><span class="tag effort-low">Effort low</span><span class="tag calque">★ Calque</span></div>
+      <div class="preview anim-1">
+        <span class="sheet sheet-a"></span>
+        <span class="sheet sheet-b"></span>
+        <span class="sheet sheet-c"></span>
+        <div class="preview-h1">Un site<br/>calqué à<br/><span class="accent">ton métier.</span></div>
+      </div>
+      <div class="body">
+        <h3 class="title">Calque qui se pose</h3>
+        <p class="desc">3 feuilles de calque colorées flottent derrière le H1, glissent légèrement en boucle. Métaphore directe du nom.</p>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card">
+      <span class="card-num">02</span>
+      <div class="tags"><span class="tag effort-low">Effort low</span><span class="tag calque">★ Calque</span></div>
+      <div class="preview anim-2">
+        <div class="preview-h1">Un site<br/>calqué à<br/><span class="accent">ton métier.</span></div>
+      </div>
+      <div class="body">
+        <h3 class="title">Quadrillage de papier calque</h3>
+        <p class="desc">Grille fine (style papier calque/millimétré) en background qui respire en opacité. Évoque le dessin technique.</p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card">
+      <span class="card-num">03</span>
+      <div class="tags"><span class="tag effort-mid">Effort mid</span><span class="tag calque">★ Calque</span></div>
+      <div class="preview anim-3">
+        <svg class="anim-3-svg" viewBox="0 0 380 200">
+          <defs>
+            <linearGradient id="anim3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00D4FF"/>
+              <stop offset="50%" stop-color="#635BFF"/>
+              <stop offset="100%" stop-color="#FF6B9D"/>
+            </linearGradient>
+          </defs>
+          <path d="M 40 100 L 340 100 M 40 130 L 280 130"/>
+        </svg>
+        <div class="preview-h1">Un site<br/>calqué à<br/><span class="accent">ton métier.</span></div>
+      </div>
+      <div class="body">
+        <h3 class="title">Texte tracé à la main</h3>
+        <p class="desc">Des traits gradient se dessinent sous le H1, comme si quelqu'un calquait au feutre. Effet SVG stroke-dashoffset.</p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card">
+      <span class="card-num">04</span>
+      <div class="tags"><span class="tag effort-mid">Effort mid</span><span class="tag calque">★ Calque</span></div>
+      <div class="preview anim-4">
+        <span class="cursor"></span>
+        <div class="preview-h1">Un site<br/>calqué à<br/><span class="accent">ton métier.</span></div>
+      </div>
+      <div class="body">
+        <h3 class="title">Curseur qui glisse</h3>
+        <p class="desc">Un mini curseur violet glisse de gauche à droite à intervalles, comme s'il décalquait le titre. Lisible, ludique.</p>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="card">
+      <span class="card-num">05</span>
+      <div class="tags"><span class="tag effort-low">Effort low</span><span class="tag calque">★ Calque</span></div>
+      <div class="preview anim-5">
+        <div class="preview-h1">calqué à ton métier</div>
+      </div>
+      <div class="body">
+        <h3 class="title">Ombre de calque (duplicate)</h3>
+        <p class="desc">Le texte a une ombre violette légèrement décalée qui oscille. Effet de double impression, signature visuelle directe.</p>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="card">
+      <span class="card-num">06</span>
+      <div class="tags"><span class="tag effort-low">Effort low</span></div>
+      <div class="preview anim-6">
+        <div class="preview-h1">Un site<br/>calqué à<br/><span class="accent">ton métier.</span><span class="blinker"></span></div>
+      </div>
+      <div class="body">
+        <h3 class="title">Curseur blinker en fin de ligne</h3>
+        <p class="desc">Petite barre cyan qui clignote à la fin du H1. Classique mais efficace, vibe "live coding / fait main".</p>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="card">
+      <span class="card-num">07</span>
+      <div class="tags"><span class="tag effort-mid">Effort mid</span></div>
+      <div class="preview anim-7">
+        <div class="preview-h1">Un site<br/>calqué à<br/><span class="accent">ton métier.</span></div>
+      </div>
+      <div class="body">
+        <h3 class="title">Wireframe → rempli</h3>
+        <p class="desc">Le H1 démarre en contour violet (style outline) puis se remplit en blanc. Métaphore du brouillon qui devient final.</p>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="card">
+      <span class="card-num">08</span>
+      <div class="tags"><span class="tag effort-low">Effort low</span></div>
+      <div class="preview anim-8">
+        <span class="particle p1"></span><span class="particle p2"></span>
+        <span class="particle p3"></span><span class="particle p4"></span>
+        <span class="particle p5"></span><span class="particle p6"></span>
+        <span class="particle p7"></span><span class="particle p8"></span>
+        <div class="preview-h1">Un site<br/>calqué à<br/><span class="accent">ton métier.</span></div>
+      </div>
+      <div class="body">
+        <h3 class="title">Particules flottantes</h3>
+        <p class="desc">Petits points violet/cyan/rose en background qui flottent lentement. Atmosphère, sans lourdeur.</p>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="card">
+      <span class="card-num">09</span>
+      <div class="tags"><span class="tag effort-low">Effort low</span></div>
+      <div class="preview anim-9">
+        <div class="preview-h1" style="position:relative; z-index:2;">Un site<br/>calqué à<br/><span class="accent">ton métier.</span></div>
+      </div>
+      <div class="body">
+        <h3 class="title">Halo violet pulsant</h3>
+        <p class="desc">Cercle radial gradient violet→cyan derrière le H1 qui respire en scale + opacity. Donne de la profondeur.</p>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="card">
+      <span class="card-num">10</span>
+      <div class="tags"><span class="tag effort-high">Effort high</span><span class="tag calque">★ Calque</span></div>
+      <div class="preview anim-10">
+        <div class="preview-h1">Un site<br/>calqué à<br/><span class="accent">toi.</span></div>
+        <div class="phone-mock"></div>
+      </div>
+      <div class="body">
+        <h3 class="title">Mockup phone qui se révèle</h3>
+        <p class="desc">Le téléphone à droite démarre couvert d'un calque coloré qui se retire vers le haut, révélant l'écran. Théâtre.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <h2>Comment tu votes ?</h2>
+    <p>Reviens-moi avec <strong>1 à 3 numéros</strong> que tu veux activer.<br/>Tu peux en combiner plusieurs s'ils ne se chevauchent pas (ex : <strong>01 + 09</strong> = calques qui glissent + halo respiration). J'évite les combos qui surchargent visuellement.</p>
+    <p style="margin-top:12px;">→ Mention spéciale <strong>"effort low"</strong> = je peux l'ajouter en 15 min sans toucher au layout.<br/>→ Mention <strong>"★ Calque"</strong> = animation qui raconte directement l'histoire du nom.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
