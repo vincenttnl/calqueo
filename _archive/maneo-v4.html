@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Maneo — Le digital fait main</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sites internet et applis pour artisans et commercants. Livre en 15 jours, a prix fixe, par quelqu'un du terrain.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+/* ================================================================
+   TOKENS
+   ================================================================ */
+:root {
+  --stripe-purple: #635BFF;
+  --stripe-purple-dark: #5851DF;
+  --stripe-indigo: #0A2540;
+  --stripe-navy: #1A1F36;
+
+  --grad-cyan: #00D4FF;
+  --grad-violet: #7A73FF;
+  --grad-pink: #FF80B5;
+  --grad-peach: #FFA37B;
+  --gradient-text: linear-gradient(90deg, #00D4FF 0%, #7A73FF 50%, #FF80B5 100%);
+
+  --slate-50: #FAFBFD;
+  --slate-100: #F6F9FC;
+  --slate-200: #E3E8EE;
+  --slate-300: #C1C9D2;
+  --slate-400: #A3ACBA;
+  --slate-500: #8898AA;
+  --slate-600: #697386;
+  --slate-700: #425466;
+  --slate-800: #1A1F36;
+  --slate-900: #0A2540;
+
+  --success: #00D924;
+
+  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+  --r-sm: 4px; --r-md: 8px; --r-lg: 12px; --r-xl: 16px; --r-2xl: 24px; --r-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgba(10,37,64,0.06);
+  --shadow-md: 0 4px 12px rgba(10,37,64,0.08);
+  --shadow-lg: 0 12px 32px rgba(10,37,64,0.12);
+  --shadow-xl: 0 24px 48px rgba(10,37,64,0.16);
+  --shadow-glow: 0 8px 24px rgba(99,91,255,0.32);
+  --shadow-focus-ring: 0 0 0 4px rgba(99,91,255,0.12);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+  --container-max: 1280px;
+  --container-px: 64px;
+  --section-py: 96px;
+}
+
+/* ================================================================
+   RESET
+   ================================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--slate-700);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.005em;
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+}
+h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); color: var(--slate-900); margin: 0; font-weight: 700; }
+p { margin: 0; }
+a { color: var(--stripe-purple); text-decoration: none; transition: color 150ms var(--ease-out); }
+a:hover { color: var(--stripe-purple-dark); }
+ul { list-style: none; padding: 0; margin: 0; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; }
+
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-px); }
+
+/* ================================================================
+   EYEBROW
+   ================================================================ */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stripe-purple);
+}
+
+/* ================================================================
+   TEXT GRADIENT
+   ================================================================ */
+.text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ================================================================
+   BUTTONS
+   ================================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 150ms var(--ease-out);
+  text-decoration: none;
+  padding: 12px 20px; font-size: 15px;
+}
+.btn-sm { padding: 8px 14px; font-size: 13.5px; }
+.btn-lg { padding: 14px 24px; font-size: 16px; }
+.btn-primary {
+  background: var(--stripe-purple); color: white;
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover {
+  background: var(--stripe-purple-dark);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+  color: white;
+}
+.btn-secondary {
+  background: white; color: var(--slate-900);
+  border-color: var(--slate-300);
+}
+.btn-secondary:hover { border-color: var(--slate-500); color: var(--slate-900); }
+.btn-secondary-dark {
+  background: rgba(255,255,255,0.08); color: white;
+  border-color: rgba(255,255,255,0.16);
+  backdrop-filter: blur(8px);
+}
+.btn-secondary-dark:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.32);
+  color: white;
+}
+.btn__arrow { transition: transform 150ms var(--ease-out); display: inline-block; }
+.btn:hover .btn__arrow { transform: translateX(2px); }
+
+/* ================================================================
+   SECTION HEADER
+   ================================================================ */
+.section-header { max-width: 720px; margin-bottom: 64px; }
+.section-header--center { margin-inline: auto; text-align: center; }
+.section-header__title {
+  font-size: clamp(36px, 5vw, 48px);
+  font-weight: 700; letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--slate-900);
+  margin: 12px 0 16px;
+}
+.section-header__desc {
+  font-size: 18px; color: var(--slate-700);
+  max-width: 580px; line-height: 1.55; margin: 0;
+}
+.section-header--center .section-header__desc { margin-inline: auto; }
+
+/* ================================================================
+   NAV
+   ================================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--slate-200);
+}
+.nav__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-px);
+  height: 64px;
+  display: flex; align-items: center; gap: 32px;
+}
+.nav__logo {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 22px;
+  letter-spacing: -0.03em;
+  color: var(--slate-900);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav__links { display: flex; gap: 28px; flex: 1; }
+.nav__link {
+  font-size: 14px; font-weight: 500;
+  color: var(--slate-700); text-decoration: none;
+  transition: color 150ms var(--ease-out);
+}
+.nav__link:hover { color: var(--slate-900); }
+.nav__cta { display: flex; align-items: center; gap: 16px; }
+.nav__tel {
+  font-size: 14px; font-weight: 500;
+  color: var(--slate-700); text-decoration: none;
+}
+.nav__tel:hover { color: var(--slate-900); }
+
+/* ================================================================
+   HERO
+   ================================================================ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0 96px;
+  background: var(--slate-900);
+}
+.hero__bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 18% 28%, rgba(122,115,255,0.55) 0%, transparent 50%),
+    radial-gradient(ellipse at 82% 22%, rgba(0,212,255,0.45) 0%, transparent 55%),
+    radial-gradient(ellipse at 60% 80%, rgba(255,128,181,0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 95%, rgba(255,163,123,0.3) 0%, transparent 45%),
+    linear-gradient(135deg, #0A2540 0%, #1A1F36 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 18s ease infinite;
+}
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+.hero__inner {
+  position: relative;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-px);
+}
+.hero__eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--r-full);
+  backdrop-filter: blur(8px);
+  font-size: 13px; font-weight: 500;
+  color: rgba(255,255,255,0.9);
+}
+.hero__dot {
+  width: 6px; height: 6px;
+  background: var(--grad-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--grad-cyan);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.6; transform: scale(1.2); }
+}
+.hero__title {
+  font-size: clamp(48px, 7vw, 80px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: white;
+  max-width: 18ch;
+  margin: 24px 0 20px;
+}
+.hero__lead {
+  font-size: 20px;
+  color: rgba(255,255,255,0.7);
+  max-width: 560px;
+  line-height: 1.5;
+  margin: 0 0 32px;
+}
+.hero__cta { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero__meta {
+  display: flex; gap: 48px; flex-wrap: wrap;
+  margin-top: 56px; padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.hero__meta-item { display: flex; flex-direction: column; gap: 4px; }
+.hero__meta-item b {
+  color: white; font-weight: 600; font-size: 22px;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.hero__meta-item span { color: rgba(255,255,255,0.6); font-size: 13px; }
+
+/* ================================================================
+   LOGOS
+   ================================================================ */
+.logos { padding: 80px 0; background: white; border-top: 1px solid var(--slate-100); }
+.logos__caption {
+  text-align: center; color: var(--slate-600);
+  font-size: 14px; margin: 0 0 40px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.logos__grid {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: 24px; align-items: center;
+}
+.logo-item {
+  height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--slate-200);
+  border-radius: var(--r-md);
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--slate-500);
+  font-size: 15px;
+  letter-spacing: -0.015em;
+  transition: all 150ms var(--ease-out);
+  background: white;
+}
+.logo-item:hover { color: var(--slate-900); border-color: var(--slate-300); }
+
+/* ================================================================
+   WHY MANEO
+   ================================================================ */
+.why { padding: var(--section-py) 0; background: var(--slate-50); }
+.why__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.why-card {
+  background: white;
+  border: 1px solid var(--slate-200);
+  border-radius: var(--r-xl);
+  padding: 32px;
+  transition: all 200ms var(--ease-out);
+}
+.why-card:hover {
+  border-color: var(--slate-300);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.why-card__icon {
+  width: 44px; height: 44px;
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, rgba(99,91,255,0.12) 0%, rgba(0,212,255,0.12) 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--stripe-purple);
+  margin-bottom: 24px;
+}
+.why-card h3 {
+  font-size: 22px; font-weight: 600;
+  letter-spacing: -0.015em; line-height: 1.25;
+  margin: 0 0 12px;
+}
+.why-card p { font-size: 15px; color: var(--slate-700); line-height: 1.6; }
+
+/* ================================================================
+   STATS
+   ================================================================ */
+.stats { padding: var(--section-py) 0; background: white; border-top: 1px solid var(--slate-100); border-bottom: 1px solid var(--slate-100); }
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.stat__value {
+  font-family: var(--font-display);
+  font-size: 48px; font-weight: 700;
+  letter-spacing: -0.03em; line-height: 1;
+  color: var(--slate-900);
+  margin-bottom: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.stat__value .unit { color: var(--stripe-purple); }
+.stat__label { font-size: 15px; color: var(--slate-700); max-width: 220px; line-height: 1.45; }
+
+/* ================================================================
+   PRICING
+   ================================================================ */
+.pricing { padding: var(--section-py) 0; background: white; }
+.pricing__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+.price-card {
+  position: relative;
+  background: white;
+  border: 1px solid var(--slate-200);
+  border-radius: var(--r-xl);
+  padding: 40px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  transition: all 200ms var(--ease-out);
+}
+.price-card:hover {
+  border-color: var(--slate-300);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.price-card--featured {
+  background: var(--slate-900);
+  border-color: var(--slate-900);
+  color: white;
+  box-shadow: var(--shadow-xl);
+}
+.price-card--featured::before {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #00D4FF 0%, #7A73FF 50%, #FF80B5 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.price-card--featured:hover { transform: translateY(-4px); }
+.price-card__badge {
+  position: absolute;
+  top: -12px; left: 50%; transform: translateX(-50%);
+  padding: 4px 12px;
+  background: var(--gradient-text);
+  color: white;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border-radius: var(--r-full);
+  font-family: var(--font-mono);
+}
+.price-card__name {
+  font-size: 14px; font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--stripe-purple);
+  font-family: var(--font-mono);
+  margin: 0 0 16px;
+}
+.price-card--featured .price-card__name { color: var(--grad-cyan); }
+.price-card__amount {
+  font-family: var(--font-display);
+  font-size: 56px; font-weight: 700;
+  letter-spacing: -0.04em; line-height: 1;
+  color: var(--slate-900);
+  font-variant-numeric: tabular-nums;
+  display: flex; align-items: baseline; gap: 4px;
+}
+.price-card--featured .price-card__amount { color: white; }
+.price-card__amount .currency { font-size: 28px; font-weight: 600; }
+.price-card__hint { font-size: 13px; color: var(--slate-500); margin: 8px 0 24px; }
+.price-card--featured .price-card__hint { color: rgba(255,255,255,0.6); }
+.price-card__tagline {
+  font-size: 16px; font-weight: 500;
+  color: var(--slate-700);
+  margin: 0 0 24px; line-height: 1.45;
+}
+.price-card--featured .price-card__tagline { color: rgba(255,255,255,0.85); }
+.price-card hr { border: none; border-top: 1px solid var(--slate-200); margin: 0 0 24px; }
+.price-card--featured hr { border-top-color: rgba(255,255,255,0.12); }
+.price-card__features {
+  list-style: none; padding: 0; margin: 0 0 32px;
+  display: flex; flex-direction: column; gap: 12px;
+  flex: 1;
+}
+.price-card__features li {
+  font-size: 14.5px; color: var(--slate-700);
+  display: flex; align-items: flex-start; gap: 10px;
+  line-height: 1.5;
+}
+.price-card--featured .price-card__features li { color: rgba(255,255,255,0.85); }
+.price-card__check { flex-shrink: 0; margin-top: 3px; color: var(--stripe-purple); }
+.price-card--featured .price-card__check { color: var(--grad-cyan); }
+.price-card .btn { width: 100%; justify-content: center; }
+.price-card--featured .btn-primary { background: white; color: var(--slate-900); }
+.price-card--featured .btn-primary:hover { background: var(--slate-100); color: var(--slate-900); box-shadow: 0 8px 24px rgba(0,212,255,0.32); }
+
+.pricing-aside {
+  margin-top: 48px;
+  padding: 28px 32px;
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--r-lg);
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 32px;
+}
+.pricing-aside__copy h4 { font-size: 18px; font-weight: 600; color: var(--slate-900); margin: 0 0 4px; }
+.pricing-aside__copy p { font-size: 14px; color: var(--slate-600); margin: 0; }
+.pricing__legal {
+  text-align: center; font-size: 13px; color: var(--slate-500);
+  margin-top: 32px; font-family: var(--font-mono);
+}
+
+/* ================================================================
+   PROCESS
+   ================================================================ */
+.process { padding: var(--section-py) 0; background: var(--slate-900); color: white; position: relative; overflow: hidden; }
+.process__bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(122,115,255,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 90%, rgba(0,212,255,0.12) 0%, transparent 50%);
+}
+.process__inner { position: relative; }
+.process__header { max-width: 720px; margin-bottom: 64px; }
+.process__header .eyebrow { color: var(--grad-cyan); }
+.process__header h2 {
+  color: white; font-size: clamp(36px, 5vw, 48px);
+  letter-spacing: -0.025em; line-height: 1.05; margin: 12px 0 16px;
+}
+.process__header p { font-size: 18px; color: rgba(255,255,255,0.7); max-width: 580px; }
+.process__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.process-step {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border-radius: var(--r-xl);
+  padding: 32px;
+  transition: all 200ms var(--ease-out);
+}
+.process-step:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}
+.process-step__num {
+  font-family: var(--font-display);
+  font-size: 64px; font-weight: 700;
+  letter-spacing: -0.05em; line-height: 1;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 4px;
+  display: block;
+}
+.process-step__when {
+  font-family: var(--font-mono);
+  font-size: 12px; font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 24px;
+  display: block;
+}
+.process-step h3 {
+  font-size: 22px; font-weight: 600;
+  letter-spacing: -0.015em; color: white;
+  margin: 0 0 12px; line-height: 1.25;
+}
+.process-step p {
+  font-size: 15px; color: rgba(255,255,255,0.7);
+  line-height: 1.6; margin: 0 0 20px;
+}
+.process-step ul {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.process-step ul li {
+  font-size: 13.5px; color: rgba(255,255,255,0.6);
+  display: flex; gap: 8px; align-items: flex-start;
+  line-height: 1.5;
+}
+.process-step ul li::before {
+  content: '\00B7';
+  color: var(--grad-cyan);
+  font-weight: 700;
+  margin-top: -2px;
+}
+
+/* ================================================================
+   METIERS CAROUSEL
+   ================================================================ */
+.metiers { padding: var(--section-py) 0 calc(var(--section-py) - 24px); background: white; overflow: hidden; }
+.metiers__header { max-width: 720px; margin: 0 auto 56px; padding: 0 var(--container-px); }
+.metiers__header .eyebrow { display: block; margin-bottom: 12px; }
+.metiers__header h2 {
+  font-size: clamp(36px, 5vw, 48px);
+  letter-spacing: -0.025em; line-height: 1.05;
+  margin: 0 0 16px; color: var(--slate-900);
+}
+.metiers__header p { font-size: 18px; color: var(--slate-700); max-width: 580px; margin: 0; }
+.metiers__track-wrap {
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent 0, black 60px, black calc(100% - 60px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, black 60px, black calc(100% - 60px), transparent 100%);
+}
+.metiers__track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+}
+.metiers__track:hover { animation-play-state: paused; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.metier-card {
+  position: relative;
+  width: 260px; height: 340px;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--slate-200);
+}
+.metier-card__photo {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 600ms var(--ease-out-expo);
+}
+.metier-card:hover .metier-card__photo { transform: scale(1.05); }
+.metier-card__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10,37,64,0.85) 100%);
+}
+.metier-card__label {
+  position: absolute;
+  bottom: 24px; left: 24px; right: 24px;
+  color: white;
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.metier-card__count {
+  font-family: var(--font-mono);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  position: absolute;
+  top: 20px; left: 24px;
+  display: flex; align-items: center; gap: 6px;
+}
+.metier-card__count::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--grad-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--grad-cyan);
+}
+.metiers__cta {
+  text-align: center; margin-top: 48px;
+  color: var(--slate-600); font-size: 15px;
+}
+
+/* ================================================================
+   ABOUT
+   ================================================================ */
+.about { padding: var(--section-py) 0; background: var(--slate-50); }
+.about__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-px);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+.about__photo {
+  width: 100%; aspect-ratio: 4/5;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  position: relative;
+  background: var(--slate-200);
+  box-shadow: var(--shadow-lg);
+}
+.about__photo-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+}
+.about__photo-tag {
+  position: absolute;
+  bottom: 24px; left: 24px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-radius: var(--r-full);
+  font-size: 13px; font-weight: 500;
+  color: var(--slate-900);
+  display: flex; align-items: center; gap: 8px;
+}
+.about__photo-tag::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--success);
+  border-radius: 50%;
+}
+.about__copy .eyebrow { display: block; margin-bottom: 16px; }
+.about__copy h2 {
+  font-size: clamp(36px, 4.5vw, 44px);
+  letter-spacing: -0.025em; line-height: 1.05;
+  margin: 0 0 24px;
+}
+.about__copy p { font-size: 17px; color: var(--slate-700); line-height: 1.6; margin: 0 0 16px; }
+.about__sig {
+  margin-top: 28px; padding-top: 24px;
+  border-top: 1px solid var(--slate-200);
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+.about__sig-item { display: flex; flex-direction: column; }
+.about__sig-item b { font-size: 20px; color: var(--slate-900); font-weight: 600; letter-spacing: -0.015em; }
+.about__sig-item span { font-size: 13px; color: var(--slate-600); }
+
+/* ================================================================
+   FAQ
+   ================================================================ */
+.faq { padding: var(--section-py) 0; background: white; }
+.faq__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-px);
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 80px;
+  align-items: start;
+}
+.faq__header { position: sticky; top: 96px; }
+.faq__header .eyebrow { display: block; margin-bottom: 12px; }
+.faq__header h2 {
+  font-size: clamp(36px, 4.5vw, 44px);
+  letter-spacing: -0.025em; line-height: 1.05;
+  margin: 0 0 20px;
+}
+.faq__header p { font-size: 16px; color: var(--slate-700); line-height: 1.6; margin: 0; }
+.faq__list { border-top: 1px solid var(--slate-200); }
+.faq-item { border-bottom: 1px solid var(--slate-200); }
+.faq-item__btn {
+  width: 100%;
+  background: none; border: none;
+  text-align: left;
+  padding: 24px 0;
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--slate-900);
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px;
+  transition: color 150ms var(--ease-out);
+}
+.faq-item__btn:hover { color: var(--stripe-purple); }
+.faq-item__icon {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--slate-500);
+  transition: transform 200ms var(--ease-out);
+}
+.faq-item--open .faq-item__icon { transform: rotate(45deg); color: var(--stripe-purple); }
+.faq-item__content {
+  max-height: 0; overflow: hidden;
+  transition: max-height 300ms var(--ease-out);
+}
+.faq-item--open .faq-item__content { max-height: 400px; }
+.faq-item__answer {
+  padding: 0 0 24px 0;
+  font-size: 16px; color: var(--slate-700);
+  line-height: 1.65; max-width: 60ch;
+}
+
+/* ================================================================
+   FINAL CTA
+   ================================================================ */
+.final-cta {
+  padding: var(--section-py) 0;
+  background: var(--slate-900);
+  position: relative; overflow: hidden;
+}
+.final-cta__bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 25% 50%, rgba(122,115,255,0.4) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 50%, rgba(0,212,255,0.3) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(255,128,181,0.25) 0%, transparent 55%);
+}
+.final-cta__inner {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 var(--container-px);
+  text-align: center;
+}
+.final-cta h2 {
+  color: white;
+  font-size: clamp(40px, 6vw, 64px);
+  letter-spacing: -0.04em; line-height: 1;
+  margin: 0 0 24px;
+}
+.final-cta p {
+  color: rgba(255,255,255,0.7);
+  font-size: 18px; max-width: 540px;
+  margin: 0 auto 40px; line-height: 1.55;
+}
+.final-cta__buttons {
+  display: flex; gap: 16px;
+  justify-content: center; flex-wrap: wrap;
+}
+.final-cta__hint {
+  margin-top: 32px;
+  font-size: 13px; color: rgba(255,255,255,0.5);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.footer {
+  padding: 64px 0 24px;
+  background: var(--slate-900);
+  color: rgba(255,255,255,0.7);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer__brand-tag {
+  font-size: 14px; color: rgba(255,255,255,0.55);
+  margin: 0 0 24px; max-width: 280px; line-height: 1.5;
+}
+.footer__title {
+  font-size: 13px; color: white; font-weight: 600;
+  margin: 0 0 16px;
+}
+.footer__links { display: flex; flex-direction: column; gap: 10px; }
+.footer__links a {
+  color: rgba(255,255,255,0.6);
+  font-size: 14px; text-decoration: none;
+  transition: color 150ms var(--ease-out);
+}
+.footer__links a:hover { color: white; }
+.footer__bottom {
+  margin-top: 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px; color: rgba(255,255,255,0.45);
+  flex-wrap: wrap; gap: 16px;
+}
+.footer__meta { display: flex; gap: 24px; }
+.footer__meta a { color: rgba(255,255,255,0.55); text-decoration: none; }
+.footer__meta a:hover { color: white; }
+
+/* ================================================================
+   MODAL
+   ================================================================ */
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(10,37,64,0.6);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms var(--ease-out);
+}
+.modal-backdrop--open { opacity: 1; pointer-events: auto; }
+.modal {
+  background: white;
+  border-radius: var(--r-xl);
+  max-width: 520px; width: 100%;
+  padding: 40px;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  transform: translateY(8px) scale(0.98);
+  transition: transform 200ms var(--ease-out);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+}
+.modal-backdrop--open .modal { transform: translateY(0) scale(1); }
+.modal__close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  background: var(--slate-100);
+  border: none; border-radius: var(--r-full);
+  color: var(--slate-700);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 150ms var(--ease-out);
+}
+.modal__close:hover { background: var(--slate-200); color: var(--slate-900); }
+.modal h2 {
+  font-size: 28px; letter-spacing: -0.025em;
+  line-height: 1.1; margin: 0 0 8px;
+}
+.modal__lead { font-size: 15px; color: var(--slate-600); margin: 0 0 28px; line-height: 1.5; }
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-size: 13px; font-weight: 500;
+  color: var(--slate-800); margin-bottom: 6px;
+}
+.field input, .field select {
+  width: 100%;
+  padding: 11px 14px;
+  font-family: var(--font-body);
+  font-size: 15px; color: var(--slate-900);
+  background: white;
+  border: 1px solid var(--slate-300);
+  border-radius: var(--r-md);
+  transition: all 150ms var(--ease-out);
+}
+.field input:focus, .field select:focus {
+  outline: none;
+  border-color: var(--stripe-purple);
+  box-shadow: var(--shadow-focus-ring);
+}
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.modal .btn-primary { width: 100%; justify-content: center; padding: 14px; margin-top: 8px; }
+.modal__legal {
+  margin-top: 16px; font-size: 12px;
+  color: var(--slate-500); text-align: center; line-height: 1.5;
+}
+.modal__success { text-align: center; padding: 24px 0; }
+.modal__success-icon {
+  width: 64px; height: 64px;
+  margin: 0 auto 20px;
+  border-radius: var(--r-full);
+  background: linear-gradient(135deg, #00D924 0%, #00D4FF 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 960px) {
+  :root { --container-px: 24px; }
+  .nav__links { display: none; }
+  .hero { padding: 80px 0 64px; }
+  .hero__title { font-size: clamp(36px, 8vw, 56px); }
+  .about__inner, .faq__inner { grid-template-columns: 1fr; gap: 48px; }
+  .faq__header { position: static; }
+  .why__grid, .pricing__grid, .process__steps, .stats__grid {
+    grid-template-columns: 1fr;
+  }
+  .logos__grid { grid-template-columns: repeat(3, 1fr); }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .pricing-aside { flex-direction: column; align-items: flex-start; }
+  .field-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .logos__grid { grid-template-columns: repeat(2, 1fr); }
+  .footer__grid { grid-template-columns: 1fr; }
+  .hero__meta { gap: 24px; }
+  .modal { padding: 28px 24px; }
+  .nav__tel { display: none; }
+}
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="#" aria-label="Maneo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="2" y="2" width="24" height="24" rx="6" fill="#0A2540"/>
+        <path d="M7 19V9l4.5 6L16 9v10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20.5" cy="18.5" r="1.5" fill="#635BFF"/>
+      </svg>
+      <span>Maneo</span>
+    </a>
+    <div class="nav__links">
+      <a class="nav__link" href="#offre">Offre</a>
+      <a class="nav__link" href="#process">Process</a>
+      <a class="nav__link" href="#metiers">Metiers</a>
+      <a class="nav__link" href="#propos">A propos</a>
+      <a class="nav__link" href="#faq">FAQ</a>
+    </div>
+    <div class="nav__cta">
+      <a class="nav__tel" href="tel:0612345678">06 12 34 56 78</a>
+      <a class="btn btn-primary btn-sm" href="#" id="navCta">Prendre rendez-vous <span class="btn__arrow">&rarr;</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__inner">
+    <span class="hero__eyebrow">
+      <span class="hero__dot"></span>
+      Maneo &middot; agence one-man pour artisans
+    </span>
+    <h1 class="hero__title">Le digital <span class="text-gradient">fait main</span>, par quelqu'un du terrain.</h1>
+    <p class="hero__lead">Un site pro pour ton metier, livre en 15 jours, a prix fixe. Par un gars qui a passe 14 ans en commerce avant de coder, et qui se deplace pour te rencontrer en vrai.</p>
+    <div class="hero__cta">
+      <a href="#" class="btn btn-primary btn-lg js-open-modal">Prendre rendez-vous <span class="btn__arrow">&rarr;</span></a>
+      <a href="#offre" class="btn btn-secondary-dark btn-lg">Voir les formules</a>
+    </div>
+    <div class="hero__meta">
+      <div class="hero__meta-item"><b>15 jours</b><span>delai garanti</span></div>
+      <div class="hero__meta-item"><b>990 &euro;</b><span>a partir de</span></div>
+      <div class="hero__meta-item"><b>Sur mesure</b><span>jamais de template</span></div>
+      <div class="hero__meta-item"><b>30 min</b><span>de RDV gratuit</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LOGOS CLIENTS
+     ============================================================ -->
+<section class="logos">
+  <div class="container">
+    <p class="logos__caption">&mdash; Ils m'ont fait confiance ces derniers mois</p>
+    <div class="logos__grid">
+      <div class="logo-item">Atelier Lambert</div>
+      <div class="logo-item">Boulangerie Pain Vivant</div>
+      <div class="logo-item">Garage Le Mans</div>
+      <div class="logo-item">Fleurs Camelia</div>
+      <div class="logo-item">Coiffure Studio M</div>
+      <div class="logo-item">Plomberie Martinez</div>
+      <div class="logo-item">Restaurant La Table</div>
+      <div class="logo-item">Menuiserie Bois Brut</div>
+      <div class="logo-item">Electro Service</div>
+      <div class="logo-item">Cafe du Centre</div>
+      <div class="logo-item">Patisserie Leo</div>
+      <div class="logo-item">Auto-ecole Tilly</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY MANEO
+     ============================================================ -->
+<section class="why">
+  <div class="container">
+    <header class="section-header">
+      <span class="eyebrow">Ce qui change</span>
+      <h2 class="section-header__title">Pas une agence. Un compagnon de metier qui code.</h2>
+      <p class="section-header__desc">Tu n'as pas besoin d'un commercial en costume qui te parle de &laquo; synergie &raquo;. T'as besoin de quelqu'un qui comprend ton boulot et qui livre.</p>
+    </header>
+    <div class="why__grid">
+
+      <article class="why-card">
+        <div class="why-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg>
+        </div>
+        <h3>14 ans sur le terrain</h3>
+        <p>J'ai bosse en commerce avant de coder. Je connais ton metier, tes clients, et la galere de gerer un site quand t'as deja 60h de boulot.</p>
+      </article>
+
+      <article class="why-card">
+        <div class="why-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8l-6 8M9 8h.01M15 16h.01"/></svg>
+        </div>
+        <h3>Prix fixe, zero surprise</h3>
+        <p>Ce qui est signe est ce qui est facture. Pas de &laquo; options a 200&euro; &raquo; qui sortent de nulle part. Tu sais ou tu vas avant de signer.</p>
+      </article>
+
+      <article class="why-card">
+        <div class="why-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Livre en 15 jours</h3>
+        <p>Pas trois mois, pas six. Quinze jours apres la signature, ton site est en ligne. Garanti par contrat.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STATS
+     ============================================================ -->
+<section class="stats">
+  <div class="container">
+    <div class="stats__grid">
+      <div>
+        <div class="stat__value">15<span class="unit">j</span></div>
+        <div class="stat__label">Delai de livraison, garanti par contrat</div>
+      </div>
+      <div>
+        <div class="stat__value">14<span class="unit">ans</span></div>
+        <div class="stat__label">En commerce avant de passer au digital</div>
+      </div>
+      <div>
+        <div class="stat__value">0<span class="unit">&euro;</span></div>
+        <div class="stat__label">Frais caches, jamais. Devis = facture.</div>
+      </div>
+      <div>
+        <div class="stat__value">100<span class="unit">%</span></div>
+        <div class="stat__label">Sur mesure, jamais de template recycle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRICING
+     ============================================================ -->
+<section class="pricing" id="offre">
+  <div class="container">
+    <header class="section-header section-header--center">
+      <span class="eyebrow">Les formules</span>
+      <h2 class="section-header__title">Trois formules. Un prix fixe. Aucune surprise.</h2>
+      <p class="section-header__desc">Tu choisis ce qui colle a ton metier. Tout est inclus dans le prix : hebergement, nom de domaine, formation. Ce qui est signe est ce qui est facture.</p>
+    </header>
+
+    <div class="pricing__grid">
+
+      <!-- Essentiel -->
+      <article class="price-card">
+        <div class="price-card__name">Essentiel</div>
+        <div class="price-card__amount">990<span class="currency">&euro;</span></div>
+        <div class="price-card__hint">paiement en 2 fois possible</div>
+        <p class="price-card__tagline">Ta presence en ligne, propre et carree.</p>
+        <hr>
+        <ul class="price-card__features">
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>3 pages : Accueil, Services, Contact</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Optimise mobile et tablette</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Formulaire de contact + Google Maps</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Hebergement et nom de domaine inclus 1 an</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Livre en 15 jours</li>
+        </ul>
+        <a href="#" class="btn btn-secondary js-open-modal">Choisir Essentiel <span class="btn__arrow">&rarr;</span></a>
+      </article>
+
+      <!-- Pro (featured) -->
+      <article class="price-card price-card--featured">
+        <span class="price-card__badge">Le plus choisi</span>
+        <div class="price-card__name">Pro</div>
+        <div class="price-card__amount">1 490<span class="currency">&euro;</span></div>
+        <div class="price-card__hint">recommande &middot; paiement en 3 fois possible</div>
+        <p class="price-card__tagline">Le bon choix pour la plupart des artisans.</p>
+        <hr>
+        <ul class="price-card__features">
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Tout l'Essentiel inclus</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>6 pages avec galerie realisations</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Formulaire devis en ligne sur mesure</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>SEO local : visible dans ta ville</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Fiche Google Pro optimisee</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Livre en 15 jours</li>
+        </ul>
+        <a href="#" class="btn btn-primary js-open-modal">Choisir Pro <span class="btn__arrow">&rarr;</span></a>
+      </article>
+
+      <!-- Signature -->
+      <article class="price-card">
+        <div class="price-card__name">Signature</div>
+        <div class="price-card__amount">1 990<span class="currency">&euro;</span></div>
+        <div class="price-card__hint">paiement en 4 fois possible</div>
+        <p class="price-card__tagline">Sur mesure complet, pour te demarquer vraiment.</p>
+        <hr>
+        <ul class="price-card__features">
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Tout le Pro inclus</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pages illimitees, design unique</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Prise de rendez-vous en ligne</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Espace client ou catalogue produit</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Shooting photo de ton atelier inclus</li>
+          <li><svg class="price-card__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Livre en 3 semaines</li>
+        </ul>
+        <a href="#" class="btn btn-secondary js-open-modal">Choisir Signature <span class="btn__arrow">&rarr;</span></a>
+      </article>
+
+    </div>
+
+    <!-- Aside appli -->
+    <div class="pricing-aside">
+      <div class="pricing-aside__copy">
+        <h4>Tu veux une appli metier sur mesure ?</h4>
+        <p>Gestion de tournees, planning, devis automatises... a partir de 2 900&euro;. On en parle au RDV.</p>
+      </div>
+      <a href="#" class="btn btn-secondary js-open-modal">En parler <span class="btn__arrow">&rarr;</span></a>
+    </div>
+
+    <p class="pricing__legal">TVA non applicable, art. 293 B du CGI &middot; Hebergement et nom de domaine inclus 1 an sur tous les packs</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESS
+     ============================================================ -->
+<section class="process" id="process">
+  <div class="process__bg" aria-hidden="true"></div>
+  <div class="container process__inner">
+    <header class="process__header">
+      <span class="eyebrow">Le process</span>
+      <h2>Trois etapes. Quinze jours. Pas une de plus.</h2>
+      <p>Pas de comite de pilotage, pas de chef de projet a rallonge. Tu signes lundi, ton site est en ligne le lundi suivant la semaine d'apres.</p>
+    </header>
+    <div class="process__steps">
+
+      <article class="process-step">
+        <span class="process-step__num">01</span>
+        <span class="process-step__when">Semaine 1 &mdash; Jour 1</span>
+        <h3>On se voit en vrai</h3>
+        <p>Je viens chez toi, dans ton atelier ou ton magasin. On parle de ton metier, de tes clients, de ce que tu veux montrer. Une heure, cafe compris.</p>
+        <ul>
+          <li>Visite de ton lieu de travail</li>
+          <li>Brief sans jargon</li>
+          <li>Devis ferme sur place</li>
+        </ul>
+      </article>
+
+      <article class="process-step">
+        <span class="process-step__num">02</span>
+        <span class="process-step__when">Semaine 1 &amp; 2</span>
+        <h3>Je construis</h3>
+        <p>De mon cote, je te fabrique un site sur mesure. Tu recois un premier apercu au bout de 7 jours pour ajuster. Pas de surprise, pas de retour a la case depart.</p>
+        <ul>
+          <li>Maquette en 7 jours</li>
+          <li>Aller-retour pour ajuster</li>
+          <li>Tu valides a chaque etape</li>
+        </ul>
+      </article>
+
+      <article class="process-step">
+        <span class="process-step__num">03</span>
+        <span class="process-step__when">Semaine 2 &mdash; Jour 15</span>
+        <h3>Je te livre</h3>
+        <p>Site en ligne, formation incluse pour modifier toi-meme les textes et les photos. Je reste joignable un mois apres pour les questions.</p>
+        <ul>
+          <li>Mise en ligne sur ton domaine</li>
+          <li>30 min de formation simple</li>
+          <li>1 mois de SAV inclus</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     METIERS CAROUSEL
+     ============================================================ -->
+<section class="metiers" id="metiers">
+  <div class="metiers__header">
+    <span class="eyebrow">A qui je parle</span>
+    <h2>Tu te reconnais ?</h2>
+    <p>J'ai accompagne des dizaines d'artisans et commercants. Si ton metier est ici, on parle deja la meme langue.</p>
+  </div>
+  <div class="metiers__track-wrap">
+    <div class="metiers__track">
+      <!-- Set 1 -->
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">12 sites accompagnes</div>
+        <div class="metier-card__label">Plombiers</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">8 sites accompagnes</div>
+        <div class="metier-card__label">Coiffeurs</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">6 sites accompagnes</div>
+        <div class="metier-card__label">Boulangers</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">15 sites accompagnes</div>
+        <div class="metier-card__label">Restaurateurs</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">5 sites accompagnes</div>
+        <div class="metier-card__label">Fleuristes</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1632823471565-1ecdf5c6a47a?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">9 sites accompagnes</div>
+        <div class="metier-card__label">Garagistes</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">7 sites accompagnes</div>
+        <div class="metier-card__label">Electriciens</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1601564921647-b446839a013f?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">4 sites accompagnes</div>
+        <div class="metier-card__label">Menuisiers</div>
+      </article>
+      <!-- Set 2 (duplicate for seamless marquee) -->
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">12 sites accompagnes</div>
+        <div class="metier-card__label">Plombiers</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">8 sites accompagnes</div>
+        <div class="metier-card__label">Coiffeurs</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">6 sites accompagnes</div>
+        <div class="metier-card__label">Boulangers</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">15 sites accompagnes</div>
+        <div class="metier-card__label">Restaurateurs</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">5 sites accompagnes</div>
+        <div class="metier-card__label">Fleuristes</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1632823471565-1ecdf5c6a47a?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">9 sites accompagnes</div>
+        <div class="metier-card__label">Garagistes</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">7 sites accompagnes</div>
+        <div class="metier-card__label">Electriciens</div>
+      </article>
+      <article class="metier-card">
+        <div class="metier-card__photo" style="background-image:url('https://images.unsplash.com/photo-1601564921647-b446839a013f?w=600&q=80')"></div>
+        <div class="metier-card__overlay"></div>
+        <div class="metier-card__count">4 sites accompagnes</div>
+        <div class="metier-card__label">Menuisiers</div>
+      </article>
+    </div>
+  </div>
+  <p class="metiers__cta">Ton metier n'est pas dans la liste ? <a href="#" class="js-open-modal">On en parle quand meme &rarr;</a></p>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="about" id="propos">
+  <div class="about__inner">
+    <div class="about__photo">
+      <div class="about__photo-img" style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80')"></div>
+      <div class="about__photo-tag">Disponible cette semaine</div>
+    </div>
+    <div class="about__copy">
+      <span class="eyebrow">&mdash; Vincent, fondateur</span>
+      <h2>14 ans a conseiller des artisans. Aujourd'hui je leur fais leur site.</h2>
+      <p>J'ai bosse dans le commerce de materiel pro pendant 14 ans. J'ai croise des centaines d'artisans excellents dans leur metier mais invisibles en ligne. Pas par flemme : par manque de temps et parce que les agences leur parlent une langue qu'ils ne comprennent pas.</p>
+      <p>Maneo, c'est ma maniere de leur rendre service. Je viens te voir, je parle comme toi, je te livre vite, et si c'est pas pour toi, je te le dis. Pas de relance commerciale, pas de blabla.</p>
+      <div class="about__sig">
+        <div class="about__sig-item"><b>14 ans</b><span>en commerce de materiel pro</span></div>
+        <div class="about__sig-item"><b>32 sites</b><span>livres depuis 2024</span></div>
+        <div class="about__sig-item"><b>Rennes</b><span>base en Bretagne, deplacement Grand Ouest</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="faq" id="faq">
+  <div class="faq__inner">
+    <div class="faq__header">
+      <span class="eyebrow">&mdash; Questions frequentes</span>
+      <h2>On repond aux questions que tu te poses deja.</h2>
+      <p>Pas de petits caracteres, pas d'asterisques. Si une question te trotte et qu'elle n'est pas la, ecris-moi.</p>
+    </div>
+    <div class="faq__list">
+
+      <div class="faq-item faq-item--open">
+        <button class="faq-item__btn" aria-expanded="true">
+          <span>Et si je veux modifier mon site apres ?</span>
+          <span class="faq-item__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-item__content">
+          <div class="faq-item__answer">Tu pourras modifier tes textes, photos et horaires toi-meme : je te montre comment en 30 minutes le jour de la livraison. Pour des changements plus gros (ajouter une page, refondre une section), c'est 80&euro; de l'heure, sans engagement.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__btn" aria-expanded="false">
+          <span>Le site m'appartient vraiment ?</span>
+          <span class="faq-item__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-item__content">
+          <div class="faq-item__answer">Oui, a 100%. Domaine, hebergement, code, contenus : tout est a ton nom. Si un jour tu veux partir voir ailleurs, je te transfere tout, sans frais et sans rancune.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__btn" aria-expanded="false">
+          <span>Pourquoi 15 jours et pas 3 mois comme les autres ?</span>
+          <span class="faq-item__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-item__content">
+          <div class="faq-item__answer">Parce que je bosse seul, je n'ai pas de chef de projet, pas de reunion de comite. Quand on a signe, je m'y mets le jour meme. Et comme je ne fais que ca, je sais ou je vais.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__btn" aria-expanded="false">
+          <span>Et si je veux pas payer en une fois ?</span>
+          <span class="faq-item__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-item__content">
+          <div class="faq-item__answer">Paiement en 2x sans frais sur tous les packs. 3x ou 4x sans frais sur Pro et Signature. On signe, tu verses 30%, et le reste s'etale. Pas de banque, pas de dossier, c'est entre toi et moi.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__btn" aria-expanded="false">
+          <span>C'est quoi exactement le SEO local du pack Pro ?</span>
+          <span class="faq-item__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-item__content">
+          <div class="faq-item__answer">Quand quelqu'un tape "plombier [ta ville]" sur Google, on travaille pour que tu apparaisses dans les premiers resultats. Optimisation des pages, fiche Google Pro, mots-cles cibles sur ta zone. Pas de promesses magiques : du travail honnete sur 90 jours.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__btn" aria-expanded="false">
+          <span>Et si on ne s'entend pas ?</span>
+          <span class="faq-item__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-item__content">
+          <div class="faq-item__answer">Avant la signature, on fait un appel ou on se voit en vrai. Si tu sens que c'est pas pour toi ou que je sens que c'est pas pour moi, on se le dit. Pas de pression, pas de relance commerciale. C'est gratuit et c'est clair.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__btn" aria-expanded="false">
+          <span>Tu travailles dans toute la France ?</span>
+          <span class="faq-item__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-item__content">
+          <div class="faq-item__answer">Je me deplace dans toute la Bretagne et le Grand Ouest sans frais. Au-dela, on peut faire le brief en visio si tu preferes, ou je viens en facturant les frais a prix coutant. Pas de marge dessus.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+     ============================================================ -->
+<section class="final-cta" id="rdv">
+  <div class="final-cta__bg" aria-hidden="true"></div>
+  <div class="final-cta__inner">
+    <h2>On se cale 30 minutes ?</h2>
+    <p>Cafe, devis ferme, zero engagement. Si on est pas faits pour bosser ensemble, je te le dis franchement et tu repars avec des conseils gratuits.</p>
+    <div class="final-cta__buttons">
+      <a href="#" class="btn btn-primary btn-lg js-open-modal">Prendre rendez-vous <span class="btn__arrow">&rarr;</span></a>
+      <a href="tel:0612345678" class="btn btn-secondary-dark btn-lg">Appeler &mdash; 06 12 34 56 78</a>
+    </div>
+    <p class="final-cta__hint">Reponse sous 24h ouvrees &middot; Lundi-Vendredi 8h-19h</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none"><rect x="2" y="2" width="24" height="24" rx="6" fill="white" fill-opacity="0.08"/><path d="M7 19V9l4.5 6L16 9v10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20.5" cy="18.5" r="1.5" fill="#7A73FF"/></svg>
+          <span style="color:white;font-weight:700;font-size:20px;letter-spacing:-0.025em">Maneo</span>
+        </div>
+        <p class="footer__brand-tag">Le digital fait main, par quelqu'un du terrain. Sites internet et applis pour artisans et commercants.</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.5);margin:0">Rennes, Bretagne</p>
+      </div>
+      <div>
+        <h6 class="footer__title">L'offre</h6>
+        <div class="footer__links">
+          <a href="#offre">Essentiel &mdash; 990&euro;</a>
+          <a href="#offre">Pro &mdash; 1 490&euro;</a>
+          <a href="#offre">Signature &mdash; 1 990&euro;</a>
+          <a href="#offre">Appli metier</a>
+        </div>
+      </div>
+      <div>
+        <h6 class="footer__title">Maneo</h6>
+        <div class="footer__links">
+          <a href="#process">Le process</a>
+          <a href="#metiers">Les metiers</a>
+          <a href="#propos">A propos</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h6 class="footer__title">Me joindre</h6>
+        <div class="footer__links">
+          <a href="tel:0612345678">06 12 34 56 78</a>
+          <a href="mailto:vincent@maneo.fr">vincent@maneo.fr</a>
+          <a href="#rdv">Prendre RDV</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 Maneo &middot; Vincent Le Bras &middot; SIRET 938 472 015 00013</span>
+      <div class="footer__meta">
+        <a href="#">Mentions legales</a>
+        <a href="#">CGV</a>
+        <a href="#">Confidentialite</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     MODAL RDV
+     ============================================================ -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="modal">
+    <button class="modal__close" id="modalClose" aria-label="Fermer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <!-- Form state -->
+    <div id="modalForm">
+      <h2>On se cale 30 minutes ?</h2>
+      <p class="modal__lead">Donne-moi quelques infos, je te rappelle dans la journee pour caler un creneau qui t'arrange.</p>
+      <form id="rdvForm">
+        <div class="field">
+          <label for="m-name">Ton prenom</label>
+          <input id="m-name" required type="text" placeholder="Vincent">
+        </div>
+        <div class="field">
+          <label for="m-job">Ton metier</label>
+          <input id="m-job" required type="text" placeholder="Plombier, coiffeur, boulanger...">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="m-tel">Ton telephone</label>
+            <input id="m-tel" required type="tel" placeholder="06 12 34 56 78">
+          </div>
+          <div class="field">
+            <label for="m-when">Quand ca t'arrange</label>
+            <select id="m-when" required>
+              <option value="" disabled selected>Choisis un creneau</option>
+              <option>Cette semaine, en journee</option>
+              <option>Cette semaine, le soir</option>
+              <option>La semaine prochaine</option>
+              <option>Pas presse</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Demander a etre rappele <span class="btn__arrow">&rarr;</span></button>
+        <p class="modal__legal">Pas de spam, pas de relance. Je t'appelle une fois, et c'est tout. Tes infos restent entre toi et moi.</p>
+      </form>
+    </div>
+
+    <!-- Success state -->
+    <div id="modalSuccess" class="modal__success" style="display:none">
+      <div class="modal__success-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 style="font-size:24px">C'est note.</h2>
+      <p class="modal__lead" style="margin-bottom:24px">Je te rappelle dans la journee. Si c'est urgent ou si tu preferes, tu peux aussi appeler directement le <b style="color:var(--slate-900)">06 12 34 56 78</b>.</p>
+      <button class="btn btn-secondary" id="modalSuccessClose" style="width:100%;justify-content:center">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     JS — Interactions
+     ============================================================ -->
+<script>
+(function() {
+  // Modal
+  var backdrop = document.getElementById('modalBackdrop');
+  var modal = document.getElementById('modal');
+  var modalForm = document.getElementById('modalForm');
+  var modalSuccess = document.getElementById('modalSuccess');
+  var form = document.getElementById('rdvForm');
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    modalForm.style.display = '';
+    modalSuccess.style.display = 'none';
+    form.reset();
+    backdrop.classList.add('modal-backdrop--open');
+  }
+  function closeModal() {
+    backdrop.classList.remove('modal-backdrop--open');
+  }
+
+  // All CTA buttons
+  document.querySelectorAll('.js-open-modal').forEach(function(el) {
+    el.addEventListener('click', openModal);
+  });
+  document.getElementById('navCta').addEventListener('click', openModal);
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.getElementById('modalSuccessClose').addEventListener('click', closeModal);
+  backdrop.addEventListener('click', function(e) {
+    if (e.target === backdrop) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+  modal.addEventListener('click', function(e) { e.stopPropagation(); });
+
+  // Form submit
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    modalForm.style.display = 'none';
+    modalSuccess.style.display = '';
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item__btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = this.closest('.faq-item');
+      var wasOpen = item.classList.contains('faq-item--open');
+
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(function(el) {
+        el.classList.remove('faq-item--open');
+        el.querySelector('.faq-item__btn').setAttribute('aria-expanded', 'false');
+      });
+
+      // Toggle clicked
+      if (!wasOpen) {
+        item.classList.add('faq-item--open');
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    if (a.classList.contains('js-open-modal') || a.id === 'navCta') return;
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

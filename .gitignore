@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Vault Obsidian — études internes, copy non publiée, brainstorms
+maneo/
+
+# Backups locaux éventuels
+*.backup
+*~

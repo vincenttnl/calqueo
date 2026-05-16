@@ -1,0 +1,94 @@
+/* Styles partagés des pages légales Manéo (mentions, CGV, politique) */
+:root {
+  --stripe-purple: #635BFF;
+  --stripe-indigo: #0A2540;
+  --slate-50: #FAFBFD;
+  --slate-200: #E2E8F0;
+  --slate-400: #94A3B8;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-900: #0A2540;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--stripe-indigo);
+  background: #fff;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.legal-nav {
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--slate-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.legal-nav a.back {
+  color: var(--slate-600);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+.legal-nav a.back:hover { color: var(--stripe-purple); }
+.legal-nav .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--stripe-indigo); }
+.legal-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 60px 40px 100px;
+}
+.legal-wrap h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.legal-wrap .updated {
+  font-size: 13px;
+  color: var(--slate-400);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 40px;
+}
+.legal-wrap h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  color: var(--stripe-indigo);
+}
+.legal-wrap h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: var(--stripe-indigo);
+}
+.legal-wrap p, .legal-wrap li { font-size: 15px; color: var(--slate-700); margin-bottom: 12px; }
+.legal-wrap ul, .legal-wrap ol { padding-left: 22px; margin-bottom: 16px; }
+.legal-wrap a { color: var(--stripe-purple); }
+.legal-wrap .todo {
+  display: inline-block;
+  background: #FEF3C7;
+  color: #92400E;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.legal-wrap .infobox {
+  background: var(--slate-50);
+  border-left: 3px solid var(--stripe-purple);
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin: 24px 0;
+  font-size: 14px;
+  color: var(--slate-600);
+}
+.legal-footer {
+  border-top: 1px solid var(--slate-200);
+  padding: 30px 40px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--slate-400);
+}
+.legal-footer a { color: var(--slate-600); text-decoration: none; margin: 0 8px; }

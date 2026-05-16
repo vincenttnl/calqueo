@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manéo — Le site signature pour les pros qui visent juste</title>
+<meta name="description" content="Sites web sur-mesure pour les pros qui veulent être pris au sérieux. Prix fixe, livré en 3 semaines. Île-de-France.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Manéo">
+<meta name="theme-color" content="#0A2540">
+<link rel="canonical" href="https://maneo.fr/signature">
+
+<!-- Favicon SVG -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect x='2' y='2' width='24' height='24' rx='6' fill='%230A2540'/%3E%3Cpath d='M7 19V9l4.5 6L16 9v10' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='20.5' cy='18.5' r='1.5' fill='%23635BFF'/%3E%3C/svg%3E">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Manéo">
+<meta property="og:title" content="Manéo — Le site signature pour les pros qui visent juste">
+<meta property="og:description" content="Sites web sur-mesure pour les pros qui veulent être pris au sérieux. Prix fixe, livré en 3 semaines.">
+<meta property="og:url" content="https://maneo.fr/signature">
+
+<!-- JSON-LD : Service catalog Signature -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Manéo Signature",
+  "description": "Sites web sur-mesure pour les pros indépendants en Île-de-France. Prix fixe, livraison rapide.",
+  "url": "https://maneo.fr/signature",
+  "priceRange": "€€",
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "Île-de-France" },
+    { "@type": "Country", "name": "France" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Packs Manéo",
+    "itemListElement": [
+      { "@type": "Offer", "name": "Démarrage", "description": "Site 1 page livré en 7 jours", "price": "990", "priceCurrency": "EUR" },
+      { "@type": "Offer", "name": "Signature", "description": "Site sur-mesure jusqu'à 7 pages, livré en 3 semaines", "price": "2490", "priceCurrency": "EUR" },
+      { "@type": "Offer", "name": "Premium", "description": "Site sur-mesure jusqu'à 12 pages + blog, livré en 5 semaines", "price": "3990", "priceCurrency": "EUR" }
+    ]
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --purple: #635BFF;
+  --purple-dark: #2D1F8C;
+  --navy: #0A2540;
+  --navy-2: #1A1F36;
+  --cyan: #00D4FF;
+  --pink: #FF6B9D;
+  --green: #10B981;
+
+  --slate-50: #FAFBFD;
+  --slate-100: #F1F5F9;
+  --slate-200: #E2E8F0;
+  --slate-300: #CBD5E1;
+  --slate-400: #94A3B8;
+  --slate-500: #64748B;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1E293B;
+  --white: #FFFFFF;
+
+  --gradient: linear-gradient(135deg, var(--cyan), var(--purple), var(--pink));
+
+  --shadow-sm: 0 2px 8px rgba(10, 37, 64, 0.06);
+  --shadow-md: 0 4px 20px rgba(10, 37, 64, 0.08);
+  --shadow-lg: 0 8px 40px rgba(10, 37, 64, 0.12);
+  --shadow-xl: 0 16px 60px rgba(10, 37, 64, 0.16);
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--navy);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ============ LAYOUT ============ */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section {
+  padding: 96px 0;
+}
+
+@media (max-width: 768px) {
+  section { padding: 64px 0; }
+}
+
+/* ============ TYPO ============ */
+
+h1, h2, h3 {
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  margin-bottom: 16px;
+}
+
+.lead {
+  font-size: clamp(17px, 1.5vw, 20px);
+  color: var(--slate-600);
+  line-height: 1.5;
+  max-width: 640px;
+}
+
+p { color: var(--slate-700); }
+
+/* ============ BUTTONS ============ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+  border: none;
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--purple);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(99, 91, 255, 0.32);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--slate-200);
+}
+
+.btn-secondary:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+.btn-arrow::after {
+  content: "→";
+  font-weight: 400;
+  transition: transform 0.2s var(--ease);
+}
+
+.btn-arrow:hover::after {
+  transform: translateX(3px);
+}
+
+/* ============ HEADER ============ */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--slate-100);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.logo-mark::before {
+  content: "M";
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.logo-mark::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--purple);
+}
+
+/* ============ HERO ============ */
+
+.hero {
+  position: relative;
+  padding: 120px 0 80px;
+  overflow: hidden;
+}
+
+.hero-blob-1, .hero-blob-2 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.hero-blob-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--purple);
+  top: -100px;
+  right: -150px;
+  opacity: 0.15;
+}
+
+.hero-blob-2 {
+  width: 400px;
+  height: 400px;
+  background: var(--cyan);
+  bottom: -100px;
+  left: -100px;
+  opacity: 0.1;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+}
+
+.hero h1 {
+  margin-bottom: 24px;
+}
+
+.hero .lead {
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 64px 0 40px; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+}
+
+/* ============ POUR QUI ============ */
+
+.pour-qui {
+  background: var(--slate-50);
+}
+
+.pour-qui h2 {
+  margin-bottom: 40px;
+  max-width: 700px;
+}
+
+.check-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 760px;
+  margin-bottom: 32px;
+}
+
+.check-list li {
+  display: flex;
+  gap: 16px;
+  font-size: 18px;
+  color: var(--slate-700);
+  line-height: 1.5;
+}
+
+.check-list li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(99, 91, 255, 0.1);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14' fill='none'><path d='M2 7l3 3 7-7' stroke='%23635BFF' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 4px;
+}
+
+.pivot-link {
+  color: var(--purple);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pivot-link:hover { text-decoration: underline; }
+
+/* ============ PROBLEME ============ */
+
+.probleme h2 {
+  margin-bottom: 48px;
+  max-width: 720px;
+}
+
+.probleme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 900px) {
+  .probleme-grid { grid-template-columns: 1fr; }
+}
+
+.probleme-card {
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-sm);
+}
+
+.probleme-card p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.probleme-pivot {
+  font-size: 18px;
+  color: var(--slate-600);
+  font-style: italic;
+  margin-top: 16px;
+}
+
+/* ============ APPROCHE ============ */
+
+.approche {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.approche h2,
+.approche .eyebrow,
+.approche .approche-pivot {
+  color: var(--white);
+}
+
+.approche .eyebrow { color: rgba(255, 255, 255, 0.7); }
+
+.approche h2 {
+  margin-bottom: 56px;
+  max-width: 760px;
+}
+
+.piliers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .piliers-grid { grid-template-columns: 1fr; }
+}
+
+.pilier {
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+}
+
+.pilier h3 {
+  color: var(--white);
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.pilier p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.approche-pivot {
+  margin-top: 24px;
+  font-size: 18px;
+}
+
+/* ============ METHODE ============ */
+
+.methode h2 {
+  margin-bottom: 56px;
+  max-width: 700px;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .timeline { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 540px) {
+  .timeline { grid-template-columns: 1fr; }
+}
+
+.etape {
+  position: relative;
+}
+
+.etape-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--purple);
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+
+.etape h3 {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.etape-timing {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.etape p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--slate-600);
+}
+
+.methode-cta {
+  margin-top: 56px;
+  text-align: center;
+}
+
+/* ============ OFFRE ============ */
+
+.offre {
+  background: var(--slate-50);
+}
+
+.offre h2 {
+  margin-bottom: 16px;
+}
+
+.offre-pivot {
+  font-size: 18px;
+  color: var(--slate-600);
+  max-width: 700px;
+  margin-bottom: 64px;
+}
+
+.offre-section {
+  margin-bottom: 56px;
+}
+
+.offre-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--slate-500);
+  margin-bottom: 8px;
+}
+
+.offre-section-sub {
+  font-size: 18px;
+  color: var(--slate-700);
+  margin-bottom: 28px;
+}
+
+.cards {
+  display: grid;
+  gap: 24px;
+}
+
+.cards-1 { grid-template-columns: 1fr; max-width: 480px; }
+.cards-2 { grid-template-columns: repeat(2, 1fr); }
+
+@media (max-width: 860px) {
+  .cards-2 { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-featured {
+  border: 2px solid var(--purple);
+  position: relative;
+  background: var(--white);
+}
+
+.card-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--purple);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.card-name {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--slate-500);
+  margin-bottom: 4px;
+}
+
+.card-tagline {
+  font-size: 15px;
+  color: var(--slate-600);
+  margin-bottom: 24px;
+}
+
+.card-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+
+.card-price-sub {
+  font-size: 13px;
+  color: var(--slate-500);
+  margin-bottom: 8px;
+}
+
+.card-delay {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--slate-600);
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--slate-100);
+}
+
+.card-features {
+  list-style: none;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.card-features li {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 14.5px;
+  color: var(--slate-700);
+  line-height: 1.5;
+}
+
+.card-features li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 14 14' fill='none'><path d='M2 7l3 3 7-7' stroke='%23635BFF' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 2px;
+}
+
+.card-foot {
+  font-size: 14px;
+  color: var(--slate-500);
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.card .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Bandeau sur-mesure */
+.bandeau-sm {
+  background: var(--navy);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+}
+
+.bandeau-sm-text strong {
+  display: block;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+.bandeau-sm-text span {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.bandeau-sm .btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.bandeau-sm .btn-secondary:hover {
+  background: var(--white);
+  color: var(--navy);
+  border-color: var(--white);
+}
+
+/* Recurrent Atelier */
+.atelier {
+  background: linear-gradient(135deg, var(--white) 0%, rgba(99, 91, 255, 0.04) 100%);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  padding: 48px 40px;
+  margin-bottom: 56px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .atelier { padding: 32px 24px; }
+}
+
+.atelier-eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  margin-bottom: 16px;
+}
+
+.atelier-triptyque {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 16px 0 24px;
+  flex-wrap: wrap;
+}
+
+.atelier-triptyque span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--navy);
+  text-transform: uppercase;
+}
+
+.atelier-triptyque span + span::before {
+  content: "·";
+  margin-right: 24px;
+  color: var(--slate-300);
+}
+
+.atelier-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.atelier-meta {
+  font-size: 14px;
+  color: var(--slate-500);
+  margin-bottom: 28px;
+}
+
+.atelier-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  text-align: left;
+  max-width: 680px;
+  margin: 0 auto 28px;
+}
+
+@media (max-width: 600px) {
+  .atelier-features { grid-template-columns: 1fr; }
+}
+
+.atelier-features li {
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--slate-700);
+  align-items: flex-start;
+  list-style: none;
+}
+
+.atelier-features li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 14 14' fill='none'><path d='M2 7l3 3 7-7' stroke='%23635BFF' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 2px;
+}
+
+.atelier-tagline {
+  font-style: italic;
+  color: var(--slate-500);
+  font-size: 15px;
+}
+
+/* Ce que je ne fais pas */
+.ne-fait-pas {
+  border-top: 1px solid var(--slate-200);
+  padding-top: 48px;
+}
+
+.ne-fait-pas h3 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--slate-500);
+  margin-bottom: 20px;
+}
+
+.ne-fait-pas-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ne-fait-pas-list li {
+  display: flex;
+  gap: 12px;
+  font-size: 15.5px;
+  color: var(--slate-700);
+  align-items: flex-start;
+}
+
+.ne-fait-pas-list li::before {
+  content: "✗";
+  color: var(--slate-400);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ============ QUI EST DERRIERE ============ */
+
+.qui {
+  background: var(--white);
+}
+
+.qui-grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 64px;
+  align-items: center;
+}
+
+@media (max-width: 860px) {
+  .qui-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.qui-photo {
+  background: var(--slate-100);
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--slate-400);
+  font-size: 14px;
+}
+
+.qui-photo::before {
+  content: "Photo Giovanni";
+}
+
+.qui h2 {
+  margin-bottom: 32px;
+  font-size: clamp(28px, 3vw, 38px);
+}
+
+.qui p {
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: var(--slate-700);
+}
+
+.qui-cta {
+  margin-top: 24px;
+}
+
+/* ============ FAQ ============ */
+
+.faq {
+  background: var(--slate-50);
+}
+
+.faq h2 {
+  margin-bottom: 56px;
+  max-width: 700px;
+}
+
+.faq-list {
+  max-width: 860px;
+}
+
+details {
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  margin-bottom: 12px;
+  transition: all 0.2s var(--ease);
+}
+
+details:hover { border-color: var(--slate-300); }
+details[open] { border-color: var(--purple); box-shadow: var(--shadow-sm); }
+
+summary {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+summary::-webkit-details-marker { display: none; }
+
+summary::after {
+  content: "+";
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--purple);
+  transition: transform 0.2s var(--ease);
+  flex-shrink: 0;
+}
+
+details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+details p {
+  margin-top: 16px;
+  font-size: 15.5px;
+  color: var(--slate-600);
+  line-height: 1.6;
+}
+
+/* ============ CTA FINAL ============ */
+
+.cta-final {
+  background: var(--navy);
+  color: var(--white);
+  text-align: center;
+  padding: 96px 0;
+}
+
+.cta-final h2 {
+  color: var(--white);
+  margin-bottom: 16px;
+  font-size: clamp(28px, 3.5vw, 42px);
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-final-sub {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.cta-final .btn-primary {
+  margin-top: 32px;
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+/* ============ FOOTER ============ */
+
+.footer {
+  background: var(--navy-2);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 48px 0 32px;
+  font-size: 14px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer a {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s var(--ease);
+}
+
+.footer a:hover { color: var(--white); }
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span class="logo-mark"></span>
+      Manéo
+    </a>
+    <a href="#cta-final" class="btn btn-primary btn-arrow">Réserver un appel</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 1. HERO ============ -->
+<section class="hero">
+  <div class="hero-blob-1"></div>
+  <div class="hero-blob-2"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <span class="eyebrow">Studio web indépendant · Paris</span>
+      <h1>Un site qui met enfin ton métier au niveau.</h1>
+      <p class="lead">Sites web sur-mesure pour les pros qui veulent être pris au sérieux. Prix fixe, livré en 3 semaines.</p>
+      <div class="hero-ctas">
+        <a href="#cta-final" class="btn btn-primary btn-arrow">Réserver un appel — 20 min</a>
+        <a href="#offre" class="btn btn-secondary">Voir l'offre</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. POUR QUI ============ -->
+<section class="pour-qui">
+  <div class="container">
+    <span class="eyebrow">Pour qui</span>
+    <h2>C'est fait pour toi si…</h2>
+    <ul class="check-list">
+      <li>Tu es psy, coach, naturopathe, sophrologue, consultante ou créative indépendante.</li>
+      <li>Ton site actuel a 3 ans et il ne te ressemble plus.</li>
+      <li>Tu factures plus de 80€ la séance. Ton site ne le reflète pas.</li>
+      <li>Tu veux qu'un prospect qui te Google soit immédiatement rassuré.</li>
+    </ul>
+    <a href="#cta-final" class="pivot-link">Si tu te reconnais, on en parle 20 min →</a>
+  </div>
+</section>
+
+<!-- ============ 3. PROBLEME ============ -->
+<section class="probleme">
+  <div class="container">
+    <span class="eyebrow">Le problème</span>
+    <h2>Tu as un beau métier. Ton site mérite la même attention.</h2>
+    <div class="probleme-grid">
+      <div class="probleme-card">
+        <p>Un site fait à la va-vite donne l'impression d'un travail à la va-vite. Tu peux être la meilleure dans ton métier. Si ton site fait amateur, tes prospects partent. C'est injuste, c'est comme ça.</p>
+      </div>
+      <div class="probleme-card">
+        <p>Tu as essayé Wix, Squarespace. Un weekend entier devant l'écran. Tu n'es jamais allée au bout. Pas parce que t'es nulle. Parce que c'est pas ton métier.</p>
+      </div>
+      <div class="probleme-card">
+        <p>Tu as peut-être appelé un freelance qui a pris ton brief et qui n'a jamais rappelé. Ou une agence qui t'a parlé de transformation digitale et chiffré 8 000€. Et toi, tu cherches juste quelqu'un qui comprenne ce que tu fais.</p>
+      </div>
+    </div>
+    <p class="probleme-pivot">C'est pour ça que j'ai monté Manéo.</p>
+  </div>
+</section>
+
+<!-- ============ 4. APPROCHE ============ -->
+<section class="approche">
+  <div class="container">
+    <span class="eyebrow">Ma façon de bosser</span>
+    <h2>Je fais pas juste un site. Je fais ton image en ligne.</h2>
+    <div class="piliers-grid">
+      <div class="pilier">
+        <h3>Sur-mesure pour de vrai</h3>
+        <p>Pas un template Wix avec ton logo en haut. Une maquette pensée à partir de ton métier, tes clients, ton univers.</p>
+      </div>
+      <div class="pilier">
+        <h3>Un seul interlocuteur</h3>
+        <p>C'est moi qui prends ton brief. Moi qui dessine. Moi qui code. Moi qui livre. Tu parles à une personne, pas à une chaîne.</p>
+      </div>
+      <div class="pilier">
+        <h3>Joignable après livraison</h3>
+        <p>À la livraison, je disparais pas. Le pack Atelier permet de continuer ensemble — comme un comptable, mais pour ton site.</p>
+      </div>
+      <div class="pilier">
+        <h3>Prix fixe, devis carré</h3>
+        <p>Le prix qu'on signe, c'est le prix final. Pas d'avenants surprise. Pas de petites lignes.</p>
+      </div>
+    </div>
+    <p class="approche-pivot">Maintenant le concret. Voici comment ça se passe.</p>
+  </div>
+</section>
+
+<!-- ============ 6. METHODE ============ -->
+<section class="methode">
+  <div class="container">
+    <span class="eyebrow">Comment ça se passe</span>
+    <h2>4 étapes, 3 semaines, ton site en ligne.</h2>
+    <div class="timeline">
+      <div class="etape">
+        <div class="etape-num">01</div>
+        <h3>On se cale</h3>
+        <div class="etape-timing">20 min · gratuit</div>
+        <p>Appel découverte en visio. Tu me parles de ton métier, de tes envies. Je te dis si je peux t'aider.</p>
+      </div>
+      <div class="etape">
+        <div class="etape-num">02</div>
+        <h3>Brief + maquette</h3>
+        <div class="etape-timing">Semaine 1</div>
+        <p>Tu remplis un brief simple. Je te livre une maquette en 5 jours.</p>
+      </div>
+      <div class="etape">
+        <div class="etape-num">03</div>
+        <h3>Tu valides ou tu ajustes</h3>
+        <div class="etape-timing">Semaine 1-2</div>
+        <p>3 rounds de modifs inclus. On affine jusqu'à ce que ça te plaise.</p>
+      </div>
+      <div class="etape">
+        <div class="etape-num">04</div>
+        <h3>Mise en ligne</h3>
+        <div class="etape-timing">Semaine 3</div>
+        <p>Le site va en ligne. Et après je reste joignable.</p>
+      </div>
+    </div>
+    <div class="methode-cta">
+      <a href="#offre" class="btn btn-secondary btn-arrow">Démarrer</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. OFFRE ============ -->
+<section class="offre" id="offre">
+  <div class="container">
+    <span class="eyebrow">L'offre</span>
+    <h2>Trois packs. Un prix fixe. Zéro mauvaise surprise.</h2>
+    <p class="offre-pivot">Selon que tu lances ton activité ou que tu veux installer ton image, on n'a pas besoin du même site.</p>
+
+    <!-- Sous-section 1 : DÉMARRAGE -->
+    <div class="offre-section">
+      <div class="offre-section-title">Tu démarres ton activité ?</div>
+      <div class="offre-section-sub">Le pack express pour exister en ligne rapidement.</div>
+      <div class="cards cards-1">
+        <div class="card">
+          <div class="card-name">Démarrage — Express</div>
+          <div class="card-tagline">Tu démarres ton activité ?</div>
+          <div class="card-price">990€</div>
+          <div class="card-delay">Livré en 7 jours</div>
+          <ul class="card-features">
+            <li>1 page long format</li>
+            <li>Template Manéo adapté à ton univers</li>
+            <li>Trame de contenu fournie (à compléter)</li>
+            <li>Hébergement an 1 offert</li>
+            <li>1 round de modifs</li>
+          </ul>
+          <div class="card-foot">Idéal pour exister en ligne rapidement. Paiement en 1 ou 3× sans frais.</div>
+          <a href="#cta-final" class="btn btn-primary btn-arrow">Réserver un appel</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sous-section 2 : SIGNATURE + PREMIUM -->
+    <div class="offre-section">
+      <div class="offre-section-title">Tu es installée et tu veux du sur-mesure</div>
+      <div class="offre-section-sub">Les packs pour les pros qui veulent un site à la hauteur.</div>
+      <div class="cards cards-2">
+
+        <div class="card card-featured">
+          <div class="card-badge">Le plus choisi</div>
+          <div class="card-name">Signature</div>
+          <div class="card-tagline">Ton image installée, durable.</div>
+          <div class="card-price">2 490€</div>
+          <div class="card-price-sub">ou 3× 830€ sans frais</div>
+          <div class="card-delay">Livré en 3 semaines</div>
+          <ul class="card-features">
+            <li>Site jusqu'à 7 pages</li>
+            <li>Design sur-mesure aligné sur ton identité</li>
+            <li>Aide rédactionnelle (1 page rédigée)</li>
+            <li>Hébergement an 1 offert</li>
+            <li>Prêt SEO local (5 mots-clés)</li>
+            <li>3 rounds de modifs</li>
+          </ul>
+          <div class="card-foot">La majorité des indépendantes choisissent ce pack.</div>
+          <a href="#cta-final" class="btn btn-primary btn-arrow">Réserver un appel</a>
+        </div>
+
+        <div class="card">
+          <div class="card-name">Premium</div>
+          <div class="card-tagline">Pour un site qui dure 5 ans.</div>
+          <div class="card-price">3 990€</div>
+          <div class="card-price-sub">ou 4× 1 000€ sans frais</div>
+          <div class="card-delay">Livré en 5 semaines</div>
+          <ul class="card-features">
+            <li>Site jusqu'à 12 pages + blog</li>
+            <li>Design sur-mesure + identité visuelle revue</li>
+            <li>Rédaction complète (5 pages)</li>
+            <li>Hébergement an 1 offert</li>
+            <li>Prêt SEO local (10 mots-clés)</li>
+            <li>5 rounds de modifs</li>
+          </ul>
+          <div class="card-foot">Pour celles qui veulent un site qui dure 5 ans.</div>
+          <a href="#cta-final" class="btn btn-primary btn-arrow">Réserver un appel</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bandeau sur-mesure -->
+    <div class="bandeau-sm">
+      <div class="bandeau-sm-text">
+        <strong>Projet B2B, outil métier, ou page spécifique ?</strong>
+        <span>Sur-mesure dès 5 900€</span>
+      </div>
+      <a href="#cta-final" class="btn btn-secondary btn-arrow">Parlons-en</a>
+    </div>
+
+    <!-- Pack Atelier (récurrent) -->
+    <div class="atelier">
+      <div class="atelier-eyebrow">Après la livraison · Pack Atelier</div>
+      <div class="atelier-triptyque">
+        <span>Temps</span>
+        <span>Tranquillité</span>
+        <span>Visibilité</span>
+      </div>
+      <div class="atelier-price">99€/mois</div>
+      <div class="atelier-meta">3 premiers mois offerts · Sans engagement, résiliable à tout moment</div>
+      <ul class="atelier-features">
+        <li>3 modifs/mois (textes, photos, sections)</li>
+        <li>Hébergement + sauvegardes + monitoring</li>
+        <li>Rapport mensuel (trafic + Google)</li>
+        <li>Support email 24h + 1 appel/mois</li>
+        <li>SEO local suivi (5 mots-clés)</li>
+        <li>Renouvellement nom de domaine inclus</li>
+      </ul>
+      <p class="atelier-tagline">Comme un comptable, mais pour ton site.</p>
+    </div>
+
+    <!-- Ce que je ne fais pas -->
+    <div class="ne-fait-pas">
+      <h3>Ce que je ne fais pas</h3>
+      <ul class="ne-fait-pas-list">
+        <li>Sites e-commerce à 50 000 produits — c'est un autre métier.</li>
+        <li>Engagements 18 mois cachés dans les petites lignes.</li>
+        <li>Templates Wix juste avec ton logo en haut.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 8. QUI EST DERRIERE ============ -->
+<section class="qui">
+  <div class="container">
+    <span class="eyebrow">Qui est derrière Manéo</span>
+    <div class="qui-grid">
+      <div class="qui-photo"></div>
+      <div>
+        <h2>Salut, moi c'est Giovanni. 14 ans à comprendre les pros. Aujourd'hui je leur fais des sites.</h2>
+        <p>Pendant 14 ans, j'ai bossé dans le commerce. Au contact direct des pros. Plombiers, ostéo, coiffeurs, photographes, décoratrices, wedding planners. Des indépendants qui font un beau métier — et qui ont un site web qui les dessert. Toujours le même constat.</p>
+        <p>En 14 ans dans le commerce, j'ai vu un truc : au-delà de l'offre, c'est souvent l'écoute qui fait la différence. Comprendre l'univers de l'autre, ses contraintes, ses envies. Aujourd'hui je l'adapte au web pour toi.</p>
+        <p>Mon rôle est toujours le même : comprendre ton univers. Et te fabriquer la maison que tu mérites, pour attirer les bons clients. Je te livre un site qui te ressemble. Je reste joignable après. Et on bosse ensemble dans la durée — comme un compagnonnage, pas une transaction.</p>
+        <div class="qui-cta">
+          <a href="#cta-final" class="btn btn-secondary btn-arrow">On en parle ?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10A. FAQ ============ -->
+<section class="faq">
+  <div class="container">
+    <span class="eyebrow">Questions fréquentes</span>
+    <h2>Les questions qu'on me pose.</h2>
+    <div class="faq-list">
+
+      <details>
+        <summary>En combien de temps tu livres ?</summary>
+        <p>7 jours pour le Démarrage, 3 semaines pour Signature, 5 semaines pour Premium. Délais calculés à partir de la réception du brief complet et de tes contenus.</p>
+      </details>
+
+      <details>
+        <summary>Et si je veux modifier des choses après la livraison ?</summary>
+        <p>Le pack inclut un nombre de rounds de modifs avant mise en ligne. Après mise en ligne, les modifications passent par le Pack Atelier (99€/mois, sans engagement) ou sont facturées à l'heure (90€/h).</p>
+      </details>
+
+      <details>
+        <summary>Comment ça se passe pour les textes et les photos ?</summary>
+        <p>Tu fournis tes contenus. Selon le pack, je t'aide à structurer une page de rédac. Les photos pro et le shooting sont en option facturée séparément.</p>
+      </details>
+
+      <details>
+        <summary>Tu travailles à distance ou je peux te rencontrer ?</summary>
+        <p>À distance, en visio. Une rencontre physique reste exceptionnelle (Paris ou proche IDF, selon dispos).</p>
+      </details>
+
+      <details>
+        <summary>Qu'est-ce qui se passe si on n'est pas d'accord sur le rendu ?</summary>
+        <p>Le risque est levé à l'appel découverte. Pendant le projet, les rounds de modifs inclus permettent d'affiner. Au-delà, les modifs sont facturées à l'heure (90€/h).</p>
+      </details>
+
+      <details>
+        <summary>Tu fais aussi des sites e-commerce ?</summary>
+        <p>Non, ce n'est pas mon métier. Je peux te rediriger vers des spécialistes si besoin.</p>
+      </details>
+
+      <details>
+        <summary>Comment je modifie le site moi-même après ?</summary>
+        <p>Tu peux modifier toi-même les textes et photos directement via le back-office. Si tu préfères pas t'en occuper, le Pack Atelier (99€/mois) prend le relais.</p>
+      </details>
+
+      <details>
+        <summary>Qui paie l'hébergement ?</summary>
+        <p>Inclus la 1ère année. À partir du 13e mois, soit tu gères seule (info technique fournie), soit Pack Veille (49€/mois tout compris).</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10B. CTA FINAL ============ -->
+<section class="cta-final" id="cta-final">
+  <div class="container">
+    <h2>On se cale un appel. 20 min, gratuit. Tu poses tes questions. Je dis si je peux t'aider.</h2>
+    <a href="mailto:contact@maneo.fr?subject=Réserver%20un%20appel%20découverte" class="btn btn-primary btn-arrow">Réserver un appel découverte</a>
+    <p class="cta-final-sub">Gratuit · 20 minutes · En visio · Sans engagement</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>© 2026 Manéo · Studio web indépendant · Île-de-France</div>
+      <div class="footer-links">
+        <a href="/mentions-legales.html">Mentions légales</a>
+        <a href="/cgv.html">CGV</a>
+        <a href="/politique-confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
