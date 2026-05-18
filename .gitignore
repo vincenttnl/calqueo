@@ -7,3 +7,14 @@ maneo/
 # Backups locaux éventuels
 *.backup
 *~
+
+# HTML d'audit / sélection interne (non publiés)
+audit-*.html
+anim-h1-*.html
+animations-*.html
+editorial-*.html
+fireworks-*.html
+hero-directions-*.html
+navbar-anim*.html
+sections-anim-*.html
+trust-band-*.html
