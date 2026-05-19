@@ -5,9 +5,9 @@
 Document de référence pour la marque Calquéo : identité, ton, visuel, copy, offre. Document vivant, à faire évoluer.
 
 **Version :** 2.0 — Mai 2026
-**Auteur :** Giovanni
+**Auteur :** Vincent
 **Dernière mise à jour :** 14/05/2026
-**Évolutions vs V1 :** intégration du persona Camille (libérale premium) en parallèle de Karim (artisan), bascule officielle vers la palette V5 Stripe-like (violet/navy), nouvelle grille pricing, signature pro Giovanni.
+**Évolutions vs V1 :** intégration du persona Camille (libérale premium) en parallèle de Karim (artisan), bascule officielle vers la palette V5 Stripe-like (violet/navy), nouvelle grille pricing, signature pro Vincent.
 
 > ✅ Nom validé : **Calquéo** (2026-05-16). Domaines `calqueo.fr` + `calqueo.com` enregistrés chez OVH. L'ancien nom Manéo est définitivement abandonné.
 
@@ -77,7 +77,7 @@ Dirigeants de TPE B2B : cabinets conseil, agences, petites boîtes de formation.
 > Pas un templatiste low-cost.
 > Pas une plateforme à engagement caché type Simplébo / Solocal.
 >
-> **Calquéo, c'est Giovanni : 14 ans à comprendre les pros, aujourd'hui je leur fais des sites. À prix fixe, sans prise de tête, et en restant joignable après.**
+> **Calquéo, c'est Vincent : 14 ans à comprendre les pros, aujourd'hui je leur fais des sites. À prix fixe, sans prise de tête, et en restant joignable après.**
 
 ---
 
@@ -235,7 +235,7 @@ Pas l'expert qui te regarde de haut. Pas le freelance qui ghoste. Le compagnon :
 
 4. **Chaleureux, pas familier-faux**
    - ✕ "Salut bro, on va te kiffer ton site !"
-   - ✓ "Salut, moi c'est Giovanni. On en parle 20 minutes ?"
+   - ✓ "Salut, moi c'est Vincent. On en parle 20 minutes ?"
 
 ### 3.3 Mots oui · Mots non
 
@@ -258,7 +258,7 @@ solution, optimiser, synergie, disrupter, ROI, funnel, innovant, best-in-class, 
 1. **Phrases courtes.** 12-15 mots maximum quand c'est possible.
 2. **Tutoiement systématique** en marketing. Vouvoiement en mention légale, CGV, devis.
 3. **Toujours préférer un chiffre concret** à un superlatif. "Livré en 3 semaines" battra toujours "rapidement".
-4. **Bannir les "nous".** Giovanni parle, pas une agence anonyme. **"Je"** ou "on" (Giovanni + le client).
+4. **Bannir les "nous".** Vincent parle, pas une agence anonyme. **"Je"** ou "on" (Vincent + le client).
 5. **Ne jamais commencer une phrase par "Notre".** Toujours par le client ou l'action.
 6. **Pas de point d'exclamation** en marketing. Le ton doit être posé, pas vendeur.
 7. **Une promesse = une preuve.** Si tu dis "rapide", chiffre. Si tu dis "fiable", témoigne.
@@ -299,7 +299,7 @@ solution, optimiser, synergie, disrupter, ROI, funnel, innovant, best-in-class, 
 **À shooter :**
 - **Karim** : mains en action, outils, devantures de boutiques, chantiers, portraits artisans en situation
 - **Camille** : portraits cabinets, ambiances de pratique (yoga, atelier, bureau soigné), détails métier (livres, accessoires, plantes)
-- **Giovanni** : portrait neutre fond clair, sourire naturel, look soigné mais pas corpo
+- **Vincent** : portrait neutre fond clair, sourire naturel, look soigné mais pas corpo
 
 **À éviter :**
 - Stock photo "équipe diverse souriante"
@@ -432,12 +432,12 @@ solution, optimiser, synergie, disrupter, ROI, funnel, innovant, best-in-class, 
 - Hero large + section "Pour qui" qui distingue les 3 univers (Camille en premier, Karim ensuite, Olivier discret)
 - Pricing complet (Démarrage 990 → Signature 2 490 → Premium 3 990 → Sur-mesure dès 5 900)
 - Section Atelier 99€/mois dédiée (récurrent, levier économique fort)
-- Bio Giovanni qui parle aux 3 (14 ans dans le commerce auprès des pros — toutes typologies)
+- Bio Vincent qui parle aux 3 (14 ans dans le commerce auprès des pros — toutes typologies)
 - `signature.html` archivée — sa matière est dans `index.html`
 
 ### 7.2 Carte de visite (à produire)
 Recto : monogramme M. en bloc navy + wordmark "calquéo."
-Verso : Giovanni + métier + coordonnées + accroche "Le digital fait main"
+Verso : Vincent + métier + coordonnées + accroche "Le digital fait main"
 
 ### 7.3 Flyer A5 (à produire — focus Karim, prospection terrain)
 À laisser en porte-à-porte dans les rues commerçantes.
@@ -445,13 +445,13 @@ Hero : "Ton site internet, livré en 3 semaines."
 Body : promesse + tarif d'appel + QR code vers `calqueo.fr` (section pour qui → univers Karim).
 
 ### 7.4 Signature email
-**Giovanni · Calquéo**
+**Vincent · Calquéo**
 *Le digital fait main · Île-de-France*
-giovanni@calqueo.fr · calqueo.fr
+vincent@calqueo.fr · calqueo.fr
 
 ---
 
-## 8. Récap rapide — Pitch 30 secondes Giovanni
+## 8. Récap rapide — Pitch 30 secondes Vincent
 
 **Version Karim (face à un artisan / réseau pro)**
 > "Calquéo, c'est mon studio pour les artisans et commerçants. J'ai 14 ans dans le commerce derrière moi, je connais leur métier. Je leur livre des sites à prix fixe en 3 semaines, à partir de 990€. Si t'as besoin d'un vrai outil pour ton quotidien, je fais aussi des applis sur mesure. Le digital fait main, sans prise de tête."
@@ -466,7 +466,7 @@ giovanni@calqueo.fr · calqueo.fr
 ### À acter rapidement
 
 1. ~~**Rebranding obligatoire**~~ ✅ Tranché 2026-05-16 : **Calquéo**. Domaines `calqueo.fr` + `calqueo.com` acquis OVH. Find/replace global appliqué dans tous les fichiers du projet. Reste à migrer le dossier `MANEO/` → `CALQUEO/` (rename local + repo GitHub).
-2. **Photo Giovanni** — à intégrer dans `signature.html` (placeholder gris actuellement)
+2. **Photo Vincent** — à intégrer dans `signature.html` (placeholder gris actuellement)
 3. **og-image 1200×630** — à générer (navy + gradient cyan→violet→rose sur "fait main")
 4. **CTA branché** — Calendly / Cal.com / formulaire Netlify (mailto provisoire dans signature.html)
 5. **Archivage** — déplacer `strategie-prix-calqueo.md` et `brand-book-calqueo.md` (V1) dans `_archive/`

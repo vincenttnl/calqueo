@@ -3,7 +3,7 @@
 ## Contexte
 Calquéo est un studio web indépendant pour les pros qui veulent un site à la hauteur de leur métier. Side project de Vincent.
 
-Sur le site, **c'est Giovanni qui parle** (alter ego / nom commercial). Dans la marque et tout le copy public : *Giovanni*. En interne, dans les notes, projets et conversations privées : *Vincent*.
+Sur le site, **c'est Vincent qui parle** (auteur en nom propre, plus de persona Giovanni). Décision actée 2026-05-19 : bascule Giovanni → Vincent sur tout le site et les docs internes.
 
 ✅ Nom validé : **Calquéo** (2026-05-16). Domaines `calqueo.fr` + `calqueo.com` enregistrés chez OVH. L'ancien nom Manéo est définitivement abandonné (maneo.fr détenu par BPCE, MANÉO Opticiens occupe maneo.com). Voir `rebranding-noms.md` et `rebranding-shortlist.md` pour l'historique du brainstorm.
 
@@ -59,7 +59,7 @@ linear-gradient(135deg, #00D4FF, #635BFF, #FF6B9D)
 ### Voix & ton
 - **Tutoiement systématique** en marketing
 - **Phrases courtes** (12-15 mots max)
-- **Pas de "nous"** — Giovanni parle, pas une agence anonyme
+- **Pas de "nous"** — Vincent parle, pas une agence anonyme
 - **Pas de point d'exclamation** en marketing
 - **Mots oui (universels)** : métier, outil, concret, livré, prix fixe, savoir-faire, compagnonnage, à l'écoute
 - **Mots oui (Karim)** : chantier, fait main, atelier, terrain, à l'ancienne
