@@ -4143,20 +4143,38 @@ body {
   .pricing-card.featured { transform: none; }
   .pricing-card.featured:hover { transform: translateY(-6px); }
   .before-after { padding: 52px 20px; }
-  /* Slider mobile : aspect-ratio plus court pour ne pas bouffer tout l'écran.
-     Le ratio (9/13) matche la hauteur design (1300px) — le bas du mockup est cropped, c'est OK. */
-  .slider-container { aspect-ratio: 9 / 13; }
+  /* Slider mobile : aspect-ratio court (9/11 ≈ 1.22× width).
+     Sections "remplissage du bas" masquées pour que les bulles soient visibles dans cette hauteur. */
+  .slider-container { aspect-ratio: 9 / 11; }
   .slider-container .slider-content { padding: 0; overflow: hidden; }
   .slider-container .bv2-site,
   .slider-container .av2-site {
     width: 900px;
-    height: 1300px;
+    height: 1100px;
     min-height: 0;
     transform-origin: top left;
     transform: scale(calc(100cqi / 900px));
   }
   /* Libère le scroll vertical sur le slider — sinon l'input range capte le geste et coince */
   .slider-container .slider-range { touch-action: pan-y; }
+
+  /* Masquer sur mobile les sections du bas pour garder les bulles bleues visibles.
+     Côté AFTER : review Google, widget dispos, trust badges, signature artisan, footer dense (cols+légal). */
+  .slider-container .av2-site .av2-review,
+  .slider-container .av2-site .av2-dispo,
+  .slider-container .av2-site .av2-trust,
+  .slider-container .av2-site .av2-signature,
+  .slider-container .av2-site .av2-foot-cols,
+  .slider-container .av2-site .av2-foot-bottom { display: none; }
+  .slider-container .av2-site .av2-footer { padding: 20px 22px; }
+  .slider-container .av2-site .av2-foot-tag { margin-bottom: 0; }
+  /* Côté BEFORE : about, testimonials, zone, footer-cols */
+  .slider-container .bv2-site .bv2-about,
+  .slider-container .bv2-site .bv2-testimonials,
+  .slider-container .bv2-site .bv2-zone,
+  .slider-container .bv2-site .bv2-footer-cols { display: none; }
+  /* Photo hero mobile réduite (était 460, trop pour la nouvelle hauteur slider) */
+  .slider-container .av2-hero-photo { height: 320px; width: 100%; border-radius: 12px; }
   /* AFTER : hero passe en vertical, contenu centré pour être visible quel que soit le slider */
   .slider-container .av2-hero {
     grid-template-columns: 1fr;
@@ -4170,7 +4188,6 @@ body {
   .slider-container .av2-sub { max-width: 92%; font-size: 13px; text-align: center; }
   .slider-container .av2-btns { gap: 10px; justify-content: center; flex-wrap: wrap; }
   .slider-container .av2-btn-p, .slider-container .av2-btn-g { font-size: 13px; padding: 12px 18px; }
-  .slider-container .av2-hero-photo { height: 460px; width: 100%; border-radius: 12px; }
   .contact-section { padding: 52px 20px; }
   .faq { padding: 52px 20px; }
   .footer { padding: 30px 20px 16px; }
