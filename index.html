@@ -4143,14 +4143,14 @@ body {
   .pricing-card.featured { transform: none; }
   .pricing-card.featured:hover { transform: translateY(-6px); }
   .before-after { padding: 52px 20px; }
-  /* Slider mobile : aspect-ratio court (9/11 ≈ 1.22× width).
-     Sections "remplissage du bas" masquées pour que les bulles soient visibles dans cette hauteur. */
-  .slider-container { aspect-ratio: 9 / 11; }
+  /* Slider mobile : aspect-ratio 9/12.5 (~1.39× width) — assez pour les 4 bulles d'avis,
+     pas trop pour ne pas bouffer l'écran. */
+  .slider-container { aspect-ratio: 9 / 12.5; }
   .slider-container .slider-content { padding: 0; overflow: hidden; }
   .slider-container .bv2-site,
   .slider-container .av2-site {
     width: 900px;
-    height: 1100px;
+    height: 1250px;
     min-height: 0;
     transform-origin: top left;
     transform: scale(calc(100cqi / 900px));
