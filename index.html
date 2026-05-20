@@ -4143,18 +4143,20 @@ body {
   .pricing-card.featured { transform: none; }
   .pricing-card.featured:hover { transform: translateY(-6px); }
   .before-after { padding: 52px 20px; }
-  /* Slider mobile : aspect-ratio portrait + scale-to-fit du contenu via container queries.
-     Le ratio (9/20) matche la hauteur design (2000px) pour que le scale remplisse exactement. */
-  .slider-container { aspect-ratio: 9 / 20; }
+  /* Slider mobile : aspect-ratio plus court pour ne pas bouffer tout l'écran.
+     Le ratio (9/13) matche la hauteur design (1300px) — le bas du mockup est cropped, c'est OK. */
+  .slider-container { aspect-ratio: 9 / 13; }
   .slider-container .slider-content { padding: 0; overflow: hidden; }
   .slider-container .bv2-site,
   .slider-container .av2-site {
     width: 900px;
-    height: 2000px;
+    height: 1300px;
     min-height: 0;
     transform-origin: top left;
     transform: scale(calc(100cqi / 900px));
   }
+  /* Libère le scroll vertical sur le slider — sinon l'input range capte le geste et coince */
+  .slider-container .slider-range { touch-action: pan-y; }
   /* AFTER : hero passe en vertical, contenu centré pour être visible quel que soit le slider */
   .slider-container .av2-hero {
     grid-template-columns: 1fr;
