@@ -2349,6 +2349,8 @@ body {
   box-shadow: var(--shadow-xl);
   cursor: ew-resize;
   user-select: none;
+  /* container queries pour scale-to-fit en mobile */
+  container-type: inline-size;
 }
 .slider-side {
   position: absolute;
@@ -2779,11 +2781,19 @@ body {
   50%      { box-shadow: 0 0 0 6px rgba(14,165,233,0); }
 }
 
-/* Notification toast "Nouvel avis 5 étoiles" — apparait après quelques sec */
-.av2-toast {
+/* Toasts cycliques "activité live" — 3 notifs qui défilent en haut à droite */
+.av2-toasts {
   position: absolute;
   top: 56px;
   right: 14px;
+  width: 210px;
+  height: 50px;
+  z-index: 5;
+  pointer-events: none;
+}
+.av2-toast {
+  position: absolute;
+  inset: 0;
   background: white;
   color: var(--am-navy-2);
   padding: 9px 12px;
@@ -2791,29 +2801,31 @@ body {
   display: flex; align-items: center; gap: 9px;
   font-size: 10px;
   box-shadow: 0 6px 20px rgba(15,59,110,0.18), 0 0 0 1px rgba(15,59,110,0.05);
-  z-index: 5;
   opacity: 0;
   transform: translateX(20px);
-  animation: av2ToastIn 9s ease-in-out 3s infinite;
-  max-width: 200px;
-  pointer-events: none;
+  animation: av2ToastCycle 12s ease-in-out infinite;
 }
+/* Stagger : chaque toast décalé de 4s → 3 toasts qui se succèdent */
+.av2-toast[data-toast="1"] { animation-delay: 0.6s; }
+.av2-toast[data-toast="2"] { animation-delay: 4.6s; }
+.av2-toast[data-toast="3"] { animation-delay: 8.6s; }
 .av2-toast-icon {
   width: 26px; height: 26px;
-  background: #fbbf24;
   color: white;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 14px;
   flex-shrink: 0;
 }
+.av2-toast-icon-star  { background: #fbbf24; }
+.av2-toast-icon-check { background: #10B981; }
+.av2-toast-icon-phone { background: #3B82F6; font-size: 12px; }
 .av2-toast-content strong { display: block; font-size: 10px; font-weight: 700; line-height: 1.2; }
 .av2-toast-content small { font-size: 9px; color: var(--am-muted); line-height: 1.3; }
-@keyframes av2ToastIn {
-  0%      { opacity: 0; transform: translateX(20px); }
-  6%, 30% { opacity: 1; transform: translateX(0); }
-  36%     { opacity: 0; transform: translateX(20px); }
-  100%    { opacity: 0; transform: translateX(20px); }
+@keyframes av2ToastCycle {
+  0%       { opacity: 0; transform: translateX(20px); }
+  4%, 26%  { opacity: 1; transform: translateX(0); }
+  30%, 100%{ opacity: 0; transform: translateX(20px); }
 }
 @media (prefers-reduced-motion: reduce) { .av2-toast { animation: none; } }
 
@@ -2876,6 +2888,51 @@ body {
 .av2-cta:hover { background: var(--am-terra-light); }
 .av2-cta .cta-arrow { color: white; }
 
+/* Marquee preuves sociales — bandeau scrolling au-dessus du hero */
+.av2-marquee {
+  background: linear-gradient(90deg, var(--am-terra), var(--am-copper), var(--am-terra));
+  color: white;
+  padding: 9px 0;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Onest', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(2,132,199,0.25);
+}
+.av2-marquee::before, .av2-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 24px;
+  z-index: 2;
+  pointer-events: none;
+}
+.av2-marquee::before { left: 0;  background: linear-gradient(90deg, var(--am-terra), transparent); }
+.av2-marquee::after  { right: 0; background: linear-gradient(270deg, var(--am-terra), transparent); }
+.av2-marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  white-space: nowrap;
+  animation: av2MarqueeScroll 22s linear infinite;
+  will-change: transform;
+}
+.av2-marquee-track span { display: inline-block; }
+.av2-marquee-dot {
+  width: 5px; height: 5px;
+  background: rgba(255,255,255,0.65);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@keyframes av2MarqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) { .av2-marquee-track { animation: none; } }
+
 /* Hero — texte + photo en grand */
 .av2-hero {
   padding: 24px 22px;
@@ -2886,6 +2943,51 @@ body {
   background: var(--am-paper);
   position: relative;
 }
+
+/* Outils ambient en fond du hero — opacité basse, déco subtile */
+.av2-tools {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.av2-tool {
+  position: absolute;
+  font-size: 22px;
+  opacity: 0.10;
+  filter: drop-shadow(0 2px 4px rgba(13,31,45,0.1));
+  will-change: transform;
+}
+.av2-tool-2 { top: 78%; left: 10%;  font-size: 18px; animation: av2ToolFloat 8s ease-in-out -2s infinite, av2ToolSpin 18s linear -3s infinite reverse; }
+.av2-tool-5 { top: 46%; left: 4%;   font-size: 20px; animation: av2ToolFloat 9s ease-in-out -3s infinite, av2ToolSpin 22s linear -5s infinite; }
+.av2-tool-6 { top: 88%; left: 86%;  font-size: 18px; animation: av2ToolFloat 7.5s ease-in-out -2.5s infinite, av2ToolSpin 16s linear infinite reverse; }
+@keyframes av2ToolFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(8px, -12px); }
+}
+@keyframes av2ToolSpin {
+  from { rotate: 0deg; }
+  to   { rotate: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .av2-tool { animation: none !important; }
+}
+.av2-hero > .av2-hero-text,
+.av2-hero > .av2-hero-photo { position: relative; z-index: 1; }
+
+
+/* Glow pulse autour du CTA primaire */
+.av2-btn-glow {
+  position: relative;
+  box-shadow: 0 0 0 0 rgba(14,165,233,0.6);
+  animation: av2BtnGlow 2.4s ease-in-out infinite;
+}
+@keyframes av2BtnGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(14,165,233,0.55), 0 4px 12px rgba(13,31,45,0.15); }
+  50%      { box-shadow: 0 0 0 8px rgba(14,165,233,0), 0 6px 18px rgba(13,31,45,0.25); }
+}
+@media (prefers-reduced-motion: reduce) { .av2-btn-glow { animation: none; } }
 .av2-eyebrow {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 10px;
@@ -2960,11 +3062,11 @@ body {
 /* ===== Photo hero — vraie photo chantier + overlay + icônes plombier animées ===== */
 .av2-hero-photo {
   width: 100%;
-  height: 180px;
-  border-radius: 6px;
+  height: 300px;
+  border-radius: 8px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 32px rgba(15,118,110,0.25), 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 12px 36px rgba(15,118,110,0.28), 0 2px 6px rgba(0,0,0,0.12);
   animation: av2PhotoIn 1s cubic-bezier(.65,0,.35,1);
   background: var(--am-navy-2);
 }
@@ -2974,6 +3076,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 35%;
   animation: av2PhotoZoom 12s ease-in-out infinite alternate;
 }
 @keyframes av2PhotoZoom {
@@ -3072,72 +3175,158 @@ body {
   font-weight: 600;
 }
 
-/* Section services — "le métier" */
-.av2-services { padding: 22px 22px; }
-.av2-section-head { margin-bottom: 14px; }
-.av2-section-eb {
+/* Section témoignages — univers eau/plombier : dégradé bleu ciel → bleu foncé */
+.av2-testimonials {
+  padding: 28px 22px 32px;
+  background:
+    linear-gradient(180deg, #E0F2FE 0%, #BAE6FD 25%, #38BDF8 65%, #0A4D8C 100%);
+  position: relative;
+  overflow: hidden;
+}
+/* Petites bulles d'eau qui montent en fond */
+.av2-test-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.av2-test-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(36px);
+  opacity: 0.55;
+  animation: av2OrbFloat 13s ease-in-out infinite;
+}
+.av2-test-blob-1 { width: 170px; height: 170px; background: #7DD3FC; top:  -40px; left:  -40px; }
+.av2-test-blob-2 { width: 200px; height: 200px; background: #0EA5E9; top:   45%; right: -50px; animation-delay: -4s; }
+.av2-test-blob-3 { width: 160px; height: 160px; background: #0284C7; bottom:-50px; left:   28%; animation-delay: -8s; opacity: 0.45; }
+.av2-testimonials > *:not(.av2-test-bg) { position: relative; z-index: 1; }
+
+.av2-test-head { text-align: center; margin-bottom: 22px; }
+.av2-test-eb {
   font-family: Georgia, serif;
   font-style: italic;
-  font-size: 11px;
-  color: var(--am-terra);
+  font-size: 12px;
+  color: var(--am-navy-2);
 }
-.av2-section-t {
+.av2-test-t {
   font-family: 'Onest', sans-serif;
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 800;
-  color: var(--am-navy);
+  color: var(--am-navy-2);
   margin-top: 4px;
   letter-spacing: -0.02em;
 }
-.av2-srv-grid { display: grid; gap: 10px; }
-.av2-srv {
-  background: white;
-  border-left: 3px solid var(--am-terra);
-  padding: 12px 14px;
-  display: grid;
-  grid-template-columns: 32px 1fr auto;
-  gap: 12px;
-  align-items: start;
-  transition: transform 0.25s, box-shadow 0.25s;
-  cursor: pointer;
-}
-.av2-srv:hover { transform: translateX(3px); box-shadow: -3px 0 0 var(--am-copper), 0 4px 16px rgba(13,31,45,0.08); }
-.av2-srv-num,
-.av2-srv-icon {
+.av2-test-score {
+  display: inline-flex;
+  align-items: baseline;
   font-family: Georgia, serif;
   font-style: italic;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--am-navy);
-  line-height: 1;
-  opacity: 0.85;
-}
-.av2-srv-icon {
-  font-style: normal;
   font-size: 26px;
-  width: 40px; height: 40px;
-  background: var(--am-cream);
-  border-radius: 8px;
+  color: #F59E0B;
+  margin-left: 6px;
+}
+.av2-test-score .av2-test-out {
+  font-size: 14px;
+  color: var(--am-navy-2);
+  opacity: 0.6;
+  font-style: normal;
+}
+
+/* Grid des bulles — 2 colonnes asymétriques, décalées */
+.av2-test-bubbles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.av2-test-bubble {
+  padding: 14px 14px 12px;
+  border-radius: 18px;
+  position: relative;
+  box-shadow:
+    0 8px 24px rgba(7,52,89,0.16),
+    0 1px 0 rgba(255,255,255,0.85) inset;
+  animation: av2BubbleBob 5.5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -1.4s);
+  transition: transform 0.3s;
+  backdrop-filter: blur(2px);
+}
+.av2-test-bubble:hover { transform: scale(1.03) translateY(-2px); }
+/* Décalages alternés pour effet "vivant" */
+.av2-test-bubble:nth-child(even) { margin-top: 22px; }
+/* 4 nuances de bleu, du plus clair au plus profond — toujours dans l'univers eau */
+.av2-test-bubble-sky   { background: #F0F9FF; border: 2px solid #BAE6FD; }
+.av2-test-bubble-blue  { background: #DBEAFE; border: 2px solid #93C5FD; }
+.av2-test-bubble-azure { background: #E0F2FE; border: 2px solid #7DD3FC; }
+.av2-test-bubble-navy  { background: #EFF6FF; border: 2px solid #60A5FA; }
+
+/* Petite "queue" de bulle façon chat-bubble */
+.av2-test-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 22px;
+  width: 0; height: 0;
+  border: 8px solid transparent;
+  border-top-color: inherit;
+  border-bottom: 0;
+  filter: drop-shadow(0 2px 1px rgba(7,52,89,0.08));
+}
+.av2-test-bubble-sky::before   { border-top-color: #BAE6FD; }
+.av2-test-bubble-blue::before  { border-top-color: #93C5FD; }
+.av2-test-bubble-azure::before { border-top-color: #7DD3FC; }
+.av2-test-bubble-navy::before  { border-top-color: #60A5FA; }
+
+@keyframes av2BubbleBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+@media (prefers-reduced-motion: reduce) { .av2-test-bubble { animation: none; } }
+
+.av2-test-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s, background 0.3s;
-  flex-shrink: 0;
-}
-.av2-srv:hover .av2-srv-icon {
-  transform: rotate(-8deg) scale(1.1);
-  background: var(--am-terra-light);
-}
-.av2-srv h5 { font-size: 12px; font-weight: 700; color: var(--am-navy); margin-bottom: 3px; letter-spacing: 0; }
-.av2-srv p { font-size: 10px; color: var(--am-muted); line-height: 1.4; }
-.av2-srv-price {
+  color: white;
   font-family: 'Onest', sans-serif;
-  font-size: 10px;
-  color: var(--am-navy);
-  white-space: nowrap;
-  text-align: right;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0;
+  margin-bottom: 8px;
+  box-shadow: 0 3px 10px rgba(7,52,89,0.25);
 }
-.av2-srv-price strong { font-family: Georgia, serif; font-style: italic; font-size: 16px; color: var(--am-navy); font-weight: 700; display: block; line-height: 1; margin-top: 2px; }
+.av2-test-stars {
+  color: #F59E0B;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  text-shadow: 0 1px 2px rgba(245,158,11,0.25);
+}
+.av2-test-quote {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--am-navy-2);
+  margin-bottom: 8px;
+}
+.av2-test-meta {
+  font-family: 'Onest', sans-serif;
+  font-size: 9px;
+  color: #475569;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.av2-test-meta strong {
+  color: var(--am-navy-2);
+  font-weight: 800;
+}
+.av2-test-date { font-style: italic; color: #64748B; font-weight: 500; }
 
 /* Review Google */
 .av2-review {
@@ -3155,28 +3344,398 @@ body {
   font-weight: 700;
   font-size: 18px;
   color: #4285F4;
+  position: relative;
 }
+/* Sparkles autour du logo Google — twinkle séquentiel */
+.av2-sparkle {
+  position: absolute;
+  color: #fbbf24;
+  font-size: 11px;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: 0 0 6px rgba(251,191,36,0.6);
+  animation: av2Sparkle 2.4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.av2-sparkle-1 { top: -8px; right: -8px;  animation-delay: 0s; }
+.av2-sparkle-2 { top: -10px; left: -6px;  font-size: 9px;  animation-delay: 0.6s; }
+.av2-sparkle-3 { bottom: -6px; right: -10px; font-size: 10px; animation-delay: 1.2s; }
+.av2-sparkle-4 { bottom: -8px; left: -4px;  font-size: 8px;  animation-delay: 1.8s; }
+@keyframes av2Sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50%      { opacity: 1; transform: scale(1.3) rotate(180deg); }
+}
+@media (prefers-reduced-motion: reduce) { .av2-sparkle { animation: none; } }
 .av2-google-stars { font-size: 12px; color: #fbbf24; letter-spacing: 0.04em; }
 .av2-google-score { font-size: 10px; color: rgba(255,255,255,0.7); font-weight: 600; margin-left: 6px; letter-spacing: 0; }
 .av2-google-sub { font-size: 11px; color: rgba(255,255,255,0.85); font-style: italic; margin-top: 3px; }
 .av2-review-cta { font-size: 10px; color: var(--am-terra-light); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; }
 
-/* Footer signature */
-.av2-footer {
-  padding: 18px 22px;
-  background: var(--am-navy-2);
-  color: rgba(255,255,255,0.85);
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  border-top: 2px solid var(--am-terra);
+/* Widget prochaines dispos */
+.av2-dispo {
+  padding: 18px 22px 20px;
+  background: linear-gradient(180deg, #F0F9FF 0%, #ffffff 100%);
+  border-top: 1px solid rgba(13,31,45,0.06);
 }
-.av2-foot-brand {
+.av2-dispo-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+.av2-dispo-eb {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--am-terra);
+}
+.av2-dispo-t {
   font-family: 'Onest', sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 800;
-  letter-spacing: 0.06em;
-  color: white;
+  color: var(--am-navy);
+  letter-spacing: -0.01em;
 }
-.av2-foot-brand .dot { color: var(--am-terra); }
+.av2-dispo-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+  color: #10B981;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.av2-dispo-dot {
+  width: 7px; height: 7px;
+  background: #10B981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(16,185,129,0.6);
+  animation: av2DispoDot 1.6s ease-in-out infinite;
+}
+@keyframes av2DispoDot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.6); }
+  50%      { box-shadow: 0 0 0 5px rgba(16,185,129,0); }
+}
+.av2-dispo-slots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.av2-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 7px 4px;
+  border-radius: 6px;
+  font-family: 'Onest', sans-serif;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease;
+}
+.av2-slot .d { font-size: 8px; letter-spacing: 0.08em; opacity: 0.7; }
+.av2-slot .h { font-size: 12px; margin-top: 1px; }
+.av2-slot.taken {
+  background: #F1F5F9;
+  color: #94A3B8;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+.av2-slot.free {
+  background: #ECFDF5;
+  color: #047857;
+  border-color: #A7F3D0;
+  position: relative;
+}
+.av2-slot.free::before {
+  content: '';
+  position: absolute;
+  top: 3px; right: 3px;
+  width: 5px; height: 5px;
+  background: #10B981;
+  border-radius: 50%;
+  animation: av2SlotPulse 1.8s ease-in-out infinite;
+}
+@keyframes av2SlotPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.3); }
+}
+.av2-slot.free:hover { transform: translateY(-2px); }
+
+/* Trust badges row */
+.av2-trust {
+  padding: 16px 22px;
+  background: var(--am-cream);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  border-top: 1px dashed rgba(13,31,45,0.12);
+  border-bottom: 1px dashed rgba(13,31,45,0.12);
+}
+.av2-trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 8px 4px;
+}
+.av2-trust-icon {
+  font-size: 22px;
+  width: 42px; height: 42px;
+  background: white;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(13,31,45,0.08);
+  flex-shrink: 0;
+  animation: av2TrustBob 5s ease-in-out infinite;
+}
+.av2-trust-item:nth-child(2) .av2-trust-icon { animation-delay: -1.25s; }
+.av2-trust-item:nth-child(3) .av2-trust-icon { animation-delay: -2.5s; }
+.av2-trust-item:nth-child(4) .av2-trust-icon { animation-delay: -3.75s; }
+@keyframes av2TrustBob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-4px) rotate(-3deg); }
+}
+@media (prefers-reduced-motion: reduce) { .av2-trust-icon { animation: none; } }
+.av2-trust-text strong {
+  display: block;
+  font-family: 'Onest', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--am-navy);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.av2-trust-text small {
+  font-size: 9px;
+  color: var(--am-muted);
+  font-weight: 500;
+  line-height: 1.3;
+  display: block;
+  margin-top: 2px;
+}
+
+/* Bloc signature artisan — centré, remplit le milieu en bas */
+.av2-signature {
+  padding: 24px 22px 28px;
+  background: linear-gradient(180deg, #ffffff 0%, var(--am-cream) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  position: relative;
+}
+.av2-signature::before, .av2-signature::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 18%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--am-terra), transparent);
+}
+.av2-signature::before { left: 10%; }
+.av2-signature::after  { right: 10%; }
+.av2-sig-avatar {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, var(--am-navy), var(--am-copper));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 4px;
+  box-shadow: 0 6px 18px rgba(13,31,45,0.18);
+}
+.av2-sig-initials {
+  color: white;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.02em;
+}
+.av2-sig-ring {
+  position: absolute;
+  inset: -6px;
+  border: 2px solid var(--am-terra);
+  border-radius: 50%;
+  opacity: 0;
+  animation: av2SigRing 2.4s ease-out infinite;
+}
+@keyframes av2SigRing {
+  0%   { opacity: 0.8; transform: scale(0.85); }
+  100% { opacity: 0;   transform: scale(1.25); }
+}
+@media (prefers-reduced-motion: reduce) { .av2-sig-ring { animation: none; } }
+.av2-sig-name {
+  font-family: 'Onest', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--am-navy);
+  letter-spacing: -0.01em;
+}
+.av2-sig-role {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--am-muted);
+}
+.av2-sig-quote {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--am-navy);
+  max-width: 380px;
+  line-height: 1.5;
+  margin: 8px 0 4px;
+  padding: 0 12px;
+  position: relative;
+}
+.av2-sig-cta {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
+}
+.av2-sig-call, .av2-sig-mail {
+  font-family: 'Onest', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--am-navy);
+  letter-spacing: 0.02em;
+}
+.av2-sig-call { color: var(--am-copper); }
+
+/* Footer dense — wordmark + 3 cols + bandeau légal */
+.av2-footer {
+  padding: 28px 22px 18px;
+  background: var(--am-navy-2);
+  color: rgba(255,255,255,0.78);
+  border-top: 2px solid var(--am-terra);
+  position: relative;
+  overflow: hidden;
+}
+.av2-foot-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.av2-foot-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.22;
+  animation: av2OrbFloat 12s ease-in-out infinite;
+}
+.av2-foot-orb-1 { width: 180px; height: 180px; background: var(--am-terra);  top: -40px; left: -40px; }
+.av2-foot-orb-2 { width: 200px; height: 200px; background: var(--am-copper); bottom: -50px; right: -50px; animation-delay: -6s; }
+.av2-footer > *:not(.av2-foot-bg) { position: relative; z-index: 1; }
+
+.av2-foot-wordmark {
+  font-family: 'Onest', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: white;
+  text-align: center;
+  line-height: 1;
+}
+.av2-foot-wordmark .dot { color: var(--am-terra); }
+.av2-foot-tag {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--am-terra-light);
+  text-align: center;
+  margin-top: 6px;
+  margin-bottom: 22px;
+}
+.av2-foot-cols {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 24px;
+  padding: 18px 0 22px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.av2-foot-col h6 {
+  font-family: 'Onest', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--am-terra-light);
+  margin-bottom: 10px;
+}
+.av2-foot-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.av2-foot-col li {
+  font-size: 11px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.78);
+}
+.av2-foot-col-center {
+  text-align: center;
+  border-left: 1px dashed rgba(255,255,255,0.12);
+  border-right: 1px dashed rgba(255,255,255,0.12);
+  padding: 0 8px;
+}
+.av2-foot-col-center h6 { text-align: center; }
+.av2-foot-tel {
+  font-family: 'Onest', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0;
+  margin-bottom: 4px;
+}
+.av2-foot-mail {
+  font-size: 10px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+  word-break: break-all;
+}
+.av2-foot-hours {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--am-terra-light);
+  font-weight: 600;
+  padding: 5px 10px;
+  background: rgba(14,165,233,0.12);
+  border-radius: 999px;
+}
+.av2-foot-hours-dot {
+  width: 6px; height: 6px;
+  background: #34D399;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(52,211,153,0.7);
+  animation: badgePulse 1.6s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.av2-foot-bottom {
+  padding: 14px 0 2px;
+  text-align: center;
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.av2-foot-bullet { color: var(--am-terra); opacity: 0.6; }
 .av2-foot-tag {
   font-family: Georgia, serif;
   font-style: italic;
@@ -3575,7 +4134,32 @@ body {
   .pricing-card.featured { transform: none; }
   .pricing-card.featured:hover { transform: translateY(-6px); }
   .before-after { padding: 52px 20px; }
-  .slider-container { aspect-ratio: 4/5; }
+  /* Slider mobile : aspect-ratio portrait + scale-to-fit du contenu via container queries.
+     Le ratio (9/20) matche la hauteur design (2000px) pour que le scale remplisse exactement. */
+  .slider-container { aspect-ratio: 9 / 20; }
+  .slider-container .slider-content { padding: 0; overflow: hidden; }
+  .slider-container .bv2-site,
+  .slider-container .av2-site {
+    width: 900px;
+    height: 2000px;
+    min-height: 0;
+    transform-origin: top left;
+    transform: scale(calc(100cqi / 900px));
+  }
+  /* AFTER : hero passe en vertical, contenu centré pour être visible quel que soit le slider */
+  .slider-container .av2-hero {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 28px 22px 22px;
+    text-align: center;
+  }
+  .slider-container .av2-hero-text { display: flex; flex-direction: column; align-items: center; }
+  .slider-container .av2-eyebrow { justify-content: center; }
+  .slider-container .av2-title { font-size: 34px; }
+  .slider-container .av2-sub { max-width: 92%; font-size: 13px; text-align: center; }
+  .slider-container .av2-btns { gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .slider-container .av2-btn-p, .slider-container .av2-btn-g { font-size: 13px; padding: 12px 18px; }
+  .slider-container .av2-hero-photo { height: 460px; width: 100%; border-radius: 12px; }
   .contact-section { padding: 52px 20px; }
   .faq { padding: 52px 20px; }
   .footer { padding: 30px 20px 16px; }
@@ -4276,12 +4860,28 @@ body {
             <span class="av2-urgent-time">10:42</span>
           </div>
 
-          <!-- Notification toast "vie" en haut à droite -->
-          <div class="av2-toast" aria-hidden="true">
-            <span class="av2-toast-icon">★</span>
-            <div class="av2-toast-content">
-              <strong>Nouvel avis 5 étoiles</strong>
-              <small>"Top, je recommande" — il y a 3 min</small>
+          <!-- Notifications toast cycliques en haut à droite — sensation activité live -->
+          <div class="av2-toasts" aria-hidden="true">
+            <div class="av2-toast" data-toast="1">
+              <span class="av2-toast-icon av2-toast-icon-star">★</span>
+              <div class="av2-toast-content">
+                <strong>Nouvel avis 5 étoiles</strong>
+                <small>"Top, je recommande" — il y a 3 min</small>
+              </div>
+            </div>
+            <div class="av2-toast" data-toast="2">
+              <span class="av2-toast-icon av2-toast-icon-check">✓</span>
+              <div class="av2-toast-content">
+                <strong>Devis demandé</strong>
+                <small>Sophie M., Lyon 6 — à l'instant</small>
+              </div>
+            </div>
+            <div class="av2-toast" data-toast="3">
+              <span class="av2-toast-icon av2-toast-icon-phone">📞</span>
+              <div class="av2-toast-content">
+                <strong>Appel entrant</strong>
+                <small>Marc D. · fuite cuisine</small>
+              </div>
             </div>
           </div>
 
@@ -4300,14 +4900,36 @@ body {
             </div>
           </div>
 
+          <!-- Marquee preuves sociales scrolling — pète au visage juste sous la nav -->
+          <div class="av2-marquee" aria-hidden="true">
+            <div class="av2-marquee-track">
+              <span>★★★★★ 4.9/5</span><span class="av2-marquee-dot"></span>
+              <span>64 avis Google</span><span class="av2-marquee-dot"></span>
+              <span>Intervention en 2h</span><span class="av2-marquee-dot"></span>
+              <span>Devis gratuit 24h</span><span class="av2-marquee-dot"></span>
+              <span>Garantie 2 ans</span><span class="av2-marquee-dot"></span>
+              <span>★★★★★ 4.9/5</span><span class="av2-marquee-dot"></span>
+              <span>64 avis Google</span><span class="av2-marquee-dot"></span>
+              <span>Intervention en 2h</span><span class="av2-marquee-dot"></span>
+              <span>Devis gratuit 24h</span><span class="av2-marquee-dot"></span>
+              <span>Garantie 2 ans</span><span class="av2-marquee-dot"></span>
+            </div>
+          </div>
+
           <!-- Hero -->
           <div class="av2-hero">
+            <!-- Outils ambient discrets en fond du hero -->
+            <div class="av2-tools" aria-hidden="true">
+              <span class="av2-tool av2-tool-2">🔩</span>
+              <span class="av2-tool av2-tool-5">🛠️</span>
+              <span class="av2-tool av2-tool-6">🪛</span>
+            </div>
             <div class="av2-hero-text">
               <div class="av2-eyebrow">— Artisan plombier · 12 ans de chantier</div>
               <h3 class="av2-title">Dépannage,<br>installation,<br><span class="av2-ac">rénovation.</span></h3>
               <p class="av2-sub">Sébastien Martin, plombier à Lyon. Tu m'appelles, je viens, c'est réparé. Devis ferme, prix transparents, travail garanti 2 ans.</p>
               <div class="av2-btns">
-                <span class="av2-btn-p">Devis gratuit en 24h <span class="cta-arrow">→</span></span>
+                <span class="av2-btn-p av2-btn-glow">Devis gratuit en 24h <span class="cta-arrow">→</span></span>
                 <span class="av2-btn-g">Voir les tarifs</span>
               </div>
             </div>
@@ -4330,38 +4952,58 @@ body {
             <div class="av2-stat"><div class="av2-num" data-target="2" data-decimals="0">0<small>h</small></div><div class="av2-lbl">d'intervention</div></div>
           </div>
 
-          <!-- Services en cards "carnet" -->
-          <div class="av2-services">
-            <div class="av2-section-head">
-              <span class="av2-section-eb">— Le métier</span>
-              <h4 class="av2-section-t">Ce que je fais, je le fais bien.</h4>
+          <!-- Témoignages clients en bulles colorées animées -->
+          <div class="av2-testimonials">
+            <div class="av2-test-bg" aria-hidden="true">
+              <span class="av2-test-blob av2-test-blob-1"></span>
+              <span class="av2-test-blob av2-test-blob-2"></span>
+              <span class="av2-test-blob av2-test-blob-3"></span>
             </div>
-            <div class="av2-srv-grid">
-              <div class="av2-srv">
-                <div class="av2-srv-icon">🚰</div>
-                <h5>Dépannage urgent</h5>
-                <p>Fuite, débouchage, chauffe-eau. J'arrive en 2h, je règle, tu repars tranquille.</p>
-                <div class="av2-srv-price">dès <strong>89€</strong></div>
+            <div class="av2-test-head">
+              <span class="av2-test-eb">— Ce qu'ils disent</span>
+              <h4 class="av2-test-t">64 avis · note <span class="av2-test-score">4.9<span class="av2-test-out">/5</span></span></h4>
+            </div>
+
+            <div class="av2-test-bubbles">
+              <div class="av2-test-bubble av2-test-bubble-sky" style="--i:0">
+                <div class="av2-test-avatar" style="background:#0EA5E9">M</div>
+                <div class="av2-test-stars">★★★★★</div>
+                <p class="av2-test-quote">«&nbsp;Fuite cuisine à 21h, Sébastien arrive en 1h30. Réparé, propre, prix tenu. Je le rappelle sans hésiter.&nbsp;»</p>
+                <div class="av2-test-meta"><strong>Marc D.</strong> · Lyon 6<span class="av2-test-date">il y a 3 j</span></div>
               </div>
-              <div class="av2-srv">
-                <div class="av2-srv-icon">🚿</div>
-                <h5>Installation</h5>
-                <p>Robinetterie, sanitaires, chauffe-eau. Pose propre, finitions au cordeau.</p>
-                <div class="av2-srv-price">dès <strong>590€</strong></div>
+
+              <div class="av2-test-bubble av2-test-bubble-blue" style="--i:1">
+                <div class="av2-test-avatar" style="background:#1D4ED8">S</div>
+                <div class="av2-test-stars">★★★★★</div>
+                <p class="av2-test-quote">«&nbsp;Rénovation salle de bain complète. Délai annoncé tenu au jour près. Travail soigné, finitions au cordeau.&nbsp;»</p>
+                <div class="av2-test-meta"><strong>Sylvie B.</strong> · Villeurbanne<span class="av2-test-date">il y a 1 sem</span></div>
               </div>
-              <div class="av2-srv">
-                <div class="av2-srv-icon">🛁</div>
-                <h5>Rénovation salle de bain</h5>
-                <p>Du sol au plafond. Plomberie, carrelage, finitions. Devis ferme, délai tenu.</p>
-                <div class="av2-srv-price">dès <strong>3 900€</strong></div>
+
+              <div class="av2-test-bubble av2-test-bubble-azure" style="--i:2">
+                <div class="av2-test-avatar" style="background:#0284C7">JP</div>
+                <div class="av2-test-stars">★★★★★</div>
+                <p class="av2-test-quote">«&nbsp;Mon plombier de confiance depuis 5 ans. Toujours dispo, jamais déçu. Devis clair, pas de mauvaise surprise.&nbsp;»</p>
+                <div class="av2-test-meta"><strong>Jean-Pierre M.</strong> · Lyon 3<span class="av2-test-date">il y a 2 sem</span></div>
+              </div>
+
+              <div class="av2-test-bubble av2-test-bubble-navy" style="--i:3">
+                <div class="av2-test-avatar" style="background:#0A4D8C">A</div>
+                <div class="av2-test-stars">★★★★★</div>
+                <p class="av2-test-quote">«&nbsp;Chauffe-eau changé en une journée. Sérieux, à l'écoute, prix correct. Je recommande à 100%.&nbsp;»</p>
+                <div class="av2-test-meta"><strong>Anaïs L.</strong> · Bron<span class="av2-test-date">il y a 3 sem</span></div>
               </div>
             </div>
           </div>
 
-          <!-- Témoignage Google -->
+          <!-- Témoignage Google avec sparkles autour de la note -->
           <div class="av2-review">
             <div class="av2-review-head">
-              <div class="av2-google-mark">G</div>
+              <div class="av2-google-mark">G
+                <span class="av2-sparkle av2-sparkle-1" aria-hidden="true">✦</span>
+                <span class="av2-sparkle av2-sparkle-2" aria-hidden="true">✧</span>
+                <span class="av2-sparkle av2-sparkle-3" aria-hidden="true">✦</span>
+                <span class="av2-sparkle av2-sparkle-4" aria-hidden="true">⋆</span>
+              </div>
               <div class="av2-review-meta">
                 <div class="av2-google-stars">★★★★★ <span class="av2-google-score">4.9 · 64 avis Google</span></div>
                 <div class="av2-google-sub">"Intervention rapide et propre. Mon plombier de confiance." — Marc D., Lyon 6</div>
@@ -4370,15 +5012,105 @@ body {
             </div>
           </div>
 
-          <!-- Footer signature -->
-          <div class="av2-footer">
-            <div class="av2-foot-left">
-              <div class="av2-foot-brand">PLOMBERIE MARTIN<span class="dot">.</span></div>
-              <div class="av2-foot-tag">Le plombier à Lyon que tu rappelles.</div>
+          <!-- Widget prochaines dispos — slots semaine -->
+          <div class="av2-dispo">
+            <div class="av2-dispo-head">
+              <span class="av2-dispo-eb">— Prochaines dispos</span>
+              <h4 class="av2-dispo-t">Cette semaine</h4>
+              <span class="av2-dispo-live"><span class="av2-dispo-dot"></span>agenda à jour</span>
             </div>
-            <div class="av2-foot-right">
-              <span>📞 04 78 24 56 89</span>
-              <span>SIRET 824 ●●●</span>
+            <div class="av2-dispo-slots">
+              <div class="av2-slot taken"><span class="d">LUN</span><span class="h">9h</span></div>
+              <div class="av2-slot taken"><span class="d">LUN</span><span class="h">14h</span></div>
+              <div class="av2-slot free"><span class="d">MAR</span><span class="h">10h</span></div>
+              <div class="av2-slot taken"><span class="d">MAR</span><span class="h">15h</span></div>
+              <div class="av2-slot free"><span class="d">MER</span><span class="h">11h</span></div>
+              <div class="av2-slot free"><span class="d">JEU</span><span class="h">9h</span></div>
+              <div class="av2-slot taken"><span class="d">JEU</span><span class="h">16h</span></div>
+              <div class="av2-slot free"><span class="d">VEN</span><span class="h">15h</span></div>
+            </div>
+          </div>
+
+          <!-- Trust badges — preuves rassurantes avant footer -->
+          <div class="av2-trust">
+            <div class="av2-trust-item">
+              <span class="av2-trust-icon">🛡️</span>
+              <div class="av2-trust-text"><strong>Garantie 2 ans</strong><small>pièces & main d'œuvre</small></div>
+            </div>
+            <div class="av2-trust-item">
+              <span class="av2-trust-icon">📋</span>
+              <div class="av2-trust-text"><strong>Décennale</strong><small>Assurance active</small></div>
+            </div>
+            <div class="av2-trust-item">
+              <span class="av2-trust-icon">💰</span>
+              <div class="av2-trust-text"><strong>Devis ferme</strong><small>Aucune surprise</small></div>
+            </div>
+            <div class="av2-trust-item">
+              <span class="av2-trust-icon">📍</span>
+              <div class="av2-trust-text"><strong>Lyon & métropole</strong><small>Intervention 2h</small></div>
+            </div>
+          </div>
+
+          <!-- Bloc signature artisan — centré, remplit le milieu du bas -->
+          <div class="av2-signature">
+            <div class="av2-sig-avatar" aria-hidden="true">
+              <span class="av2-sig-initials">SM</span>
+              <span class="av2-sig-ring"></span>
+            </div>
+            <div class="av2-sig-name">Sébastien Martin</div>
+            <div class="av2-sig-role">Artisan plombier · 12 ans à Lyon</div>
+            <blockquote class="av2-sig-quote">«&nbsp;Tu m'appelles, je viens, c'est réparé. Pas de bla-bla.&nbsp;»</blockquote>
+            <div class="av2-sig-cta">
+              <span class="av2-sig-call">📞 04 78 24 56 89</span>
+              <span class="av2-sig-mail">✉ contact@plomberie-martin.fr</span>
+            </div>
+          </div>
+
+          <!-- Footer dense : wordmark grand + 3 colonnes infos + bandeau légal -->
+          <div class="av2-footer">
+            <div class="av2-foot-bg" aria-hidden="true">
+              <span class="av2-foot-orb av2-foot-orb-1"></span>
+              <span class="av2-foot-orb av2-foot-orb-2"></span>
+            </div>
+            <div class="av2-foot-wordmark">PLOMBERIE MARTIN<span class="dot">.</span></div>
+            <div class="av2-foot-tag">Le plombier à Lyon que tu rappelles.</div>
+            <div class="av2-foot-cols">
+              <div class="av2-foot-col">
+                <h6>Services</h6>
+                <ul>
+                  <li>Dépannage urgent</li>
+                  <li>Installation</li>
+                  <li>Rénovation salle de bain</li>
+                  <li>Chauffage</li>
+                </ul>
+              </div>
+              <div class="av2-foot-col av2-foot-col-center">
+                <h6>Reste joignable</h6>
+                <div class="av2-foot-tel">📞 04 78 24 56 89</div>
+                <div class="av2-foot-mail">contact@plomberie-martin.fr</div>
+                <div class="av2-foot-hours">
+                  <span class="av2-foot-hours-dot"></span>
+                  Lun-Sam 7h-20h · Urgences 24/7
+                </div>
+              </div>
+              <div class="av2-foot-col">
+                <h6>Zone</h6>
+                <ul>
+                  <li>Lyon 1<sup>er</sup> au 9<sup>e</sup></li>
+                  <li>Villeurbanne · Bron</li>
+                  <li>Vénissieux · Caluire</li>
+                  <li>Saint-Priest · Métropole</li>
+                </ul>
+              </div>
+            </div>
+            <div class="av2-foot-bottom">
+              <span>© 2024 Plomberie Martin</span>
+              <span class="av2-foot-bullet">·</span>
+              <span>SIRET 824 ●●● ●●●</span>
+              <span class="av2-foot-bullet">·</span>
+              <span>Décennale active</span>
+              <span class="av2-foot-bullet">·</span>
+              <span>Devis gratuit 24h</span>
             </div>
           </div>
         </div>
