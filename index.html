@@ -4145,14 +4145,13 @@ body {
   /* Barre de progression cachée sur mobile — créait confusion type "chargement" */
   .scroll-progress { display: none; }
   .before-after { padding: 52px 20px; }
-  /* Slider mobile : aspect-ratio 9/12.5 (~1.39× width) — assez pour les 4 bulles d'avis,
-     pas trop pour ne pas bouffer l'écran. */
-  .slider-container { aspect-ratio: 9 / 12.5; }
+  /* Slider mobile : aspect-ratio 9/14 (~1.56× width) — assez pour les 4 bulles d'avis avec marge. */
+  .slider-container { aspect-ratio: 9 / 14; }
   .slider-container .slider-content { padding: 0; overflow: hidden; }
   .slider-container .bv2-site,
   .slider-container .av2-site {
     width: 900px;
-    height: 1250px;
+    height: 1400px;
     min-height: 0;
     transform-origin: top left;
     transform: scale(calc(100cqi / 900px));
@@ -4175,8 +4174,8 @@ body {
   .slider-container .bv2-site .bv2-testimonials,
   .slider-container .bv2-site .bv2-zone,
   .slider-container .bv2-site .bv2-footer-cols { display: none; }
-  /* Photo hero mobile réduite (était 460, trop pour la nouvelle hauteur slider) */
-  .slider-container .av2-hero-photo { height: 320px; width: 100%; border-radius: 12px; }
+  /* Photo hero mobile réduite pour laisser plus de place aux bulles d'avis */
+  .slider-container .av2-hero-photo { height: 260px; width: 100%; border-radius: 12px; }
   /* AFTER : hero passe en vertical, contenu centré pour être visible quel que soit le slider */
   .slider-container .av2-hero {
     grid-template-columns: 1fr;
