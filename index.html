@@ -2935,14 +2935,23 @@ body {
 
 /* Hero — texte + photo en grand */
 .av2-hero {
-  padding: 24px 22px;
+  padding: 28px 22px;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 18px;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
   align-items: center;
   background: var(--am-paper);
   position: relative;
 }
+.av2-hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.av2-hero-text .av2-eyebrow { justify-content: center; }
+.av2-hero-text .av2-sub { margin-left: auto; margin-right: auto; max-width: 320px; }
+.av2-hero-text .av2-btns { justify-content: center; flex-wrap: wrap; }
 
 /* Outils ambient en fond du hero — opacité basse, déco subtile */
 .av2-tools {
@@ -3006,11 +3015,11 @@ body {
 }
 .av2-title {
   font-family: 'Onest', sans-serif;
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 800;
   line-height: 0.98;
   letter-spacing: -0.03em;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   color: var(--am-navy);
 }
 .av2-ac {
