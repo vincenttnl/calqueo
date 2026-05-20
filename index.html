@@ -4146,7 +4146,7 @@ body {
   .scroll-progress { display: none; }
   .before-after { padding: 52px 20px; }
   /* Slider mobile : compact + tout le contenu non essentiel masqué pour que les bulles tiennent.
-     Sections visibles AFTER : urgent, hero, stats, bulles. Tout le reste masqué. */
+     Scale basé sur 100vw - 40px (padding de la section) pour compatibilité iOS < 16 (pas de container queries). */
   .slider-container { aspect-ratio: 9 / 11.5; }
   .slider-container .slider-content { padding: 0; overflow: hidden; }
   .slider-container .bv2-site,
@@ -4155,7 +4155,7 @@ body {
     height: 1150px;
     min-height: 0;
     transform-origin: top left;
-    transform: scale(calc(100cqi / 900px));
+    transform: scale(calc((100vw - 40px) / 900px));
   }
   /* Libère le scroll vertical sur le slider — sinon l'input range capte le geste et coince */
   .slider-container .slider-range { touch-action: pan-y; }
