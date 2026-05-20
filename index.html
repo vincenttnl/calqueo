@@ -278,25 +278,25 @@ body {
   position: relative;
 }
 
-/* #05 — Underline draw au hover sur les liens (sauf CTA) */
-.nav-links a:not(.nav-cta)::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0;
-  height: 2px;
-  background: var(--stripe-purple);
-  transition: width 0.35s var(--ease-out-expo);
-}
-.nav-links a:not(.nav-cta):hover::after { width: 100%; }
-
-/* #32 — Gradient text au hover sur les liens */
-.nav-links a:not(.nav-cta):hover {
-  background: linear-gradient(90deg, var(--stripe-purple), #00D4FF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* #05 + #32 — Underline draw + gradient text au hover (desktop uniquement, évite le sticky-hover mobile) */
+@media (hover: hover) {
+  .nav-links a:not(.nav-cta)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: var(--stripe-purple);
+    transition: width 0.35s var(--ease-out-expo);
+  }
+  .nav-links a:not(.nav-cta):hover::after { width: 100%; }
+  .nav-links a:not(.nav-cta):hover {
+    background: linear-gradient(90deg, var(--stripe-purple), #00D4FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 /* #40 — CTA outline → solid au hover */
@@ -329,13 +329,17 @@ body {
   display: none;
   background: transparent;
   border: none;
-  width: 40px;
-  height: 40px;
-  padding: 8px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
   cursor: pointer;
   position: relative;
-  z-index: 10002;
+  z-index: 10003;
+  border-radius: 10px;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.2s ease;
 }
+.nav-burger:active { background: rgba(99,91,255,0.08); }
 .nav-burger span {
   display: block;
   width: 22px;
@@ -343,32 +347,116 @@ body {
   background: var(--stripe-indigo);
   border-radius: 2px;
   margin: 5px auto;
-  transition: transform 0.3s var(--ease-out-expo), opacity 0.2s ease;
+  transition: transform 0.35s var(--ease-out-expo), opacity 0.2s ease, background 0.2s ease;
 }
+.nav-burger.open span { background: var(--stripe-indigo); }
 .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-burger.open span:nth-child(2) { opacity: 0; }
 .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* Backdrop derrière le menu mobile (z-index < .nav pour que le panneau enfant de .nav passe devant) */
+.nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 37, 64, 0.45);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.nav-backdrop.open { opacity: 1; }
+
 @media (max-width: 768px) {
+  /* Important : on retire backdrop-filter/filter sur .nav,
+     sinon ça crée un containing block et piège .nav-links fixed dans la barre 64px */
+  .nav {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(255,255,255,0.96);
+  }
+  .nav.scrolled { background: rgba(255,255,255,0.98); }
+
   .nav-burger { display: block; }
+  .nav-backdrop { display: block; pointer-events: none; }
+  .nav-backdrop.open { pointer-events: auto; }
+
   .nav-links {
     position: fixed;
-    inset: 0;
-    background: rgba(255,255,255,0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(86vw, 360px);
+    background: #fff;
+    box-shadow: -16px 0 48px rgba(10,37,64,0.18);
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 28px;
-    padding: 80px 32px 40px;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+    padding: 84px 0 32px;
     transform: translateX(100%);
-    transition: transform 0.35s var(--ease-out-expo);
-    z-index: 10001;
+    transition: transform 0.4s var(--ease-out-expo);
+    z-index: 10002;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .nav-links.open { transform: translateX(0); }
-  .nav-links a { font-size: 22px; font-weight: 600; color: var(--stripe-indigo); display: block !important; }
-  .nav-links .nav-cta { font-size: 16px; padding: 14px 28px; margin-top: 12px; }
+
+  /* Items du menu — tap targets propres, alignés à gauche */
+  .nav-links a {
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+    min-height: 56px;
+    padding: 16px 28px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--stripe-indigo);
+    border-bottom: 1px solid rgba(10,37,64,0.06);
+    background: transparent;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  .nav-links a:active {
+    background: rgba(99,91,255,0.08);
+    color: var(--stripe-purple);
+  }
+  /* Stagger d'entrée des items quand le menu s'ouvre */
+  .nav-links.open a {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.35s ease, transform 0.4s var(--ease-out-expo), background 0.15s ease, color 0.15s ease;
+  }
+  .nav-links.open a:nth-child(1) { transition-delay: 0.10s; }
+  .nav-links.open a:nth-child(2) { transition-delay: 0.16s; }
+  .nav-links.open a:nth-child(3) { transition-delay: 0.22s; }
+  .nav-links.open a:nth-child(4) { transition-delay: 0.28s; }
+  .nav-links.open a:nth-child(5) { transition-delay: 0.34s; }
+
+  /* CTA = vrai bouton, pas un lien de menu */
+  .nav-links .nav-cta {
+    margin: 20px 20px 0;
+    padding: 14px 22px;
+    width: calc(100% - 40px);
+    justify-content: center;
+    background: var(--stripe-purple);
+    color: #fff !important;
+    border: 1.5px solid var(--stripe-purple);
+    border-radius: var(--radius-btn);
+    font-size: 16px;
+    min-height: 52px;
+    border-bottom: 1.5px solid var(--stripe-purple);
+  }
+  .nav-links .nav-cta .cta-arrow { color: #fff; }
+  .nav-links .nav-cta:active {
+    background: var(--stripe-indigo);
+    color: #fff !important;
+    transform: scale(0.98);
+  }
+
   body.menu-open { overflow: hidden; }
 }
 
@@ -3903,6 +3991,7 @@ body {
     <span></span><span></span><span></span>
   </button>
 </nav>
+<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -4884,10 +4973,12 @@ document.getElementById('backToTop').addEventListener('click', () => {
 (function() {
   const burger = document.getElementById('navBurger');
   const links = document.getElementById('navLinks');
+  const backdrop = document.getElementById('navBackdrop');
   if (!burger || !links) return;
   function setOpen(open) {
     burger.classList.toggle('open', open);
     links.classList.toggle('open', open);
+    if (backdrop) backdrop.classList.toggle('open', open);
     document.body.classList.toggle('menu-open', open);
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
@@ -4895,6 +4986,8 @@ document.getElementById('backToTop').addEventListener('click', () => {
   burger.addEventListener('click', () => setOpen(!links.classList.contains('open')));
   // Close on link click
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  // Close on backdrop tap
+  if (backdrop) backdrop.addEventListener('click', () => setOpen(false));
   // Close on Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && links.classList.contains('open')) setOpen(false);
