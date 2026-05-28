@@ -1695,23 +1695,23 @@ body {
   }
   .pricing-grid::-webkit-scrollbar { display: none; }
   .pricing-card {
-    min-width: 220px;
-    max-width: 260px;
+    min-width: 200px;
+    max-width: 230px;
     flex-shrink: 0;
     scroll-snap-align: center;
-    padding: 16px 14px 14px;
-    border-radius: 14px;
-    gap: 6px;
+    padding: 12px 12px 10px;
+    border-radius: 12px;
+    gap: 4px;
   }
-  .pricing-card .pack-badge { font-size: 9px; padding: 3px 10px; }
-  .pricing-card .pack-name { font-size: 16px; margin-bottom: 2px; }
-  .pricing-card .pack-price { font-size: 30px; margin-bottom: 4px; }
-  .pricing-card .pack-price .currency { font-size: 20px; }
-  .pricing-card .pack-hint { font-size: 11px; margin-bottom: 4px; }
-  .pricing-card .pack-tagline { font-size: 11px; margin-bottom: 8px; }
-  .pricing-card .pack-features { gap: 4px; margin-bottom: 10px; }
-  .pricing-card .pack-features li { font-size: 12px; padding: 3px 0; }
-  .pricing-card .pack-cta { padding: 10px 16px; font-size: 12px; }
+  .pricing-card .pack-badge { font-size: 8px; padding: 2px 8px; top: -10px; }
+  .pricing-card .pack-name { font-size: 13px; margin-bottom: 1px; }
+  .pricing-card .pack-price { font-size: 24px; margin-bottom: 2px; }
+  .pricing-card .pack-price .currency { font-size: 16px; }
+  .pricing-card .pack-hint { font-size: 10px; margin-bottom: 2px; }
+  .pricing-card .pack-tagline { font-size: 10px; margin-bottom: 6px; }
+  .pricing-card .pack-features { gap: 2px; margin-bottom: 8px; }
+  .pricing-card .pack-features li { font-size: 11px; padding: 2px 0; }
+  .pricing-card .pack-cta { padding: 8px 12px; font-size: 11px; }
   .pricing-card.featured { transform: none; }
 }
 
@@ -1899,23 +1899,14 @@ body {
   position: relative;
   margin-bottom: 30px;
 }
-.metiers-carousel::before, .metiers-carousel::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 120px;
-  z-index: 2;
-  pointer-events: none;
-}
-.metiers-carousel::before { left: 0; background: linear-gradient(90deg, #fff, transparent); }
-.metiers-carousel::after { right: 0; background: linear-gradient(270deg, #fff, transparent); }
+.metiers-carousel::before, .metiers-carousel::after { display: none; }
 .metiers-track {
   display: flex;
   gap: 20px;
   animation: metiersScroll 30s linear infinite;
   width: max-content;
 }
-.metiers-track:hover { animation-play-state: paused; }
+.metiers-track:hover { animation-play-state: running; }
 @keyframes metiersScroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -1929,8 +1920,9 @@ body {
   flex-shrink: 0;
   cursor: pointer;
   transition: transform 0.3s var(--ease-out-expo);
+  border: 2px solid var(--stripe-purple);
+  box-shadow: 0 0 12px rgba(99,91,255,0.4), 0 0 24px rgba(99,91,255,0.15);
 }
-.metier-card:hover { transform: scale(1.03); }
 .metier-card img {
   width: 100%;
   height: 100%;
@@ -2201,17 +2193,17 @@ body {
   margin-bottom: 22px;
 }
 .about-block {
-  background: #fff;
-  border: 1px solid var(--slate-200);
+  background: rgba(99,91,255,0.06);
+  border: 1px solid rgba(99,91,255,0.2);
   border-radius: 20px;
   padding: 22px 20px;
-  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s ease, border-color 0.35s ease;
+  transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   position: relative;
 }
 .about-block:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 36px rgba(10,37,64,0.1);
-  border-color: rgba(99,91,255,0.3);
+  background: rgba(99,91,255,0.18);
+  border-color: var(--stripe-purple);
+  box-shadow: 0 0 20px rgba(99,91,255,0.25);
 }
 .about-block-emoji {
   display: inline-block;
@@ -2241,6 +2233,7 @@ body {
   margin-bottom: 10px;
   letter-spacing: -0.01em;
 }
+.h3-emoji { font-size: 1.8em; vertical-align: middle; line-height: 1; display: inline; }
 .about-block p {
   font-size: 14px;
   color: var(--slate-600);
@@ -2256,8 +2249,8 @@ body {
 .about-promise {
   position: relative;
   max-width: 680px;
-  margin: 18px auto 22px;
-  padding: 20px 32px;
+  margin: 14px auto 18px;
+  padding: 14px 24px;
   background: white;
   border: 1px solid var(--slate-200);
   border-radius: 999px;
@@ -2304,7 +2297,7 @@ body {
   100% { transform: scale(2.2); opacity: 0; }
 }
 .about-promise p {
-  font-size: 17px;
+  font-size: 15px;
   line-height: 1.4;
   font-weight: 600;
   color: var(--stripe-indigo);
@@ -2312,13 +2305,17 @@ body {
 }
 @media (max-width: 600px) {
   .about-promise {
-    border-radius: 24px;
-    padding: 20px 24px;
-    flex-direction: column;
-    text-align: center;
-    gap: 14px;
+    border-radius: 12px;
+    padding: 8px 12px;
+    flex-direction: row;
+    text-align: left;
+    gap: 8px;
+    margin: 8px auto 12px;
+    box-shadow: 0 4px 16px rgba(99,91,255,0.08);
   }
-  .about-promise p { font-size: 15px; }
+  .promise-phone { width: 28px; height: 28px; }
+  .promise-phone svg { width: 14px; height: 14px; }
+  .about-promise p { font-size: 11px; }
 }
 
 /* Location */
@@ -4195,12 +4192,21 @@ body {
   }
   .about-blocks::-webkit-scrollbar { display: none; }
   .about-block {
-    min-width: 240px;
-    max-width: 280px;
+    min-width: 190px;
+    max-width: 220px;
     flex-shrink: 0;
     scroll-snap-align: center;
-    padding: 16px 14px;
+    padding: 12px 10px;
+    background: rgba(99,91,255,0.08);
+    border-color: rgba(99,91,255,0.25);
   }
+  .about-block:active, .about-block:focus-within, .about-block.active {
+    background: rgba(99,91,255,0.22);
+    border-color: var(--stripe-purple);
+    box-shadow: 0 0 16px rgba(99,91,255,0.3);
+  }
+  .about-block h3 { font-size: 13px; margin-bottom: 4px; }
+  .about-block p { font-size: 10px; line-height: 1.4; }
   .faq-grid { grid-template-columns: 1fr; }
   .faq-left { position: static; }
   .contact-grid { grid-template-columns: 1fr; }
@@ -5511,18 +5517,15 @@ body {
 
     <div class="about-blocks">
       <div class="about-block reveal">
-        <div class="about-block-emoji" aria-hidden="true">🤝</div>
-        <h3>Pas de théorie, du concret.</h3>
+        <h3>Pas de théorie, du concret. <span class="h3-emoji">🤝</span></h3>
         <p>Plombiers, photographes, déco, wedding planners… Ceux qui ont du métier mais un site qui ne le montre pas.</p>
       </div>
       <div class="about-block reveal">
-        <div class="about-block-emoji" aria-hidden="true">👂</div>
-        <h3>Écouter avant de coder.</h3>
+        <h3>Écouter avant de coder. <span class="h3-emoji">👂</span></h3>
         <p>Ton univers, ta façon de parler, ce qui te tient à cœur. Tout ça doit se retrouver dans ton site.</p>
       </div>
       <div class="about-block reveal">
-        <div class="about-block-emoji" aria-hidden="true">🏠</div>
-        <h3>Ton site, ta maison.</h3>
+        <h3>Ton site, ta maison. <span class="h3-emoji">🏠</span></h3>
         <p>Fait pour te ressembler, pour durer, pour évoluer avec ton activité. Pas un site jetable.</p>
       </div>
     </div>
@@ -6442,6 +6445,14 @@ setInterval(() => {
 }, 3000);
 
 // (Counter animation supprimé — les prix sont désormais affichés directement avec markup <span class="currency">)
+
+// ===== About-blocks : clic = violet actif sur une seule bulle =====
+document.querySelectorAll('.about-block').forEach(block => {
+  block.addEventListener('click', () => {
+    document.querySelectorAll('.about-block').forEach(b => b.classList.remove('active'));
+    block.classList.add('active');
+  });
+});
 </script>
 </body>
 </html>
