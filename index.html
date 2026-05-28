@@ -1882,7 +1882,7 @@ body {
 .metiers-track {
   display: flex;
   gap: 20px;
-  animation: metiersScroll 50s linear infinite;
+  animation: metiersScroll 30s linear infinite;
   width: max-content;
 }
 .metiers-track:hover { animation-play-state: paused; }
@@ -4145,22 +4145,19 @@ body {
   /* Barre de progression cachée sur mobile — créait confusion type "chargement" */
   .scroll-progress { display: none; }
   .before-after { padding: 52px 20px; }
-  /* Slider mobile : compact + tout le contenu non essentiel masqué pour que les bulles tiennent.
-     Scale basé sur 100vw - 40px (padding de la section) pour compatibilité iOS < 16 (pas de container queries). */
-  .slider-container { aspect-ratio: 9 / 11.5; }
+  /* ===== SLIDER MOBILE : rendu natif (pas de scale, contenu adapté à la largeur) ===== */
+  .slider-container { aspect-ratio: auto; height: 520px; }
+  .slider-container .slider-side { overflow: hidden !important; }
   .slider-container .slider-content { padding: 0; overflow: hidden; }
-  .slider-container .bv2-site,
-  .slider-container .av2-site {
-    width: 900px;
-    height: 1150px;
-    min-height: 0;
-    transform-origin: top left;
-    transform: scale(calc((100vw - 40px) / 900px));
-  }
-  /* Libère le scroll vertical sur le slider — sinon l'input range capte le geste et coince */
   .slider-container .slider-range { touch-action: pan-y; }
 
-  /* Mobile AFTER : on garde urgent + hero + stats + bulles. On vire le reste. */
+  /* AFTER mobile : léger décalage pour que le texte ne soit pas coupé au ras du bord */
+  .slider-container .av2-site {
+    width: 100%; min-height: 100%;
+    font-size: 11px;
+    padding-left: 5%;
+    box-sizing: border-box;
+  }
   .slider-container .av2-site .av2-marquee,
   .slider-container .av2-site .av2-nav,
   .slider-container .av2-site .av2-review,
@@ -4168,26 +4165,61 @@ body {
   .slider-container .av2-site .av2-trust,
   .slider-container .av2-site .av2-signature,
   .slider-container .av2-site .av2-footer { display: none; }
-  /* Mobile BEFORE : on garde topbar + nav + hero + services. On vire about, testimonials, zone, footer. */
-  .slider-container .bv2-site .bv2-about,
+  .slider-container .av2-urgent { padding: 5px 10px; font-size: 8px; }
+  .slider-container .av2-hero {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    padding: 10px; align-items: start;
+  }
+  .slider-container .av2-hero-text {
+    display: flex; flex-direction: column; align-items: flex-start; text-align: left;
+  }
+  .slider-container .av2-eyebrow { font-size: 7px; margin-bottom: 3px; }
+  .slider-container .av2-title { font-size: 14px; line-height: 1.1; margin-bottom: 4px; }
+  .slider-container .av2-sub { font-size: 8px; max-width: 100%; margin-bottom: 6px; }
+  .slider-container .av2-btns { gap: 4px; flex-wrap: wrap; }
+  .slider-container .av2-btn-p, .slider-container .av2-btn-g { font-size: 8px; padding: 6px 10px; }
+  .slider-container .av2-hero-photo {
+    width: 100%; height: 140px; border-radius: 8px;
+  }
+  .slider-container .av2-photo-stamp { bottom: 8px; right: 8px; font-size: 8px; padding: 4px 8px; }
+  .slider-container .av2-photo-stamp strong { font-size: 11px; }
+  .slider-container .av2-photo-badge { top: 8px; right: 8px; font-size: 8px; padding: 3px 8px; gap: 4px; }
+  /* Stats compactes sous la photo */
+  .slider-container .av2-stats {
+    grid-template-columns: repeat(4, 1fr); padding: 8px 10px; gap: 6px;
+  }
+  .slider-container .av2-num { font-size: 16px; }
+  .slider-container .av2-num small { font-size: 9px; }
+  .slider-container .av2-lbl { font-size: 7px; margin-top: 2px; }
+  /* Bulles témoignages — remplissent l'espace restant */
+  .slider-container .av2-testimonials {
+    padding: 10px 8px 12px; overflow: hidden;
+  }
+  .slider-container .av2-test-bg { display: none; }
+  .slider-container .av2-test-head { margin-bottom: 8px; }
+  .slider-container .av2-test-eb { font-size: 8px; }
+  .slider-container .av2-test-t { font-size: 12px; }
+  .slider-container .av2-test-score { font-size: 16px; }
+  .slider-container .av2-test-score .av2-test-out { font-size: 10px; }
+  .slider-container .av2-test-bubbles { gap: 6px; }
+  .slider-container .av2-test-bubble {
+    padding: 8px 8px 6px; border-radius: 12px;
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+  }
+  .slider-container .av2-test-bubble:nth-child(even) { margin-top: 10px; }
+  .slider-container .av2-test-avatar { width: 22px; height: 22px; font-size: 9px; margin-bottom: 4px; }
+  .slider-container .av2-test-stars { font-size: 9px; margin-bottom: 3px; }
+  .slider-container .av2-test-quote { font-size: 8px; line-height: 1.4; margin-bottom: 4px; }
+  .slider-container .av2-test-meta { font-size: 7px; }
+  .slider-container .av2-test-bubble::before { display: none; }
+
+  /* BEFORE mobile : pleine largeur, le clip-path montre la moitié gauche naturellement */
+  .slider-container .bv2-site {
+    width: 100%; min-height: 100%;
+  }
   .slider-container .bv2-site .bv2-testimonials,
   .slider-container .bv2-site .bv2-zone,
   .slider-container .bv2-site .bv2-footer { display: none; }
-  /* Photo hero mobile : taille modeste pour laisser de la place aux bulles dans un slider court */
-  .slider-container .av2-hero-photo { height: 220px; width: 100%; border-radius: 12px; }
-  /* AFTER : hero passe en vertical, contenu centré pour être visible quel que soit le slider */
-  .slider-container .av2-hero {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 28px 22px 22px;
-    text-align: center;
-  }
-  .slider-container .av2-hero-text { display: flex; flex-direction: column; align-items: center; }
-  .slider-container .av2-eyebrow { justify-content: center; }
-  .slider-container .av2-title { font-size: 34px; }
-  .slider-container .av2-sub { max-width: 92%; font-size: 13px; text-align: center; }
-  .slider-container .av2-btns { gap: 10px; justify-content: center; flex-wrap: wrap; }
-  .slider-container .av2-btn-p, .slider-container .av2-btn-g { font-size: 13px; padding: 12px 18px; }
   .contact-section { padding: 52px 20px; }
   .faq { padding: 52px 20px; }
   .footer { padding: 30px 20px 16px; }
@@ -6029,7 +6061,8 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   let introPlayed = false;
 
   function setPos(percent) {
-    percent = Math.max(5, Math.min(95, percent));
+    const minP = 5;
+    percent = Math.max(minP, Math.min(95, percent));
     before.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
     handle.style.left = `${percent}%`;
     handle.setAttribute('aria-valuenow', Math.round(percent));
