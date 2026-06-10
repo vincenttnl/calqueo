@@ -4298,11 +4298,32 @@ body {
   .slider-container .bv2-site .bv2-testimonials,
   .slider-container .bv2-site .bv2-zone,
   .slider-container .bv2-site .bv2-footer { display: none; }
-  .contact-section { padding: 52px 20px; }
+  /* ===== FAQ MOBILE : compactée ===== */
   .faq { padding: 52px 20px; }
-  .footer { padding: 30px 20px 16px; }
-  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-  .footer-bottom { flex-direction: column; gap: 12px; }
+  .faq-grid { gap: 20px; }
+  .faq .section-title { font-size: 28px; }
+  .faq-left p { font-size: 14px; margin-top: 8px; }
+  .faq-question { padding: 13px 0; }
+  .faq-question h4 { font-size: 15px; }
+  /* Réponses plus hautes en mobile : texte étroit = plus de lignes */
+  .faq-item.open .faq-answer { max-height: 320px; padding-bottom: 16px; }
+
+  /* ===== CONTACT MOBILE : compactée ===== */
+  .contact-section { padding: 52px 20px; }
+  .contact-grid { gap: 24px; }
+  .contact-left p { font-size: 14px; }
+  .contact-form { padding: 18px; }
+  /* 16px minimum sinon Safari iOS zoome au focus des champs */
+  .form-group input, .form-group select { font-size: 16px; padding: 11px 14px; }
+
+  /* ===== FOOTER MOBILE : brand pleine largeur + colonnes en 2x2 ===== */
+  .footer { padding: 36px 20px 16px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px 16px; margin-bottom: 22px; }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-col h5 { margin-bottom: 10px; }
+  .footer-col a { font-size: 13px; }
+  .footer-bottom { flex-direction: column; gap: 10px; padding-top: 18px; }
+  .footer-bottom .legal-links { flex-wrap: wrap; justify-content: center; gap: 8px 16px; }
 }
 @media (max-width: 480px) {
   .hero-meta { flex-direction: column; gap: 10px; }
