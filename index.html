@@ -1518,7 +1518,7 @@ body {
   padding: 30px 24px 24px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s ease, border-color 0.2s ease, background 0.3s ease;
 }
 .pricing-card:hover {
   transform: translateY(-2px);
@@ -1564,6 +1564,65 @@ body {
 .pricing-card.pricing-card-quiet .pack-price .currency {
   font-size: 22px;
 }
+/* ===== Survol "lueur douce" — fond violet électrique + curseur point (packs + process) ===== */
+.pricing-card, .process-card { --mx: 50%; --my: 50%; }
+
+/* Le curseur natif disparaît, le point custom prend le relais */
+.pricing-card:hover, .process-card:hover { cursor: none; }
+
+/* Fond violet électrique qui suit le pointeur (cœur cyan + halo violet) */
+.pricing-card:hover {
+  background:
+    radial-gradient(70px circle at var(--mx) var(--my), rgba(0, 212, 255, 0.22), transparent 70%),
+    radial-gradient(260px circle at var(--mx) var(--my), rgba(99, 91, 255, 0.30), rgba(99, 91, 255, 0.10) 52%, #fff 80%),
+    #fff;
+}
+/* Signature reste bleu nuit au survol, avec la même lueur violette douce que Démarrage (sur fond navy) */
+.pricing-card.featured:hover {
+  background:
+    radial-gradient(70px circle at var(--mx) var(--my), rgba(0, 212, 255, 0.16), transparent 70%),
+    radial-gradient(260px circle at var(--mx) var(--my), rgba(99, 91, 255, 0.30), rgba(99, 91, 255, 0.10) 55%, var(--slate-900) 80%),
+    var(--slate-900);
+}
+.process-card:hover {
+  background:
+    radial-gradient(70px circle at var(--mx) var(--my), rgba(0, 212, 255, 0.22), transparent 70%),
+    radial-gradient(260px circle at var(--mx) var(--my), rgba(99, 91, 255, 0.30), rgba(99, 91, 255, 0.10) 52%, #fff 80%),
+    #fff;
+}
+
+/* Calque qui rogne le point aux bords de la carte (sans toucher au badge) */
+.card-fx {
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.pricing-card:hover .card-fx,
+.process-card:hover .card-fx { opacity: 1; }
+
+/* Curseur "lueur douce" : halo violet diffus + point blanc fin */
+.card-cursor {
+  position: absolute; left: 0; top: 0;
+  width: 0; height: 0;
+  will-change: transform;
+}
+.card-cursor::before {
+  content: ''; position: absolute; left: 0; top: 0;
+  width: 56px; height: 56px; margin: -28px 0 0 -28px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(99, 91, 255, 0.55), rgba(99, 91, 255, 0.12) 55%, transparent 72%);
+}
+.card-cursor::after {
+  content: ''; position: absolute; left: 0; top: 0;
+  width: 6px; height: 6px; margin: -3px 0 0 -3px;
+  border-radius: 999px; background: #fff;
+  box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.9);
+}
+
 .pricing-card .pack-badge {
   position: absolute;
   top: -12px; left: 50%; transform: translateX(-50%);
@@ -1687,6 +1746,7 @@ body {
     overflow-x: auto;
     overflow-y: visible;
     scroll-snap-type: x mandatory;
+    scroll-padding-left: 20px;
     -webkit-overflow-scrolling: touch;
     gap: 16px;
     padding: 18px 20px 16px;
@@ -1695,10 +1755,10 @@ body {
   }
   .pricing-grid::-webkit-scrollbar { display: none; }
   .pricing-card {
-    min-width: 200px;
-    max-width: 230px;
+    min-width: 250px;
+    max-width: 270px;
     flex-shrink: 0;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
     padding: 12px 12px 10px;
     border-radius: 12px;
     gap: 4px;
@@ -1780,7 +1840,7 @@ body {
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 24px;
   padding: 36px 28px 32px;
-  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s ease;
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s ease, background 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -1805,16 +1865,17 @@ body {
 .process-card:hover::before { opacity: 1; }
 
 .process-card .step-emoji {
+  position: absolute;
+  top: 24px;
+  right: 26px;
   display: inline-block;
-  font-size: 72px;
+  font-size: 60px;
   line-height: 1;
-  margin-bottom: 22px;
+  z-index: 2;
   animation: stepFloat 4s ease-in-out infinite;
   transform-origin: center bottom;
   will-change: transform;
 }
-.process-card:nth-child(2) .step-emoji { animation-delay: -1.3s; }
-.process-card:nth-child(3) .step-emoji { animation-delay: -2.6s; }
 .process-card:hover .step-emoji {
   animation: stepBounce 0.7s ease-out;
 }
@@ -4158,6 +4219,7 @@ body {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    scroll-padding-left: 20px;
     -webkit-overflow-scrolling: touch;
     gap: 16px;
     padding: 0 20px 16px;
@@ -4166,10 +4228,10 @@ body {
   }
   .process-grid::-webkit-scrollbar { display: none; }
   .process-card {
-    min-width: 260px;
-    max-width: 300px;
+    min-width: 250px;
+    max-width: 270px;
     flex-shrink: 0;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
   }
   .about-grid { grid-template-columns: 1fr; }
   /* Journal (01, 02, 03) — compacté sur mobile */
@@ -4466,7 +4528,7 @@ body {
   -webkit-text-stroke-color: rgba(99,91,255,0.35);
   transform: scale(1.04);
 }
-.process-card > * { position: relative; z-index: 1; }
+.process-card > *:not(.card-fx):not(.step-emoji) { position: relative; z-index: 1; }
 
 /* #04 — Icon morph CTAs (renforce le hover sur step-emoji) */
 .process-card:hover .step-emoji {
@@ -5355,6 +5417,7 @@ body {
   </div>
   <div class="process-grid">
     <div class="process-card reveal">
+      <span class="card-fx" aria-hidden="true"><span class="card-cursor"></span></span>
       <span class="step-num-bg" aria-hidden="true">01</span>
       <span class="border-draw" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
       <span class="step-emoji" aria-hidden="true">☕</span>
@@ -5369,6 +5432,7 @@ body {
       </ul>
     </div>
     <div class="process-card reveal">
+      <span class="card-fx" aria-hidden="true"><span class="card-cursor"></span></span>
       <span class="step-num-bg" aria-hidden="true">02</span>
       <span class="border-draw" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
       <span class="step-emoji" aria-hidden="true">🛠️</span>
@@ -5383,6 +5447,7 @@ body {
       </ul>
     </div>
     <div class="process-card reveal">
+      <span class="card-fx" aria-hidden="true"><span class="card-cursor"></span></span>
       <span class="step-num-bg" aria-hidden="true">03</span>
       <span class="border-draw" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
       <span class="step-emoji" aria-hidden="true">🚀</span>
@@ -5410,6 +5475,7 @@ body {
 
     <!-- Démarrage -->
     <article class="pricing-card reveal">
+      <span class="card-fx" aria-hidden="true"><span class="card-cursor"></span></span>
       <div class="pack-name">Démarrage</div>
       <div class="pack-price">990<span class="currency">€</span></div>
       <div class="pack-hint">Paiement en 1× ou 3× sans frais</div>
@@ -5427,6 +5493,7 @@ body {
     <!-- Signature (featured) -->
     <article class="pricing-card featured reveal">
       <span class="pack-badge">Le plus choisi</span>
+      <span class="card-fx" aria-hidden="true"><span class="card-cursor"></span></span>
       <div class="pack-name">Signature</div>
       <div class="pack-price">2 490<span class="currency">€</span></div>
       <div class="pack-hint">Paiement en 1× ou 3× sans frais</div>
@@ -5445,6 +5512,7 @@ body {
 
     <!-- Premium -->
     <article class="pricing-card reveal">
+      <span class="card-fx" aria-hidden="true"><span class="card-cursor"></span></span>
       <div class="pack-name">Premium</div>
       <div class="pack-price">3 990<span class="currency">€</span></div>
       <div class="pack-hint">Paiement en 1×, 3× ou 4× sans frais</div>
@@ -5927,6 +5995,42 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+// ===== Survol "lueur douce" — point custom + fond violet qui suit le pointeur =====
+(function () {
+  const EASE = 0.16;  // < 1 = suivi en douceur (effet lueur)
+  document.querySelectorAll('.pricing-card, .process-card').forEach(card => {
+    const dot = card.querySelector('.card-cursor');
+    if (!dot) return;
+    let tx = 0, ty = 0, cx = 0, cy = 0, raf = null, active = false;
+
+    card.addEventListener('pointerenter', e => {
+      if (e.pointerType === 'touch') return;  // pas de curseur custom au tactile
+      const r = card.getBoundingClientRect();
+      tx = cx = e.clientX - r.left;
+      ty = cy = e.clientY - r.top;
+      active = true;
+      if (!raf) raf = requestAnimationFrame(loop);
+    });
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      tx = e.clientX - r.left;
+      ty = e.clientY - r.top;
+    });
+    card.addEventListener('pointerleave', () => { active = false; });
+
+    function loop() {
+      cx += (tx - cx) * EASE;
+      cy += (ty - cy) * EASE;
+      card.style.setProperty('--mx', cx + 'px');
+      card.style.setProperty('--my', cy + 'px');
+      dot.style.transform = `translate(${cx}px, ${cy}px)`;
+      if (active || Math.abs(tx - cx) > 0.5 || Math.abs(ty - cy) > 0.5) {
+        raf = requestAnimationFrame(loop);
+      } else { raf = null; }
+    }
+  });
+})();
 
 function clearPackHint() {
   const packInput = document.getElementById('formPack');
