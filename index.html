@@ -579,6 +579,54 @@ body {
   z-index: -1;
   pointer-events: none;
 }
+/* ===== Animation « TOI » : halo violet intense (2 couches) + glitch ===== */
+/* Halo — couche principale (cœur lumineux) */
+.hero h1 .h1-toi .toi-glow {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%; height: 360%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(195,185,255,1), rgba(99,91,255,.78) 40%, transparent 72%);
+  filter: blur(0.6em);
+  z-index: -2;
+  pointer-events: none;
+  animation: toiHalo 1.9s ease-in-out infinite;
+}
+/* Halo — 2e couche (teinte rosée, rythme différent) */
+.hero h1 .h1-toi .toi-glow::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 78%; height: 78%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(132,120,255,.7), rgba(255,107,157,.15) 60%, transparent 75%);
+  filter: blur(0.35em);
+  animation: toiHalo2 2.7s ease-in-out infinite;
+}
+@keyframes toiHalo {
+  0%, 100% { opacity: .7; transform: translate(-50%, -50%) scale(.8); }
+  50%      { opacity: 1;  transform: translate(-50%, -50%) scale(1.42); }
+}
+@keyframes toiHalo2 {
+  0%, 100% { opacity: .4;  transform: translate(-50%, -50%) scale(1.05); }
+  50%      { opacity: .85; transform: translate(-50%, -50%) scale(1.25); }
+}
+/* Glitch léger (décalage RGB cyan/rose, ponctuel) */
+.hero h1 .h1-toi { animation: toiGlitch 3s steps(1) infinite; }
+@keyframes toiGlitch {
+  0%, 86%, 100% { text-shadow: none; transform: none; }
+  88% { text-shadow: -2px 0 #00D4FF, 2px 0 #FF6B9D; transform: translateX(1px); }
+  90% { text-shadow:  2px 0 #00D4FF, -2px 0 #FF6B9D; transform: translateX(-1px); }
+  92% { text-shadow: -1px 0 #00D4FF, 1px 0 #FF6B9D; }
+  94% { text-shadow:  1px 0 #00D4FF, -1px 0 #FF6B9D; transform: translateX(1px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 .h1-toi,
+  .hero h1 .h1-toi .toi-glow,
+  .hero h1 .h1-toi .toi-glow::before { animation: none; }
+}
 .hero-rotating {
   display: block;
   position: relative;
@@ -4914,7 +4962,7 @@ body {
 
   <div class="hero-left">
     <h1>
-      <span class="h1-line1"><span class="h1-seg">Le site calqué</span> <span class="h1-seg">sur <span class="h1-toi">TOI.</span></span></span>
+      <span class="h1-line1"><span class="h1-seg">Le site calqué</span> <span class="h1-seg">sur <span class="h1-toi"><span class="toi-glow" aria-hidden="true"></span>TOI.</span></span></span>
       <span class="hero-rotating" id="heroRotating"><span class="hero-rotating-word active">ton univers.</span></span>
     </h1>
     <p class="hero-lede" id="heroLede"></p>
