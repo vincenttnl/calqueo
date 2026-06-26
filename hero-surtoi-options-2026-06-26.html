@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calquéo — 10 propositions « sur TOI. »</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#635BFF;
+    --indigo:#2D1F8C;
+    --navy:#0A2540;
+    --cyan:#00D4FF;
+    --pink:#FF6B9D;
+    --grad:linear-gradient(90deg,#635BFF 0%,#FF6B9D 25%,#F97316 50%,#00D4FF 75%,#635BFF 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:#0d1117;
+    color:#fff;
+    padding:32px 16px 80px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page-head{max-width:920px;margin:0 auto 28px;text-align:center;}
+  .page-head h1{font-size:22px;font-weight:800;letter-spacing:-.02em;}
+  .page-head p{font-size:14px;color:#9aa4b2;margin-top:8px;line-height:1.5;}
+  .page-head .hint{font-size:12px;color:#635BFF;margin-top:10px;font-weight:600;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:22px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .card{
+    background:#11161d;
+    border:1px solid #232b36;
+    border-radius:18px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .card-label{
+    padding:12px 16px;
+    border-bottom:1px solid #232b36;
+    display:flex;align-items:center;gap:10px;
+  }
+  .card-num{
+    width:26px;height:26px;border-radius:8px;
+    background:var(--purple);color:#fff;
+    font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .card-name{font-size:14px;font-weight:700;}
+  .card-desc{font-size:11px;color:#8b95a3;margin-top:1px;}
+
+  /* --- Mini hero mobile faithful --- */
+  .frame{
+    position:relative;
+    aspect-ratio:9/16;
+    max-height:560px;
+    background:linear-gradient(180deg,#2a6db5 0%,#143a5e 40%,#0A2540 100%);
+    display:flex;flex-direction:column;justify-content:flex-start;
+    padding:38px 22px 22px;
+    overflow:hidden;
+  }
+  .frame::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,37,64,.15) 0%,transparent 38%,rgba(10,37,64,.55) 100%);
+    pointer-events:none;
+  }
+  h2.h1{
+    position:relative;z-index:2;
+    font-weight:800;line-height:1.04;letter-spacing:-.02em;
+  }
+  .l1{display:block;font-size:34px;color:#fff;}
+  .l1 .seg{display:block;}
+  .rot{
+    display:block;font-size:30px;margin-top:8px;
+    background:var(--grad);background-size:300% 100%;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    animation:shim 8s linear infinite;
+  }
+  @keyframes shim{0%{background-position:0 50%}100%{background-position:300% 50%}}
+
+  /* =============== VARIANTES « sur TOI. » =============== */
+
+  /* 1. Surdimensionné — TOI. énorme sur sa ligne */
+  .v1 .seg-toi{font-size:64px;line-height:.95;display:block;color:#fff;}
+  .v1 .seg-toi .toi{color:#fff;}
+
+  /* 2. Gradient signature */
+  .v2 .toi{
+    background:var(--grad);background-size:300% 100%;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    font-size:58px;animation:shim 8s linear infinite;
+  }
+  .v2 .seg-toi{font-size:38px;}
+
+  /* 3. Contour (outline) */
+  .v3 .toi{
+    font-size:60px;color:transparent;
+    -webkit-text-stroke:2px #fff;
+    paint-order:stroke fill;
+  }
+  .v3 .seg-toi{font-size:40px;}
+
+  /* 4. Surligneur violet (marker) */
+  .v4 .toi{
+    font-size:54px;color:#fff;position:relative;
+    display:inline-block;padding:0 6px;
+  }
+  .v4 .toi::before{
+    content:'';position:absolute;left:0;right:0;bottom:6px;top:30%;
+    background:var(--purple);z-index:-1;border-radius:4px;
+    transform:rotate(-1.5deg);
+  }
+  .v4 .seg-toi{font-size:40px;}
+
+  /* 5. Souligné trait gradient */
+  .v5 .toi{
+    font-size:60px;color:#fff;position:relative;display:inline-block;
+  }
+  .v5 .toi::after{
+    content:'';position:absolute;left:0;right:0;bottom:2px;height:6px;border-radius:3px;
+    background:var(--grad);background-size:300% 100%;animation:shim 8s linear infinite;
+  }
+  .v5 .seg-toi{font-size:40px;}
+
+  /* 6. Violet plein énorme */
+  .v6 .toi{font-size:66px;color:var(--purple);line-height:.95;}
+  .v6 .seg-toi{font-size:40px;}
+
+  /* 7. Badge encadré */
+  .v7 .toi{
+    font-size:42px;color:#fff;
+    border:2.5px solid var(--purple);border-radius:14px;
+    padding:2px 14px;display:inline-block;background:rgba(99,91,255,.12);
+  }
+  .v7 .seg-toi{font-size:38px;}
+
+  /* 8. Point violet surdimensionné */
+  .v8 .toi{font-size:60px;color:#fff;}
+  .v8 .toi .dot{color:var(--purple);font-size:60px;}
+  .v8 .seg-toi{font-size:42px;}
+
+  /* 9. Lettres espacées dramatiques */
+  .v9 .toi{font-size:50px;color:#fff;letter-spacing:.14em;}
+  .v9 .seg-toi{font-size:38px;}
+
+  /* 10. Effet calque (double décalé — clin d'œil au nom Calquéo) */
+  .v10 .toi{
+    font-size:60px;color:#fff;position:relative;display:inline-block;
+  }
+  .v10 .toi::before{
+    content:'TOI.';position:absolute;left:5px;top:5px;
+    color:var(--purple);opacity:.55;z-index:-1;
+  }
+  .v10 .seg-toi{font-size:40px;}
+
+  /* 11. Bonus — gradient + point qui pulse */
+  .v11 .toi{
+    font-size:62px;
+    background:linear-gradient(120deg,#fff 30%,#9b95ff 60%,#635BFF 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+  .v11 .toi .dot{
+    -webkit-text-fill-color:var(--purple);color:var(--purple);
+    display:inline-block;animation:beat 1.6s ease-in-out infinite;
+  }
+  @keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+  .v11 .seg-toi{font-size:40px;}
+</style>
+</head>
+<body>
+  <div class="page-head">
+    <h1>« sur TOI. » — 10 propositions</h1>
+    <p>Même titre partout, seul le traitement de « sur TOI. » change. Fond reproduit le hero vidéo mobile (ciel + navy).</p>
+    <p class="hint">Dis-moi le numéro que tu préfères → je l'intègre dans index.html (mobile + desktop).</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1 -->
+    <div class="card">
+      <div class="card-label"><div class="card-num">1</div><div><div class="card-name">Surdimensionné</div><div class="card-desc">TOI. énorme, sur sa propre ligne</div></div></div>
+      <div class="frame v1"><h2 class="h1">
+        <span class="l1"><span class="seg">Le site calqué</span></span>
+        <span class="l1 seg-toi">sur <span class="toi">TOI.</span></span>
+        <span class="rot">ton univers.</span>
+      </h2></div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card">
+      <div class="card-label"><div class="card-num">2</div><div><div class="card-name">Gradient signature</div><div class="card-desc">TOI. en dégradé violet/rose/cyan</div></div></div>
+      <div class="frame v2"><h2 class="h1">
+        <span class="l1"><span class="seg">Le site calqué</span></span>
+        <span class="l1 seg-toi">sur <span class="toi">TOI.</span></span>
+        <span class="rot">ton univers.</span>
+      </h2></div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card">
+      <div class="card-label"><div class="card-num">3</div><div><div class="card-name">Contour</div><div class="card-desc">TOI. en outline blanc, intérieur vide</div></div></div>
+      <div class="frame v3"><h2 class="h1">
+        <span class="l1"><span class="seg">Le site calqué</span></span>
+        <span class="l1 seg-toi">sur <span class="toi">TOI.</span></span>
+        <span class="rot">ton univers.</span>
+      </h2></div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card">
+      <div class="card-label"><div class="card-num">4</div><div><div class="card-name">Surligneur</div><div class="card-desc">TOI. surligné violet (marqueur)</div></div></div>
+      <div class="frame v4"><h2 class="h1">
+        <span class="l1"><span class="seg">Le site calqué</span></span>
+        <span class="l1 seg-toi">sur <span class="toi">TOI.</span></span>
+        <span class="rot">ton univers.</span>
+      </h2></div>
+    </div>
+
+    <!-- 5 -->
+    <div class="card">
+      <div class="card-label"><div class="card-num">5</div><div><div class="card-name">Souligné gradient</div><div class="card-desc">TOI. + trait dégradé animé dessous</div></div></div>
+      <div class="frame v5"><h2 class="h1">
+        <span class="l1"><span class="seg">Le site calqué</span></span>
+        <span class="l1 seg-toi">sur <span class="toi">TOI.</span></span>
+        <span class="rot">ton univers.</span>
+      </h2></div>
+    </div>
+
+    <!-- 6 -->
+    <div class="card">
+      <div class="card-label"><div class="card-num">6</div><div><div class="card-name">Violet plein</div><div class="card-desc">TOI. en violet signature, très gros</div></div></div>
+      <div class="frame v6"><h2 class="h1">
+        <span class="l1"><span class="seg">Le site calqué</span></span>
+        <span class="l1 seg-toi">sur <span class="toi">TOI.</span></span>
+        <span class="rot">ton univers.</span>
+      </h2></div>
+    </div>
+
+    <!-- 7 -->
+    <div class="card">
+      <div class="card-label"><div class="card-num">7</div><div><div class="card-name">Badge encadré</div><div class="card-desc">TOI. dans un cadre arrondi violet</div></div></div>
+      <div class="frame v7"><h2 class="h1">
+        <span class="l1"><span class="seg">Le site calqué</span></span>
+        <span class="l1 seg-toi">sur <span class="toi">TOI.</span></span>
+        <span class="rot">ton univers.</span>
+      </h2></div>
+    </div>
+
+    <!-- 8 -->
+    <div class="card">
+      <div class="card-label"><div class="card-num">8</div><div><div class="card-name">Point violet XL</div><div class="card-desc">TOI gros blanc, point violet marqué</div></div></div>
+      <div class="frame v8"><h2 class="h1">
+        <span class="l1"><span class="seg">Le site calqué</span></span>
+        <span class="l1 seg-toi">sur <span class="toi">TOI<span class="dot">.</span></span></span>
+        <span class="rot">ton univers.</span>
+      </h2></div>
+    </div>
+
+    <!-- 9 -->
+    <div class="card">
+      <div class="card-label"><div class="card-num">9</div><div><div class="card-name">Lettres espacées</div><div class="card-desc">T O I . étiré, impact graphique</div></div></div>
+      <div class="frame v9"><h2 class="h1">
+        <span class="l1"><span class="seg">Le site calqué</span></span>
+        <span class="l1 seg-toi">sur <span class="toi">TOI.</span></span>
+        <span class="rot">ton univers.</span>
+      </h2></div>
+    </div>
+
+    <!-- 10 -->
+    <div class="card">
+      <div class="card-label"><div class="card-num">10</div><div><div class="card-name">Effet calque</div><div class="card-desc">TOI. dédoublé décalé — clin d'œil Calquéo</div></div></div>
+      <div class="frame v10"><h2 class="h1">
+        <span class="l1"><span class="seg">Le site calqué</span></span>
+        <span class="l1 seg-toi">sur <span class="toi">TOI.</span></span>
+        <span class="rot">ton univers.</span>
+      </h2></div>
+    </div>
+
+    <!-- 11 bonus -->
+    <div class="card">
+      <div class="card-label"><div class="card-num">11</div><div><div class="card-name">Bonus — dégradé + point qui bat</div><div class="card-desc">TOI dégradé blanc→violet, point pulsant</div></div></div>
+      <div class="frame v11"><h2 class="h1">
+        <span class="l1"><span class="seg">Le site calqué</span></span>
+        <span class="l1 seg-toi">sur <span class="toi">TOI<span class="dot">.</span></span></span>
+        <span class="rot">ton univers.</span>
+      </h2></div>
+    </div>
+
+  </div>
+</body>
+</html>
