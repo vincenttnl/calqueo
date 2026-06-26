@@ -11,8 +11,8 @@
 <link rel="canonical" href="https://calqueo.fr/">
 
 <!-- Favicon SVG (logo C double trait — hybride A) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Crect width='60' height='60' rx='14' fill='%23FAFBFD'/%3E%3Cpath d='M 48 14 A 18 18 0 1 0 48 46' stroke='%230A2540' stroke-width='3.6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M 51 18 A 15 15 0 1 0 51 42' stroke='%23635BFF' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Crect width='60' height='60' rx='14' fill='%230A2540'/%3E%3Cpath d='M 48 14 A 18 18 0 1 0 48 46' stroke='white' stroke-width='3.6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M 51 18 A 15 15 0 1 0 51 42' stroke='%23635BFF' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Crect width='60' height='60' rx='14' fill='%23FAFBFD'/%3E%3Cpath d='M 44.375 19.167 A 18 18 0 1 0 44.375 40.833' stroke='%230A2540' stroke-width='3.6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M 44.375 19.167 A 15 15 0 1 0 44.375 40.833' stroke='%23635BFF' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Crect width='60' height='60' rx='14' fill='%230A2540'/%3E%3Cpath d='M 44.375 19.167 A 18 18 0 1 0 44.375 40.833' stroke='white' stroke-width='3.6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M 44.375 19.167 A 15 15 0 1 0 44.375 40.833' stroke='%23635BFF' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -741,6 +741,40 @@ body {
   transition: border-color 0.2s ease, transform 0.2s var(--ease-out-expo);
 }
 .btn-ghost:hover { border-color: var(--stripe-purple); transform: translateY(-2px); }
+
+/* ===== HERO VIDÉO (fond Prisma + teinte pastel) ===== */
+.hero--video { background: #0A2540; }
+.hero--video .hero-blobs,
+.hero--video .hero-sheets,
+.hero--video #particles-canvas { display: none !important; }
+.hero--video .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.hero--video .hero-bg-video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  /* étalonnage « Ciel max clair » : couleurs respectées, ciel bien éclairci */
+  filter: brightness(1.40) contrast(0.86) saturate(1.22);
+}
+/* ciel bleu de jour posé sur le HAUT (mode lighten) — éclaircit/bleute le ciel sombre */
+.hero--video .hero-bg-tint {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, #7CC0FF 0%, rgba(124,192,255,0) 46%);
+  mix-blend-mode: lighten; opacity: .85;
+}
+/* voile léger pour la lisibilité (sombre surtout en bas, ciel dégagé en haut) */
+.hero--video .hero-bg-veil {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(10,37,64,.22) 0%, transparent 38%, rgba(10,37,64,.60) 100%);
+}
+/* texte blanc lisible sur la vidéo */
+.hero--video h1 .h1-line1 { color: #fff; }
+.hero--video .h1-toi { color: #fff; }
+.hero--video .hero-lede { color: rgba(255,255,255,.92); }
+.hero--video .hero-meta-item { color: rgba(255,255,255,.92); }
+.hero--video .btn-ghost { color: #fff; border-color: rgba(255,255,255,.45); }
+.hero--video .btn-ghost:hover { border-color: #fff; }
+/* téléphone plus petit (desktop) — zoom = cadre + contenu scalés ensemble */
+@media (min-width: 1025px) {
+  .hero--video .phone-mockup { zoom: 0.82; }
+}
 
 /* Phone mockup */
 .phone-mockup {
@@ -4211,9 +4245,9 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-  .hero { grid-template-columns: 1fr; padding: 140px 40px 60px; gap: 50px; }
-  .hero-right { order: -1; }
-  .phone-mockup { width: 240px; height: 480px; }
+  .hero { grid-template-columns: 1.4fr 0.72fr; padding: 88px 20px 44px; gap: 14px; align-items: center; }
+  .hero-right { justify-content: flex-end; }
+  .phone-mockup { width: 300px; height: 600px; zoom: 0.5; }
   .floating-badge { display: none; }
   .process-grid {
     display: flex;
@@ -4278,8 +4312,19 @@ body {
   .nav { padding: 14px 20px; }
   /* nav-links visibility géré par .nav-links.open via le burger */
   .section { padding: 52px 20px; }
-  .hero { padding: 100px 20px 36px; }
-  .hero h1 { font-size: 36px; }
+  /* MOBILE : titre géant en haut · sous-titre+bulles au milieu · CTA en bas à gauche · téléphone en bas à droite */
+  .hero { grid-template-columns: 1fr; align-items: stretch; padding: 78px 20px 26px; min-height: 100vh; position: relative; }
+  .hero-left { display: flex; flex-direction: column; min-height: calc(100svh - 104px); position: relative; z-index: 3; }
+  .hero h1 { font-size: clamp(40px, 13vw, 68px); margin: 0; }
+  .hero h1 .h1-line1 { font-size: clamp(40px, 13vw, 68px); white-space: normal; line-height: 1.02; }
+  .hero h1 .h1-line1 .h1-seg { display: block; }   /* retours à la ligne : "Le site calqué" / "sur toi" */
+  .hero-rotating { font-size: clamp(44px, 14vw, 76px); }
+  .hero-lede { font-size: 16px; max-width: 48%; margin-top: auto; }
+  .hero-meta { flex-direction: column; gap: 9px; margin-bottom: 0; max-width: 50%; }
+  .hero-meta-item { font-size: 14px; }
+  .hero-buttons { flex-direction: column; align-items: flex-start; gap: 10px; margin-top: auto; }
+  .hero-right { position: absolute; right: 8px; bottom: 12px; z-index: 1; justify-content: flex-end; align-items: flex-end; }
+  .phone-mockup { width: 300px; height: 600px; zoom: 0.6; }
   .pricing-card.featured { transform: none; }
   .pricing-card.featured:hover { transform: translateY(-6px); }
   /* Barre de progression cachée sur mobile — créait confusion type "chargement" */
@@ -4388,10 +4433,14 @@ body {
   .footer-bottom .legal-links { flex-wrap: wrap; justify-content: center; gap: 8px 16px; }
 }
 @media (max-width: 480px) {
-  .hero-meta { flex-direction: column; gap: 10px; }
-  .hero-buttons { flex-direction: column; }
-  .hero-buttons .btn-primary, .hero-buttons .btn-ghost { width: 100%; justify-content: center; }
-  .phone-mockup { width: 200px; height: 400px; }
+  .hero-meta { flex-direction: column; gap: 8px; max-width: 48%; }
+  .hero-meta-item { font-size: 13px; }
+  .hero-buttons { flex-direction: column; align-items: flex-start; gap: 9px; margin-top: auto; }
+  .hero-buttons .btn-primary, .hero-buttons .btn-ghost { width: auto; justify-content: center; }
+  .hero h1 .h1-line1 { font-size: clamp(36px, 13vw, 56px); }
+  .hero-rotating { font-size: clamp(40px, 14vw, 64px); }
+  .hero-lede { max-width: 46%; font-size: 15px; }
+  .phone-mockup { width: 300px; height: 600px; zoom: 0.55; }
   .after-stats { flex-direction: column; }
 }
 
@@ -4800,8 +4849,8 @@ body {
     <span class="nav-logo-wrap">
       <canvas class="nav-logo-fw" id="navLogoFw" width="80" height="80" aria-hidden="true"></canvas>
       <svg class="nav-logo-svg" width="32" height="32" viewBox="0 0 60 60" fill="none" aria-label="Logo Calquéo">
-        <path d="M 48 14 A 18 18 0 1 0 48 46" stroke="#0A2540" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-        <path d="M 51 18 A 15 15 0 1 0 51 42" stroke="#635BFF" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M 44.375 19.167 A 18 18 0 1 0 44.375 40.833" stroke="#0A2540" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M 44.375 19.167 A 15 15 0 1 0 44.375 40.833" stroke="#635BFF" stroke-width="1.8" fill="none" stroke-linecap="round"/>
       </svg>
     </span>
     <span class="nav-brand-text">Calquéo<span style="color:var(--stripe-purple)">.</span></span>
@@ -4820,7 +4869,12 @@ body {
 <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
 <!-- HERO -->
-<section class="hero" id="hero">
+<section class="hero hero--video" id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <video class="hero-bg-video" autoplay loop muted playsinline src="assets/prisma-base-video.mp4"></video>
+    <div class="hero-bg-tint"></div>
+    <div class="hero-bg-veil"></div>
+  </div>
   <div class="hero-blobs">
     <div class="hero-blob"></div>
     <div class="hero-blob"></div>
@@ -4835,7 +4889,7 @@ body {
 
   <div class="hero-left">
     <h1>
-      <span class="h1-line1">Le site calqué sur <span class="h1-toi">TOI.</span></span>
+      <span class="h1-line1"><span class="h1-seg">Le site calqué</span> <span class="h1-seg">sur <span class="h1-toi">TOI.</span></span></span>
       <span class="hero-rotating" id="heroRotating"><span class="hero-rotating-word active">ton univers.</span></span>
     </h1>
     <p class="hero-lede" id="heroLede"></p>
@@ -4965,22 +5019,7 @@ body {
 </section>
 
 <!-- TRUST MARQUEE -->
-<section class="trust-marquee">
-  <div class="marquee-track">
-    <span class="marquee-item">Prix fixe garanti</span>
-    <span class="marquee-item">Livré en 3 semaines</span>
-    <span class="marquee-item">Un seul interlocuteur</span>
-    <span class="marquee-item">Sur-mesure pour de vrai</span>
-    <span class="marquee-item">Joignable après livraison</span>
-    <span class="marquee-item">Prix fixe garanti</span>
-    <span class="marquee-item">Livré en 3 semaines</span>
-    <span class="marquee-item">Un seul interlocuteur</span>
-    <span class="marquee-item">Sur-mesure pour de vrai</span>
-    <span class="marquee-item">Joignable après livraison</span>
-    <span class="marquee-item">Prix fixe garanti</span>
-    <span class="marquee-item">Livré en 3 semaines</span>
-  </div>
-</section>
+<!-- bande trust-marquee retirée à la demande -->
 
 <!-- BEFORE/AFTER -->
 <section class="before-after" id="before-after">
@@ -5755,8 +5794,8 @@ body {
     <div class="footer-brand">
       <div class="footer-logo">
         <svg width="28" height="28" viewBox="0 0 60 60" fill="none" aria-label="Logo Calquéo">
-          <path d="M 48 14 A 18 18 0 1 0 48 46" stroke="#ffffff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-          <path d="M 51 18 A 15 15 0 1 0 51 42" stroke="#635BFF" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M 44.375 19.167 A 18 18 0 1 0 44.375 40.833" stroke="#ffffff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M 44.375 19.167 A 15 15 0 1 0 44.375 40.833" stroke="#635BFF" stroke-width="1.8" fill="none" stroke-linecap="round"/>
         </svg>
         <span>Calquéo<span style="color:var(--stripe-purple)">.</span></span>
       </div>

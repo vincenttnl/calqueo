@@ -8,6 +8,9 @@ maneo/
 *.backup
 *~
 
+# Carte de visite (contient le téléphone perso — non publié sur le repo public)
+Carte de visite/
+
 # HTML d'audit / sélection interne (non publiés)
 audit-*.html
 anim-h1-*.html
@@ -21,3 +24,16 @@ trust-band-*.html
 before-after-*.html
 photos-plomberie-*.html
 og-image-source.html
+
+# Maquettes / explorations hero (non publiées)
+hero-explorations-*.html
+horizon-hero-*.html
+prisma-*.html
+packs-curseur-*.html
+index-work.html
+err.txt
+
+# Dossiers de travail logo (sources + exports lourds — non publiés sur le site)
+logo v2/
+logo v3/
+logo-export/
