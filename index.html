@@ -585,10 +585,10 @@ body {
   position: absolute;
   left: 50%; top: 50%;
   transform: translate(-50%, -50%);
-  width: 200%; height: 360%;
+  width: 138%; height: 175%;   /* diamètre resserré autour de TOI (ne déborde pas) */
   border-radius: 50%;
   background: radial-gradient(circle, rgba(195,185,255,1), rgba(99,91,255,.78) 40%, transparent 72%);
-  filter: blur(0.6em);
+  filter: blur(0.45em);
   z-index: -2;
   pointer-events: none;
   animation: toiHalo 1.9s ease-in-out infinite;
@@ -606,12 +606,12 @@ body {
   animation: toiHalo2 2.7s ease-in-out infinite;
 }
 @keyframes toiHalo {
-  0%, 100% { opacity: .7; transform: translate(-50%, -50%) scale(.8); }
-  50%      { opacity: 1;  transform: translate(-50%, -50%) scale(1.42); }
+  0%, 100% { opacity: .7; transform: translate(-50%, -50%) scale(.85); }
+  50%      { opacity: 1;  transform: translate(-50%, -50%) scale(1.12); }
 }
 @keyframes toiHalo2 {
-  0%, 100% { opacity: .4;  transform: translate(-50%, -50%) scale(1.05); }
-  50%      { opacity: .85; transform: translate(-50%, -50%) scale(1.25); }
+  0%, 100% { opacity: .4;  transform: translate(-50%, -50%) scale(.95); }
+  50%      { opacity: .85; transform: translate(-50%, -50%) scale(1.08); }
 }
 /* Glitch léger (décalage RGB cyan/rose, ponctuel) */
 .hero h1 .h1-toi { animation: toiGlitch 3s steps(1) infinite; }
