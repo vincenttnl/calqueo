@@ -262,7 +262,28 @@ body {
 .nav-brand, .nav-links, .nav-burger { position: relative; z-index: 2; }
 
 .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-logo-wrap { position: relative; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+.nav-logo-wrap { position: relative; width: 54px; height: 54px; display: inline-flex; align-items: center; justify-content: center; }
+/* Aura violette douce derrière le logo C */
+.nav-logo-wrap::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%; height: 150%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99,91,255,.55), rgba(99,91,255,0) 70%);
+  filter: blur(6px);
+  z-index: 0;
+  pointer-events: none;
+  animation: navLogoAura 3s ease-in-out infinite;
+}
+@keyframes navLogoAura {
+  0%, 100% { opacity: .6; transform: translate(-50%, -50%) scale(.92); }
+  50%      { opacity: 1;  transform: translate(-50%, -50%) scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-logo-wrap::before { animation: none; }
+}
 .nav-logo-fw { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
 .nav-logo-fw.firing { opacity: 1; }
 .nav-logo-svg { position: relative; z-index: 1; }
@@ -4921,7 +4942,7 @@ body {
   <a href="#" class="nav-brand" id="navBrand">
     <span class="nav-logo-wrap">
       <canvas class="nav-logo-fw" id="navLogoFw" width="80" height="80" aria-hidden="true"></canvas>
-      <svg class="nav-logo-svg" width="44" height="44" viewBox="0 0 60 60" fill="none" aria-label="Logo Calquéo">
+      <svg class="nav-logo-svg" width="54" height="54" viewBox="0 0 60 60" fill="none" aria-label="Logo Calquéo">
         <path d="M 44.375 19.167 A 18 18 0 1 0 44.375 40.833" stroke="#0A2540" stroke-width="1.8" fill="none" stroke-linecap="round"/>
         <path d="M 44.375 19.167 A 15 15 0 1 0 44.375 40.833" stroke="#635BFF" stroke-width="1.8" fill="none" stroke-linecap="round"/>
       </svg>
