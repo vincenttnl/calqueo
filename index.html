@@ -4136,31 +4136,6 @@ body {
   box-shadow: var(--shadow-md);
 }
 .form-group { margin-bottom: 12px; }
-.form-pack-hint {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
-  margin: 0 0 20px;
-  background: rgba(99,91,255,0.06);
-  border: 1px solid rgba(99,91,255,0.18);
-  border-radius: var(--radius-btn);
-  font-size: 13px;
-  color: var(--stripe-indigo);
-}
-.form-pack-hint strong { color: var(--stripe-purple); }
-.form-pack-clear {
-  background: transparent;
-  border: none;
-  color: var(--slate-500);
-  font-size: 12px;
-  cursor: pointer;
-  text-decoration: underline;
-  padding: 0;
-  font-family: 'Onest', sans-serif;
-}
-.form-pack-clear:hover { color: var(--stripe-indigo); }
 .form-group label {
   display: block;
   font-size: 13px;
@@ -5819,9 +5794,18 @@ body {
     <div class="contact-form reveal" id="contactForm">
       <form id="theForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact">
-        <input type="hidden" name="pack" id="formPack" value="">
         <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
-        <div class="form-pack-hint" id="formPackHint" hidden>Tu m'écris pour le pack <strong id="formPackHintLabel"></strong>. <button type="button" class="form-pack-clear" onclick="clearPackHint()">changer</button></div>
+        <div class="form-group">
+          <label for="pack">Pack souhaité</label>
+          <select id="pack" name="pack">
+            <option value="" selected>Je ne sais pas encore</option>
+            <option>Démarrage</option>
+            <option>Signature</option>
+            <option>Premium</option>
+            <option>Sur-mesure</option>
+            <option value="Application">Application métier</option>
+          </select>
+        </div>
         <div class="form-group">
           <label for="name">Toi (nom)</label>
           <input type="text" id="name" name="name" placeholder="Jean Dupont" required autocomplete="name">
@@ -6112,13 +6096,10 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     // Si le lien porte un data-pack, on pré-remplit le hidden field du form
     const pack = a.dataset.pack;
     if (pack) {
-      const packInput = document.getElementById('formPack');
-      const hint = document.getElementById('formPackHint');
-      const hintLabel = document.getElementById('formPackHintLabel');
-      if (packInput) packInput.value = pack;
-      if (hint && hintLabel) {
-        hintLabel.textContent = pack;
-        hint.hidden = false;
+      // Pré-sélectionne le pack dans le menu déroulant (reste modifiable par l'utilisateur)
+      const packSelect = document.getElementById('pack');
+      if (packSelect && Array.from(packSelect.options).some(o => o.value === pack)) {
+        packSelect.value = pack;
       }
     }
     const target = document.querySelector(a.getAttribute('href'));
@@ -6166,13 +6147,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 })();
-
-function clearPackHint() {
-  const packInput = document.getElementById('formPack');
-  const hint = document.getElementById('formPackHint');
-  if (packInput) packInput.value = '';
-  if (hint) hint.hidden = true;
-}
 
 // ===== TYPING EFFECT — #41 fluid (vitesse variable selon ponctuation) =====
 function startTyping() {
