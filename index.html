@@ -921,7 +921,7 @@ body {
 /* === UNIVERS 1 — Cabinet Léa (psy) : aéré, serif, témoignage long === */
 .u1-header {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 14px 20px;
+  padding: 34px 20px 14px;   /* top augmenté pour passer SOUS l'encoche (notch) */
 }
 .u1-mark {
   font-size: 11px; font-weight: 600;
@@ -1025,7 +1025,7 @@ body {
 /* === UNIVERS 2 — Studio Juliette (photographe) : éditorial mosaïque === */
 .u2-header {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 12px 14px;
+  padding: 34px 14px 12px;   /* top augmenté pour passer SOUS l'encoche (notch) */
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .u2-num {
@@ -1135,7 +1135,7 @@ body {
 /* === UNIVERS 3 — Atelier Martin (plombier) : technique, dense, grille tarif === */
 .u3-header {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 12px;
+  padding: 34px 12px 10px;   /* top augmenté pour passer SOUS l'encoche (notch) — sinon "ATELIER MARTIN" est masqué */
   background: var(--u-bg);
   border-bottom: 1px solid #E5E7EB;
 }
@@ -4465,7 +4465,7 @@ body {
   .hero-rotating { font-size: clamp(40px, 14vw, 64px); }
   .hero-lede { max-width: 230px; font-size: 14px; margin-top: 6px; }   /* sous-titre remonté (ne touche plus le garçon) */
   /* ⚠️ C'EST CETTE RÈGLE qui pilote la taille du téléphone sur les vrais smartphones (< 480px), pas celle du bloc 768px */
-  .phone-mockup { width: 300px; height: 600px; zoom: 0.34; }   /* téléphone réduit (~−40 % vs 0.55) — Safari rend bien zoom (cf. capture iPhone à 0.55) */
+  .phone-mockup { width: 300px; height: 600px; zoom: 0.39; }   /* +15 % vs 0.34 — Safari rend bien zoom (cf. capture iPhone) */
   .after-stats { flex-direction: column; }
 }
 
