@@ -4348,7 +4348,7 @@ body {
   /* Boutons remontés : juste sous le sous-titre, plus collés au bas de l'écran */
   .hero-buttons { flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 26px; }
   .hero-right { position: absolute; right: 8px; bottom: 12px; z-index: 1; justify-content: flex-end; align-items: flex-end; }
-  .phone-mockup { width: 300px; height: 600px; zoom: 0.10; }   /* téléphone encore réduit (−35 %) — le zoom réduit aussi le contenu interne */
+  .phone-mockup { width: 300px; height: 600px; zoom: 0.45; }   /* plage 480-768px ; les vrais smartphones (<480) sont pilotés par le bloc 480px plus bas */
   .pricing-card.featured { transform: none; }
   .pricing-card.featured:hover { transform: translateY(-6px); }
   /* Barre de progression cachée sur mobile — créait confusion type "chargement" */
@@ -4463,8 +4463,9 @@ body {
   .hero-buttons .btn-primary, .hero-buttons .btn-ghost { width: auto; justify-content: center; }
   .hero h1 .h1-line1 { font-size: clamp(36px, 13vw, 56px); }
   .hero-rotating { font-size: clamp(40px, 14vw, 64px); }
-  .hero-lede { max-width: 230px; font-size: 14px; margin-top: 14px; }
-  .phone-mockup { width: 300px; height: 600px; zoom: 0.55; }
+  .hero-lede { max-width: 230px; font-size: 14px; margin-top: 6px; }   /* sous-titre remonté (ne touche plus le garçon) */
+  /* ⚠️ C'EST CETTE RÈGLE qui pilote la taille du téléphone sur les vrais smartphones (< 480px), pas celle du bloc 768px */
+  .phone-mockup { width: 300px; height: 600px; zoom: 0.34; }   /* téléphone réduit (~−40 % vs 0.55) — Safari rend bien zoom (cf. capture iPhone à 0.55) */
   .after-stats { flex-direction: column; }
 }
 
@@ -5896,7 +5897,9 @@ window.addEventListener('scroll', () => {
 
   // Phone parallax
   const phone = document.getElementById('phoneMockup');
-  if (phone) {
+  // Parallaxe uniquement en desktop (>1024px). En dessous, la taille du téléphone
+  // est gérée par transform:scale() en CSS — il ne faut pas l'écraser ici.
+  if (phone && window.innerWidth > 1024) {
     const rect = phone.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
       phone.style.transform = `translateY(${window.scrollY * 0.05}px)`;
