@@ -104,20 +104,23 @@ Outil simple dès 4 900€ · Outil métier dès 9 900€ · Outil complet dès 
 
 ```
 CALQUEO/
-├── brand-book.md          ← source de vérité unique
+├── index.html             ← site V5 (homepage Karim) ⚠️ SEUL HTML servi à la racine
+├── og-image.png / robots.txt / sitemap.xml / netlify.toml
+├── brand-book.md          ← source de vérité unique (bloqué 404 en ligne)
 ├── CLAUDE.md              ← ce doc
-├── rebranding-noms.md     ← 400 pistes à shortlister
-├── index.html             ← site V5 (homepage Karim)
-├── signature.html         ← page vente Camille
-├── cgv.html / mentions-legales.html / politique-confidentialite.html
-├── _legal-shared.css
-├── robots.txt / sitemap.xml
-├── calqueo/                 ← vault Obsidian (études INTERNES, ne pas modifier)
+├── rebranding-noms.md / rebranding-shortlist.md  ← historique noms (bloqués 404)
+├── legal/                 ← pages légales regroupées (rangement 2026-06-26)
+│   ├── cgv.html / mentions-legales.html / politique-confidentialite.html
+│   └── _legal-shared.css   (anciennes URLs /cgv.html etc. → redirigées 301 dans netlify.toml)
+├── assets/                ← images + vidéo du site (servis)
+├── _etudes/               ← vault Obsidian (études INTERNES, ex-dossier "maneo", gitignoré, ne pas modifier)
 │   ├── etude-100-profils-INTERNE.md
 │   ├── etude-apps-positionnement-INTERNE.md
 │   ├── etude-marche-INTERNE.md
 │   ├── etude-pricing-INTERNE v2.md
 │   └── copy-page-camille-V1.md
+├── _explorations/         ← maquettes/brouillons HTML (gitignoré) : hero, prisma, anims, navbar, audits
+├── _logos/                ← tous les logos (officiel = _logos/logo v3/PACK OFFICIEL/, gitignoré)
 └── _archive/              ← anciennes versions (ne pas exhumer sans raison)
 ```
 

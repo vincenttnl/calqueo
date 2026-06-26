@@ -1,6 +1,22 @@
 [build]
   publish = "."
 
+# Pages légales regroupées dans /legal/ (rangement 2026-06-26) — redirections 301 des anciennes URLs
+[[redirects]]
+  from = "/cgv.html"
+  to = "/legal/cgv.html"
+  status = 301
+
+[[redirects]]
+  from = "/mentions-legales.html"
+  to = "/legal/mentions-legales.html"
+  status = 301
+
+[[redirects]]
+  from = "/politique-confidentialite.html"
+  to = "/legal/politique-confidentialite.html"
+  status = 301
+
 # Bloquer l'accès aux fichiers internes (études, brand-book, archives, instructions Claude)
 [[redirects]]
   from = "/_archive/*"

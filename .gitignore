@@ -2,7 +2,7 @@
 .DS_Store
 
 # Vault Obsidian — études internes, copy non publiée, brainstorms
-maneo/
+_etudes/
 
 # Backups locaux éventuels
 *.backup
@@ -37,3 +37,7 @@ err.txt
 logo v2/
 logo v3/
 logo-export/
+
+# Rangement 2026-06 : dossiers internes regroupés (non publiés sur le site)
+_explorations/
+_logos/
