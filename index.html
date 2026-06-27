@@ -4046,14 +4046,6 @@ body {
 }
 .slider-v2.user-engaged .slider-hint { display: none; }
 
-/* Particles canvas overlay pour le drag */
-.slider-particles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 11;
-}
-
 /* Halo du conteneur (pour attirer l'œil au scroll-in) */
 .slider-v2 {
   box-shadow:
@@ -4069,37 +4061,6 @@ body {
 
 /* Counter animé pour stats du AFTER */
 .av2-num.counting { color: var(--am-copper); }
-
-/* Reveal stagger des sections du AFTER (titre + sub + stats apparaissent en cascade) */
-.slider-v2.intro-played .av2-hero-text > * { animation: avFadeUp 0.6s cubic-bezier(.65,0,.35,1) backwards; }
-.slider-v2.intro-played .av2-hero-text .av2-eyebrow { animation-delay: 0.0s; }
-.slider-v2.intro-played .av2-hero-text .av2-title { animation-delay: 0.15s; }
-.slider-v2.intro-played .av2-hero-text .av2-sub { animation-delay: 0.35s; }
-.slider-v2.intro-played .av2-hero-text .av2-btns { animation-delay: 0.5s; }
-@keyframes avFadeUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Mini burst quand on dépasse 50% en glissant — décoration optionnelle */
-.slider-burst {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 0; height: 0;
-  pointer-events: none;
-  z-index: 13;
-}
-.slider-burst span {
-  position: absolute;
-  top: 0; left: 0;
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  animation: burstOut 0.8s ease-out forwards;
-}
-@keyframes burstOut {
-  0%   { opacity: 1; transform: translate(0, 0) scale(1); }
-  100% { opacity: 0; transform: translate(var(--bx, 60px), var(--by, -40px)) scale(0.3); }
-}
 
 @media (max-width: 600px) {
   .slider-v2 .av2-title { font-size: 18px; }
@@ -5471,9 +5432,7 @@ body {
       <span class="slider-handle-icon" aria-hidden="true">⟷</span>
     </div>
     <input type="range" class="slider-range" id="sliderRange" min="0" max="100" value="50" aria-label="Position du curseur de comparaison avant/après">
-    <canvas class="slider-particles" id="sliderParticles" aria-hidden="true"></canvas>
     <div class="slider-hint" aria-hidden="true">← Glisse pour comparer →</div>
-    <div class="slider-burst" id="sliderBurst" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -6377,18 +6336,15 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   updateActive();
 })();
 
-// ===== BEFORE/AFTER SLIDER — wow factor (drag + clavier + auto-démo + counter + particles) =====
+// ===== BEFORE/AFTER SLIDER — drag direct (souris + tactile + clavier + counter) =====
 (function() {
   const container = document.getElementById('sliderContainer');
   const before = document.getElementById('sliderBefore');
   const handle = document.getElementById('sliderHandle');
   const range = document.getElementById('sliderRange');
-  const canvas = document.getElementById('sliderParticles');
-  const burst = document.getElementById('sliderBurst');
   if (!container || !before || !handle || !range) return;
   let isDragging = false;
   let userEngaged = false;
-  let introPlayed = false;
 
   function setPos(percent) {
     const minP = 5;
@@ -6410,84 +6366,6 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     container.classList.add('user-engaged');
   }
 
-  // ===== Particles canvas overlay (jaune+navy au drag) =====
-  let particles = [];
-  let ctx = null;
-  if (canvas) {
-    ctx = canvas.getContext('2d');
-    function resizeCanvas() {
-      const r = container.getBoundingClientRect();
-      canvas.width = r.width;
-      canvas.height = r.height;
-    }
-    resizeCanvas();
-    new ResizeObserver(resizeCanvas).observe(container);
-  }
-  const PARTICLE_COLORS = ['#F59E0B', '#0F766E', '#FCD34D'];
-  function spawnParticles(x, y, n) {
-    for (let i = 0; i < n; i++) {
-      particles.push({
-        x, y,
-        vx: (Math.random() - 0.5) * 4,
-        vy: (Math.random() - 0.5) * 4 - 1,
-        r: 1.5 + Math.random() * 2,
-        life: 1,
-        color: PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)]
-      });
-    }
-  }
-  function drawParticles() {
-    if (!ctx) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles = particles.filter(p => p.life > 0);
-    particles.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      p.vy += 0.1;  // gravité
-      p.life -= 0.025;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r * p.life, 0, Math.PI * 2);
-      ctx.fillStyle = p.color + Math.floor(p.life * 255).toString(16).padStart(2, '0');
-      ctx.fill();
-    });
-    requestAnimationFrame(drawParticles);
-  }
-  drawParticles();
-
-  function emitAtHandle(intensity = 3) {
-    if (!ctx) return;
-    const rect = container.getBoundingClientRect();
-    const handleRect = handle.getBoundingClientRect();
-    const x = handleRect.left - rect.left + handleRect.width / 2;
-    const y = handleRect.top - rect.top + handleRect.height / 2;
-    spawnParticles(x, y, intensity);
-  }
-
-  // ===== Mini burst quand on traverse 50% =====
-  let lastPos = 50;
-  function checkCrossing(newPos) {
-    if ((lastPos < 50 && newPos >= 50) || (lastPos > 50 && newPos <= 50)) {
-      // burst au centre du handle
-      if (burst) {
-        const rect = container.getBoundingClientRect();
-        const handleRect = handle.getBoundingClientRect();
-        const bx = handleRect.left - rect.left + handleRect.width / 2;
-        const by = handleRect.top - rect.top + handleRect.height / 2;
-        burst.style.left = bx + 'px';
-        burst.style.top = by + 'px';
-        for (let i = 0; i < 12; i++) {
-          const sparkle = document.createElement('span');
-          const angle = (i / 12) * Math.PI * 2;
-          sparkle.style.setProperty('--bx', Math.cos(angle) * 55 + 'px');
-          sparkle.style.setProperty('--by', Math.sin(angle) * 55 + 'px');
-          sparkle.style.background = PARTICLE_COLORS[i % 3];
-          burst.appendChild(sparkle);
-          setTimeout(() => sparkle.remove(), 850);
-        }
-      }
-    }
-    lastPos = newPos;
-  }
-
   // ===== Drag events =====
   container.addEventListener('mousedown', (e) => {
     if (e.target === range) return;
@@ -6497,12 +6375,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     updateFromX(e.clientX);
   });
   window.addEventListener('mousemove', (e) => {
-    if (isDragging) {
-      updateFromX(e.clientX);
-      emitAtHandle(2);
-      const newPos = parseFloat(range.value);
-      checkCrossing(newPos);
-    }
+    if (isDragging) updateFromX(e.clientX);
   });
   window.addEventListener('mouseup', () => {
     isDragging = false;
@@ -6516,8 +6389,6 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     if (isDragging) {
       e.preventDefault();
       updateFromX(e.touches[0].clientX);
-      emitAtHandle(2);
-      checkCrossing(parseFloat(range.value));
     }
   }, { passive: false });
   container.addEventListener('touchend', () => {
@@ -6527,54 +6398,8 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     setPos(parseFloat(range.value));
     markEngaged();
   });
+  // Position initiale : centré, directement draggable (aucune intro auto)
   setPos(50);
-
-  // ===== Auto-démo cinématique au scroll-in =====
-  function playIntro() {
-    if (introPlayed) return;
-    introPlayed = true;
-    container.classList.add('intro-played');
-    // Anim : 50 → 92 (before visible) → 18 (after visible) → 50 (équilibre)
-    const sequence = [
-      { to: 92, dur: 900, delay: 200 },
-      { to: 18, dur: 1600, delay: 800 },
-      { to: 50, dur: 1100, delay: 800 }
-    ];
-    let totalDelay = 0;
-    let prevTo = 50;
-    sequence.forEach(step => {
-      totalDelay += step.delay;
-      setTimeout(() => animatePos(prevTo, step.to, step.dur), totalDelay);
-      totalDelay += step.dur;
-      prevTo = step.to;
-    });
-  }
-  function animatePos(from, to, dur) {
-    const start = performance.now();
-    function tick(now) {
-      const t = Math.min(1, (now - start) / dur);
-      // ease cubic out
-      const eased = 1 - Math.pow(1 - t, 3);
-      const v = from + (to - from) * eased;
-      setPos(v);
-      checkCrossing(v);
-      if (Math.random() < 0.35) emitAtHandle(1);
-      if (t < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }
-  // Trigger via IntersectionObserver
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting && !introPlayed) {
-          playIntro();
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.4 });
-    io.observe(container);
-  }
 
   // ===== Counter animé sur les stats du AFTER =====
   function animateCounters() {
