@@ -4338,6 +4338,17 @@ body {
   .nav { padding: 10px 20px; }
   /* nav-links visibility géré par .nav-links.open via le burger */
   .section { padding: 52px 20px; }
+  /* ===== TITRES MOBILE : chaque phrase sur sa propre ligne, tailles ajustées ===== */
+  .section-title { font-size: 27px; line-height: 1.22; }
+  .ttl-line { display: block; }   /* desktop = inline (1 ligne) · mobile = 1 phrase / ligne */
+  .section-subtitle { font-size: 15px; line-height: 1.5; text-wrap: balance; }
+  .about-header h2, .contact-left h2 { font-size: 26px; line-height: 1.22; }
+  .contact-left h2 { text-wrap: balance; }
+  .metiers-cta a { font-size: 14px; }
+  /* Process : les 3 délais en liste, 1 pack par ligne (desktop = inline entre parenthèses) */
+  .proc-durs { display: block; margin-top: 8px; font-weight: 600; color: var(--stripe-purple); }
+  .proc-dur { display: block; }
+  .proc-sep, .proc-paren { display: none; }
   /* MOBILE : titre géant en haut · sous-titre+bulles au milieu · CTA en bas à gauche · téléphone en bas à droite */
   /* Hero plein écran mobile : svh = hauteur réellement visible (barres incluses) → pas de scroll pour tout voir */
   .hero { grid-template-columns: 1fr; align-items: stretch; padding: 88px 20px 20px; min-height: 100svh; position: relative; }
@@ -4472,6 +4483,9 @@ body {
   /* ⚠️ C'EST CETTE RÈGLE qui pilote la taille du téléphone sur les vrais smartphones (< 480px), pas celle du bloc 768px */
   .phone-mockup { width: 300px; height: 600px; zoom: 0.39; }   /* +15 % vs 0.34 — Safari rend bien zoom (cf. capture iPhone) */
   .after-stats { flex-direction: column; }
+  /* Titres un cran plus petits sur vrais smartphones étroits */
+  .section-title { font-size: 24px; }
+  .about-header h2, .contact-left h2 { font-size: 23px; }
 }
 
 /* ===== APPLICATION STRIP (section séparée, plus discrète) ===== */
@@ -5055,7 +5069,7 @@ body {
 <section class="before-after" id="before-after">
   <div class="before-after-header reveal">
     <p class="section-eyebrow">Le résultat</p>
-    <h2 class="section-title">Avant. Après. Glisse pour voir.</h2>
+    <h2 class="section-title"><span class="ttl-line">Avant, après.</span> <span class="ttl-line">Glisse pour voir.</span></h2>
   </div>
   <div class="slider-container reveal slider-v2" id="sliderContainer">
     <span class="slider-label before-label">Avant</span>
@@ -5479,8 +5493,8 @@ body {
 <section class="section process" id="process">
   <div class="process-header">
     <p class="section-eyebrow reveal">Le process</p>
-    <h2 class="section-title reveal">Trois étapes. Trois semaines. Ton site est en ligne.</h2>
-    <p class="section-subtitle reveal" style="margin:0 auto;">Simple, efficace, sans réunion à rallonge. (Démarrage 7 jours · Signature 3 semaines · Premium 5 semaines.)</p>
+    <h2 class="section-title reveal"><span class="ttl-line">Trois étapes.</span> <span class="ttl-line">Trois semaines.</span> <span class="ttl-line">Ton site est en ligne.</span></h2>
+    <p class="section-subtitle reveal" style="margin:0 auto;">Simple, efficace, sans réunion à rallonge. <span class="proc-durs"><span class="proc-paren">(</span><span class="proc-dur">Démarrage 7 jours</span><span class="proc-sep"> · </span><span class="proc-dur">Signature 3 semaines</span><span class="proc-sep"> · </span><span class="proc-dur">Premium 5 semaines</span><span class="proc-paren">.)</span></span></p>
   </div>
   <div class="process-grid">
     <div class="process-card reveal">
@@ -5535,7 +5549,7 @@ body {
 <section class="section pricing" id="pricing">
   <div class="pricing-header reveal">
     <p class="section-eyebrow">Trois packs · prix fixe</p>
-    <h2 class="section-title">Un pack, un prix. Zéro mauvaise surprise.</h2>
+    <h2 class="section-title"><span class="ttl-line">Un pack, un prix.</span> <span class="ttl-line">Zéro mauvaise surprise.</span></h2>
     <p class="section-subtitle">Tu lances ? Tu installes ton image ? Tu vises plus haut ? Un pack pour chaque moment.</p>
   </div>
   <div class="pricing-grid">
@@ -5747,7 +5761,7 @@ body {
   <div class="contact-grid">
     <div class="contact-left reveal">
       <p class="section-eyebrow">Prendre rendez-vous</p>
-      <h2>Un échange de 30 min. Gratuit et sans engagement.</h2>
+      <h2><span class="ttl-line">Un échange de 30 min.</span> <span class="ttl-line">Gratuit et sans engagement.</span></h2>
       <p>Tu me racontes ton activité, ce que tu veux montrer. Je t'écoute, et je te dis honnêtement si je peux t'aider — ou pas. Pas de pression.</p>
     </div>
     <div class="contact-form reveal" id="contactForm">
