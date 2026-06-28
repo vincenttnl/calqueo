@@ -1951,8 +1951,9 @@ body {
 .process .section-subtitle { color: var(--slate-400); }
 /* Process : les 3 délais en liste, 1 par ligne (desktop + mobile) */
 .proc-durs { display: block; margin-top: 10px; font-weight: 600; color: #fff; }
-.proc-dur { display: block; line-height: 1.7; }
-.proc-sep, .proc-paren { display: none; }
+.proc-dur { display: inline; line-height: 1.7; white-space: nowrap; }
+.proc-sep { display: inline; }
+.proc-paren { display: none; }
 /* Flèche de progression du titre : blanche, contour violet électrique */
 .proc-arrow {
   display: inline-block;
@@ -2563,8 +2564,30 @@ body {
 }
 
 /* ===== BEFORE AFTER ===== */
-.before-after { padding: 48px 48px; }
-.before-after-header { text-align: center; margin-bottom: 22px; }
+.before-after { padding: 48px 48px; position: relative; overflow: hidden; }
+.before-after-header { text-align: center; margin-bottom: 22px; position: relative; z-index: 2; }
+
+/* Aurore animée derrière le slider (effet 02+) */
+.ba-stage { position: relative; max-width: 900px; margin: 0 auto; }
+.ba-aurora {
+  position: absolute; inset: -80px; z-index: 0; border-radius: 48px; pointer-events: none;
+  background:
+    radial-gradient(50% 45% at 18% 22%, rgba(99,91,255,.75), transparent 65%),
+    radial-gradient(48% 45% at 82% 28%, rgba(0,212,255,.70), transparent 65%),
+    radial-gradient(55% 55% at 50% 92%, rgba(255,107,157,.60), transparent 65%),
+    radial-gradient(40% 40% at 70% 65%, rgba(99,91,255,.55), transparent 60%);
+  background-size: 200% 200%;
+  filter: blur(38px);
+  opacity: .85;
+  animation: baAurora 10s ease infinite;
+}
+@keyframes baAurora {
+  0%, 100% { background-position: 0% 0%, 100% 0%, 50% 100%, 60% 40%; }
+  50%      { background-position: 100% 60%, 0% 70%, 30% 30%, 20% 80%; }
+}
+@media (prefers-reduced-motion: reduce) { .ba-aurora { animation: none; } }
+.ba-stage > .slider-container { position: relative; z-index: 1; }
+
 .slider-container {
   max-width: 900px;
   margin: 0 auto;
@@ -5078,7 +5101,9 @@ body {
     <p class="section-eyebrow">Le résultat</p>
     <h2 class="section-title"><span class="ttl-line">Avant, après.</span> <span class="ttl-line">Glisse pour voir.</span></h2>
   </div>
-  <div class="slider-container reveal slider-v2" id="sliderContainer">
+  <div class="ba-stage reveal">
+    <div class="ba-aurora" aria-hidden="true"></div>
+  <div class="slider-container slider-v2" id="sliderContainer">
     <span class="slider-label before-label">Avant</span>
     <span class="slider-label after-label">Après</span>
 
@@ -5455,6 +5480,7 @@ body {
     <input type="range" class="slider-range" id="sliderRange" min="0" max="100" value="50" aria-label="Position du curseur de comparaison avant/après">
     <div class="slider-hint" aria-hidden="true">← Glisse pour comparer →</div>
   </div>
+  </div>
 </section>
 
 <!-- METIERS -->
@@ -5557,7 +5583,7 @@ body {
   <div class="pricing-header reveal">
     <p class="section-eyebrow">Trois packs · prix fixe</p>
     <h2 class="section-title"><span class="ttl-line">Un pack, un prix.</span> <span class="ttl-line">Zéro mauvaise surprise.</span></h2>
-    <p class="section-subtitle">Tu lances ? Tu installes ton image ?<br>Un pack pour chaque moment.</p>
+    <p class="section-subtitle">Tu lances ton business ? Tu installes ton image ?<br>Un pack pour chaque moment.</p>
   </div>
   <div class="pricing-grid">
 
